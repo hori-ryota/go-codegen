@@ -136,7 +136,7 @@ func printMessageDef(name string, strct *types.Struct) (string, error) {
 	for i, field := range typeutil.TypeToFields(strct) {
 		ft := field.Type()
 		repeatedStrIfNeeded := ""
-		if slice, ok := ft.(*types.Slice); ok {
+		if slice, ok := ft.Underlying().(*types.Slice); ok {
 			repeatedStrIfNeeded = "repeated "
 			ft = slice.Elem()
 		}
