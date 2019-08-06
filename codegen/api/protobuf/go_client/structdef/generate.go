@@ -57,7 +57,7 @@ func Generate(
 
 	err := StructDefTemplate.Execute(out, TemplateParam{
 		PackageName:    dstPackage.Name(),
-		ImportPackages: typeutil.FmtImports(StructDefTemplateUsedPackages),
+		ImportPackages: typeutil.FmtImports(StructDefTemplateUsedPackages, dstPackage),
 		TypeDefs:       typeDefs,
 		TypePrinter:    printer,
 	})

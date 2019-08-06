@@ -118,7 +118,7 @@ func Generate(pkgInfo *loader.PackageInfo) (string, error) {
 			{{ .Body }}
 		`)).Execute(out, map[string]string{
 		"PackageName":    pkgInfo.Pkg.Name(),
-		"ImportPackages": typeutil.FmtImports(typeutil.AllImported(pkgInfo)),
+		"ImportPackages": typeutil.FmtImports(typeutil.AllImported(pkgInfo), pkgInfo.Pkg),
 		"Body":           b.String(),
 	})
 	if err != nil {

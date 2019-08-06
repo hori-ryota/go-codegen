@@ -71,7 +71,7 @@ func Generate(pkgInfo *loader.PackageInfo, errorCodes []string, dstPackage *type
 		PackageName:      pkgInfo.Pkg.Name(),
 		ErrorCodes:       errorCodes,
 		DetailErrorCodes: detailErrorCodes,
-		ImportPackages:   typeutil.FmtImports(append(typeutil.AllImported(pkgInfo), GodefTmplUsedPackages...)),
+		ImportPackages:   typeutil.FmtImports(append(typeutil.AllImported(pkgInfo), GodefTmplUsedPackages...), dstPackage),
 		TypePrinter:      printer,
 	}
 

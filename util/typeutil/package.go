@@ -37,10 +37,13 @@ func TypeToPackage(typ types.Type) *types.Package {
 	return nil
 }
 
-func FmtImports(pkgs []*types.Package) string {
+func FmtImports(pkgs []*types.Package, current *types.Package) string {
 	m := make(map[string]string, len(pkgs))
 	for _, pkg := range pkgs {
 		if pkg == nil {
+			continue
+		}
+		if current != nil && pkg.Path() == current.Path() {
 			continue
 		}
 		m[pkg.Name()] = pkg.Path()

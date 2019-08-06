@@ -77,7 +77,7 @@ func Generate(
 
 	err := ClientTemplate.Execute(out, TemplateParam{
 		PackageName:    dstPackage.Name(),
-		ImportPackages: typeutil.FmtImports(importPackages),
+		ImportPackages: typeutil.FmtImports(importPackages, dstPackage),
 		Services:       services,
 		TypePrinter:    printer,
 	})
