@@ -22,7 +22,9 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	anonymousNestedStructParam struct {
 		StringParam string
 	} `required:"" getter:""`
-	namedNestedStructParam NamedSomeType `required:"" getter:""`
+	namedNestedStructParam NamedSomeType     `required:"" getter:""`
+	stringEnumParam        domain.StringEnum `required:"" getter:""`
+	intEnumParam           domain.IntEnum    `required:"" getter:""`
 
 	stringSliceParam                []string  `required:"" getter:""`
 	intSliceParam                   []int     `required:"" getter:""`
@@ -34,7 +36,9 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	anonymousNestedStructSliceParam []struct {
 		StringParam string
 	} `required:"" getter:""`
-	namedNestedStructSliceParam []NamedSomeType `required:"" getter:""`
+	namedNestedStructSliceParam []NamedSomeType     `required:"" getter:""`
+	stringEnumSliceParam        []domain.StringEnum `required:"" getter:""`
+	intEnumSliceParam           []domain.IntEnum    `required:"" getter:""`
 }
 
 //genconstructor

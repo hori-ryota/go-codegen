@@ -1,6 +1,8 @@
 package typeutil
 
-import "go/types"
+import (
+	"go/types"
+)
 
 //genconstructor
 type Printer struct {
@@ -10,6 +12,18 @@ type Printer struct {
 
 func (p Printer) PrintRelativeType(t types.Type) string {
 	return types.TypeString(t, p.relativeTo)
+}
+
+func (p Printer) PrintRelativeObject(t types.Object) string {
+	return types.ObjectString(t, p.relativeTo)
+}
+
+func (p Printer) PrintRelativeConst(c *types.Const) string {
+	prefix := p.relativeTo(c.Pkg())
+	if prefix != "" {
+		prefix += "."
+	}
+	return prefix + c.Name()
 }
 
 func (p Printer) PrintRelativeFuncName(f *types.Func) string {

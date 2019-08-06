@@ -55,18 +55,34 @@ func Example() {
 	//     string string_param = 1;
 	//   }
 	//   NamedSomeType named_nested_struct_param = 9;
-	//   repeated string string_slice_param = 10;
-	//   repeated int64 int_slice_param = 11;
-	//   repeated int64 int64_slice_param = 12;
-	//   repeated uint64 uint_slice_param = 13;
-	//   repeated uint64 uint64_slice_param = 14;
-	//   repeated float float32_slice_param = 15;
-	//   repeated double float64_slice_param = 16;
+	//   enum StringEnum {
+	//     UNKNOWN_STRING_ENUM = 0;
+	//     STRING_A = 1;
+	//     STRING_B = 2;
+	//     STRING_C = 3;
+	//   }
+	//   StringEnum string_enum_param = 10;
+	//   enum IntEnum {
+	//     UNKNOWN_INT_ENUM = 0;
+	//     INT_ONE = 1;
+	//     INT_THREE = 2;
+	//     INT_TWO = 3;
+	//   }
+	//   IntEnum int_enum_param = 11;
+	//   repeated string string_slice_param = 12;
+	//   repeated int64 int_slice_param = 13;
+	//   repeated int64 int64_slice_param = 14;
+	//   repeated uint64 uint_slice_param = 15;
+	//   repeated uint64 uint64_slice_param = 16;
+	//   repeated float float32_slice_param = 17;
+	//   repeated double float64_slice_param = 18;
 	//   message AnonymousNestedStructSliceParam {
 	//     string string_param = 1;
 	//   }
-	//   repeated AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;
-	//   repeated NamedSomeType named_nested_struct_slice_param = 18;
+	//   repeated AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;
+	//   repeated NamedSomeType named_nested_struct_slice_param = 20;
+	//   repeated StringEnum string_enum_slice_param = 21;
+	//   repeated IntEnum int_enum_slice_param = 22;
 	// }
 	//
 	// message DoingSomethingWithOutputAndActorUsecaseOutput {

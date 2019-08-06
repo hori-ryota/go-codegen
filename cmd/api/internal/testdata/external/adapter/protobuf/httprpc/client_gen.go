@@ -63,6 +63,34 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 			}
 			return &t
 		}(),
+		StringEnumParam: func(s StringEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
+			switch s {
+			case StringA:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A
+			case StringB:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B
+			case StringC:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C
+
+			default:
+				var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum
+				return t
+			}
+		}(input.StringEnumParam),
+		IntEnumParam: func(s IntEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
+			switch s {
+			case IntOne:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE
+			case IntThree:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE
+			case IntTwo:
+				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO
+
+			default:
+				var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum
+				return t
+			}
+		}(input.IntEnumParam),
 		StringSliceParam: input.StringSliceParam,
 		IntSliceParam: func() []int64 {
 			t := make([]int64, len(input.IntSliceParam))
@@ -103,6 +131,46 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 					}
 					return &t
 				}()
+			}
+			return t
+		}(),
+		StringEnumSliceParam: func() []protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
+			t := make([]protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum, len(input.StringEnumSliceParam))
+			for i := range t {
+				t[i] = func(s StringEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
+					switch s {
+					case StringA:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A
+					case StringB:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B
+					case StringC:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C
+
+					default:
+						var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum
+						return t
+					}
+				}(input.StringEnumSliceParam[i])
+			}
+			return t
+		}(),
+		IntEnumSliceParam: func() []protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
+			t := make([]protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum, len(input.IntEnumSliceParam))
+			for i := range t {
+				t[i] = func(s IntEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
+					switch s {
+					case IntOne:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE
+					case IntThree:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE
+					case IntTwo:
+						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO
+
+					default:
+						var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum
+						return t
+					}
+				}(input.IntEnumSliceParam[i])
 			}
 			return t
 		}(),

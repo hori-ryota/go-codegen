@@ -143,6 +143,31 @@ func printMessageDef(name string, strct *types.Struct) (string, error) {
 		if ptr, ok := ft.Underlying().(*types.Pointer); ok {
 			ft = ptr.Elem()
 		}
+
+		if named, ok := ft.(*types.Named); ok {
+			enumValues := typeutil.TypeToEnumValues(named)
+			if len(enumValues) > 0 {
+				enumName := named.Obj().Name()
+				if !alreadyDefined[enumName] {
+					enumDef := printEnumDef(named, enumValues)
+					fmt.Fprintln(w, AddIndent(enumDef, 1))
+					alreadyDefined[enumName] = true
+				}
+
+				fmt.Fprint(w, AddIndent(
+					fmt.Sprintf(
+						"%s%s %s = %d;\n",
+						repeatedStrIfNeeded,
+						strcase.ToUpperCamel(enumName),
+						strcase.ToLowerSnake(field.Name()),
+						i+1,
+					),
+					1,
+				))
+				continue
+			}
+		}
+
 		if typeStr, ok := KnownTypesToProtoType(ft); ok {
 			fmt.Fprint(w, AddIndent(
 				fmt.Sprintf(
@@ -188,6 +213,29 @@ func printMessageDef(name string, strct *types.Struct) (string, error) {
 	fmt.Fprint(w, "}")
 
 	return w.String(), nil
+}
+
+func printEnumDef(t *types.Named, values []*types.Const) string {
+	w := new(bytes.Buffer)
+	fmt.Fprintf(w, "enum %s {\n", strcase.ToUpperCamel(t.Obj().Name()))
+	fmt.Fprintf(w, AddIndent(fmt.Sprintf("UNKNOWN_%s = 0;\n", strcase.ToUpperSnake(t.Obj().Name())), 1))
+	for i, v := range values {
+		if strings.ToLower(v.Name()) == "unknown" {
+			continue
+		}
+		fmt.Fprint(w, AddIndent(
+			fmt.Sprintf(
+				"%s = %d;\n",
+				strcase.ToUpperSnake(v.Name()),
+				i+1,
+			),
+			1,
+		))
+	}
+
+	fmt.Fprint(w, "}")
+
+	return w.String()
 }
 
 func AddIndent(s string, indent int) string {

@@ -2,6 +2,10 @@
 
 package application
 
+import (
+	domain "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/domain"
+)
+
 func (m DoingSomethingWithOutputAndActorUsecaseInput) StringParam() string {
 	return m.stringParam
 }
@@ -38,6 +42,14 @@ func (m DoingSomethingWithOutputAndActorUsecaseInput) NamedNestedStructParam() N
 	return m.namedNestedStructParam
 }
 
+func (m DoingSomethingWithOutputAndActorUsecaseInput) StringEnumParam() domain.StringEnum {
+	return m.stringEnumParam
+}
+
+func (m DoingSomethingWithOutputAndActorUsecaseInput) IntEnumParam() domain.IntEnum {
+	return m.intEnumParam
+}
+
 func (m DoingSomethingWithOutputAndActorUsecaseInput) StringSliceParam() []string {
 	return m.stringSliceParam
 }
@@ -72,6 +84,14 @@ func (m DoingSomethingWithOutputAndActorUsecaseInput) AnonymousNestedStructSlice
 
 func (m DoingSomethingWithOutputAndActorUsecaseInput) NamedNestedStructSliceParam() []NamedSomeType {
 	return m.namedNestedStructSliceParam
+}
+
+func (m DoingSomethingWithOutputAndActorUsecaseInput) StringEnumSliceParam() []domain.StringEnum {
+	return m.stringEnumSliceParam
+}
+
+func (m DoingSomethingWithOutputAndActorUsecaseInput) IntEnumSliceParam() []domain.IntEnum {
+	return m.intEnumSliceParam
 }
 
 func (m DoingSomethingWithOutputAndActorUsecaseOutput) StringParam() string {

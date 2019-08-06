@@ -74,147 +74,209 @@ public interface DoingSomethingWithOutputAndActorUsecaseInputOrBuilder extends
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder();
 
   /**
-   * <code>repeated string string_slice_param = 10;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+   */
+  int getStringEnumParamValue();
+  /**
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+   */
+  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam();
+
+  /**
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+   */
+  int getIntEnumParamValue();
+  /**
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+   */
+  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam();
+
+  /**
+   * <code>repeated string string_slice_param = 12;</code>
    */
   java.util.List<java.lang.String>
       getStringSliceParamList();
   /**
-   * <code>repeated string string_slice_param = 10;</code>
+   * <code>repeated string string_slice_param = 12;</code>
    */
   int getStringSliceParamCount();
   /**
-   * <code>repeated string string_slice_param = 10;</code>
+   * <code>repeated string string_slice_param = 12;</code>
    */
   java.lang.String getStringSliceParam(int index);
   /**
-   * <code>repeated string string_slice_param = 10;</code>
+   * <code>repeated string string_slice_param = 12;</code>
    */
   com.google.protobuf.ByteString
       getStringSliceParamBytes(int index);
 
   /**
-   * <code>repeated int64 int_slice_param = 11;</code>
+   * <code>repeated int64 int_slice_param = 13;</code>
    */
   java.util.List<java.lang.Long> getIntSliceParamList();
   /**
-   * <code>repeated int64 int_slice_param = 11;</code>
+   * <code>repeated int64 int_slice_param = 13;</code>
    */
   int getIntSliceParamCount();
   /**
-   * <code>repeated int64 int_slice_param = 11;</code>
+   * <code>repeated int64 int_slice_param = 13;</code>
    */
   long getIntSliceParam(int index);
 
   /**
-   * <code>repeated int64 int64_slice_param = 12;</code>
+   * <code>repeated int64 int64_slice_param = 14;</code>
    */
   java.util.List<java.lang.Long> getInt64SliceParamList();
   /**
-   * <code>repeated int64 int64_slice_param = 12;</code>
+   * <code>repeated int64 int64_slice_param = 14;</code>
    */
   int getInt64SliceParamCount();
   /**
-   * <code>repeated int64 int64_slice_param = 12;</code>
+   * <code>repeated int64 int64_slice_param = 14;</code>
    */
   long getInt64SliceParam(int index);
 
   /**
-   * <code>repeated uint64 uint_slice_param = 13;</code>
+   * <code>repeated uint64 uint_slice_param = 15;</code>
    */
   java.util.List<java.lang.Long> getUintSliceParamList();
   /**
-   * <code>repeated uint64 uint_slice_param = 13;</code>
+   * <code>repeated uint64 uint_slice_param = 15;</code>
    */
   int getUintSliceParamCount();
   /**
-   * <code>repeated uint64 uint_slice_param = 13;</code>
+   * <code>repeated uint64 uint_slice_param = 15;</code>
    */
   long getUintSliceParam(int index);
 
   /**
-   * <code>repeated uint64 uint64_slice_param = 14;</code>
+   * <code>repeated uint64 uint64_slice_param = 16;</code>
    */
   java.util.List<java.lang.Long> getUint64SliceParamList();
   /**
-   * <code>repeated uint64 uint64_slice_param = 14;</code>
+   * <code>repeated uint64 uint64_slice_param = 16;</code>
    */
   int getUint64SliceParamCount();
   /**
-   * <code>repeated uint64 uint64_slice_param = 14;</code>
+   * <code>repeated uint64 uint64_slice_param = 16;</code>
    */
   long getUint64SliceParam(int index);
 
   /**
-   * <code>repeated float float32_slice_param = 15;</code>
+   * <code>repeated float float32_slice_param = 17;</code>
    */
   java.util.List<java.lang.Float> getFloat32SliceParamList();
   /**
-   * <code>repeated float float32_slice_param = 15;</code>
+   * <code>repeated float float32_slice_param = 17;</code>
    */
   int getFloat32SliceParamCount();
   /**
-   * <code>repeated float float32_slice_param = 15;</code>
+   * <code>repeated float float32_slice_param = 17;</code>
    */
   float getFloat32SliceParam(int index);
 
   /**
-   * <code>repeated double float64_slice_param = 16;</code>
+   * <code>repeated double float64_slice_param = 18;</code>
    */
   java.util.List<java.lang.Double> getFloat64SliceParamList();
   /**
-   * <code>repeated double float64_slice_param = 16;</code>
+   * <code>repeated double float64_slice_param = 18;</code>
    */
   int getFloat64SliceParamCount();
   /**
-   * <code>repeated double float64_slice_param = 16;</code>
+   * <code>repeated double float64_slice_param = 18;</code>
    */
   double getFloat64SliceParam(int index);
 
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
    */
   java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> 
       getAnonymousNestedStructSliceParamList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
    */
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam getAnonymousNestedStructSliceParam(int index);
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
    */
   int getAnonymousNestedStructSliceParamCount();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
    */
   java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder> 
       getAnonymousNestedStructSliceParamOrBuilderList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 17;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
    */
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder getAnonymousNestedStructSliceParamOrBuilder(
       int index);
 
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 18;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
    */
   java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> 
       getNamedNestedStructSliceParamList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 18;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
    */
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index);
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 18;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
    */
   int getNamedNestedStructSliceParamCount();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 18;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
    */
   java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
       getNamedNestedStructSliceParamOrBuilderList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 18;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
    */
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
       int index);
+
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   */
+  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   */
+  int getStringEnumSliceParamCount();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   */
+  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index);
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   */
+  java.util.List<java.lang.Integer>
+  getStringEnumSliceParamValueList();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   */
+  int getStringEnumSliceParamValue(int index);
+
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   */
+  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   */
+  int getIntEnumSliceParamCount();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   */
+  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index);
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   */
+  java.util.List<java.lang.Integer>
+  getIntEnumSliceParamValueList();
+  /**
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   */
+  int getIntEnumSliceParamValue(int index);
 }

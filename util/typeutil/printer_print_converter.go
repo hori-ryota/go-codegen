@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"go/types"
 	"strings"
+
+	"github.com/hori-ryota/go-strcase"
 )
 
 func (p Printer) PrintConverterWitoutErrorCheck(
@@ -12,6 +14,8 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 	sourceType types.Type,
 	targetType types.Type,
 ) (string, error) {
+	targetTypeStr := p.PrintRelativeType(targetType)
+
 	if namedTarget, ok := targetType.(*types.Named); ok {
 		constructor := SearchConstructor(namedTarget)
 		if constructor != nil {
@@ -32,10 +36,50 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 					%s
 					return %s
 				}()`,
-				p.PrintRelativeType(targetType),
+				targetTypeStr,
 				targetValueName, constructorStr,
 				settersStr,
 				targetValueName,
+			), nil
+		}
+
+		targetEnumValues := TypeToEnumValues(targetType)
+		sourceEnumValues := TypeToEnumValues(sourceType)
+		if len(targetEnumValues) > 0 && len(sourceEnumValues) > 0 {
+			b := new(bytes.Buffer)
+			for _, sourceEnumValue := range sourceEnumValues {
+				var targetEnumValue *types.Const
+				for _, v := range targetEnumValues {
+					if strings.Contains(
+						strcase.ToLowerSnake(sourceEnumValue.Name()),
+						strcase.ToLowerSnake(v.Name()),
+					) ||
+						strings.Contains(
+							strcase.ToLowerSnake(v.Name()),
+							strcase.ToLowerSnake(sourceEnumValue.Name()),
+						) {
+						targetEnumValue = v
+						break
+					}
+				}
+				if targetEnumValue == nil {
+					continue
+				}
+				fmt.Fprintf(b, "case %s:\n", p.PrintRelativeConst(sourceEnumValue))
+				fmt.Fprintf(b, "return %s\n", p.PrintRelativeConst(targetEnumValue))
+			}
+			return fmt.Sprintf(`func(s %s) %s {
+			switch s {
+			%s
+			default:
+				var t %s
+				return t
+			}
+			}(%s)`,
+				p.PrintRelativeType(sourceType), targetTypeStr,
+				b.String(),
+				targetTypeStr,
+				sourceName,
 			), nil
 		}
 	}
@@ -43,7 +87,6 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 	if types.AssignableTo(sourceType, targetType) {
 		return sourceName, nil
 	}
-	targetTypeStr := p.PrintRelativeType(targetType)
 	if types.ConvertibleTo(sourceType, targetType) {
 		return fmt.Sprintf("%s(%s)", targetTypeStr, sourceName), nil
 	}

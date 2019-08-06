@@ -12,6 +12,8 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	Float64Param                    float64
 	AnonymousNestedStructParam      struct{ StringParam string }
 	NamedNestedStructParam          NamedSomeType
+	StringEnumParam                 StringEnum
+	IntEnumParam                    IntEnum
 	StringSliceParam                []string
 	IntSliceParam                   []int
 	Int64SliceParam                 []int64
@@ -21,6 +23,8 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	Float64SliceParam               []float64
 	AnonymousNestedStructSliceParam []struct{ StringParam string }
 	NamedNestedStructSliceParam     []NamedSomeType
+	StringEnumSliceParam            []StringEnum
+	IntEnumSliceParam               []IntEnum
 }
 
 func NewDoingSomethingWithOutputAndActorUsecaseInput(
@@ -33,6 +37,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	float64Param float64,
 	anonymousNestedStructParam struct{ StringParam string },
 	namedNestedStructParam NamedSomeType,
+	stringEnumParam StringEnum,
+	intEnumParam IntEnum,
 	stringSliceParam []string,
 	intSliceParam []int,
 	int64SliceParam []int64,
@@ -42,6 +48,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	float64SliceParam []float64,
 	anonymousNestedStructSliceParam []struct{ StringParam string },
 	namedNestedStructSliceParam []NamedSomeType,
+	stringEnumSliceParam []StringEnum,
+	intEnumSliceParam []IntEnum,
 ) DoingSomethingWithOutputAndActorUsecaseInput {
 	return DoingSomethingWithOutputAndActorUsecaseInput{
 		StringParam:                     stringParam,
@@ -53,6 +61,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		Float64Param:                    float64Param,
 		AnonymousNestedStructParam:      anonymousNestedStructParam,
 		NamedNestedStructParam:          namedNestedStructParam,
+		StringEnumParam:                 stringEnumParam,
+		IntEnumParam:                    intEnumParam,
 		StringSliceParam:                stringSliceParam,
 		IntSliceParam:                   intSliceParam,
 		Int64SliceParam:                 int64SliceParam,
@@ -62,6 +72,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		Float64SliceParam:               float64SliceParam,
 		AnonymousNestedStructSliceParam: anonymousNestedStructSliceParam,
 		NamedNestedStructSliceParam:     namedNestedStructSliceParam,
+		StringEnumSliceParam:            stringEnumSliceParam,
+		IntEnumSliceParam:               intEnumSliceParam,
 	}
 }
 
@@ -76,6 +88,22 @@ func NewNamedSomeType(
 		StringParam: stringParam,
 	}
 }
+
+type StringEnum string
+
+const (
+	StringA StringEnum = "A"
+	StringB StringEnum = "B"
+	StringC StringEnum = "C"
+)
+
+type IntEnum int
+
+const (
+	IntOne   IntEnum = 1
+	IntThree IntEnum = 3
+	IntTwo   IntEnum = 2
+)
 
 type DoingSomethingWithOutputAndActorUsecaseOutput struct {
 	StringParam string

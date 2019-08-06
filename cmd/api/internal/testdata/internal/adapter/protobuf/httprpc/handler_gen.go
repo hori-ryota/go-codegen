@@ -10,6 +10,7 @@ import (
 	protobuf "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/external/adapter/protobuf"
 	usecasefactory "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/adapter/usecasefactory"
 	application "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/application"
+	domain "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/domain"
 )
 
 func NewHandlers(
@@ -67,6 +68,34 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 
 				return m
 			}(),
+			func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum) domain.StringEnum {
+				switch s {
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A:
+					return domain.StringA
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B:
+					return domain.StringB
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C:
+					return domain.StringC
+
+				default:
+					var t domain.StringEnum
+					return t
+				}
+			}(inputProtoType.GetStringEnumParam()),
+			func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum) domain.IntEnum {
+				switch s {
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE:
+					return domain.IntOne
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE:
+					return domain.IntThree
+				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO:
+					return domain.IntTwo
+
+				default:
+					var t domain.IntEnum
+					return t
+				}
+			}(inputProtoType.GetIntEnumParam()),
 			inputProtoType.GetStringSliceParam(),
 			func() []int {
 				t := make([]int, len(inputProtoType.GetIntSliceParam()))
@@ -105,6 +134,46 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 
 						return m
 					}()
+				}
+				return t
+			}(),
+			func() []domain.StringEnum {
+				t := make([]domain.StringEnum, len(inputProtoType.GetStringEnumSliceParam()))
+				for i := range t {
+					t[i] = func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum) domain.StringEnum {
+						switch s {
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A:
+							return domain.StringA
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B:
+							return domain.StringB
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C:
+							return domain.StringC
+
+						default:
+							var t domain.StringEnum
+							return t
+						}
+					}(inputProtoType.GetStringEnumSliceParam()[i])
+				}
+				return t
+			}(),
+			func() []domain.IntEnum {
+				t := make([]domain.IntEnum, len(inputProtoType.GetIntEnumSliceParam()))
+				for i := range t {
+					t[i] = func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum) domain.IntEnum {
+						switch s {
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE:
+							return domain.IntOne
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE:
+							return domain.IntThree
+						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO:
+							return domain.IntTwo
+
+						default:
+							var t domain.IntEnum
+							return t
+						}
+					}(inputProtoType.GetIntEnumSliceParam()[i])
 				}
 				return t
 			}(),

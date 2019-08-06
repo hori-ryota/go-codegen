@@ -2,6 +2,10 @@
 
 package application
 
+import (
+	domain "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/domain"
+)
+
 func NewSomeActorDescription(
 	id string,
 	typ string,
@@ -26,6 +30,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	float64Param float64,
 	anonymousNestedStructParam struct{ StringParam string },
 	namedNestedStructParam NamedSomeType,
+	stringEnumParam domain.StringEnum,
+	intEnumParam domain.IntEnum,
 	stringSliceParam []string,
 	intSliceParam []int,
 	int64SliceParam []int64,
@@ -35,6 +41,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	float64SliceParam []float64,
 	anonymousNestedStructSliceParam []struct{ StringParam string },
 	namedNestedStructSliceParam []NamedSomeType,
+	stringEnumSliceParam []domain.StringEnum,
+	intEnumSliceParam []domain.IntEnum,
 ) DoingSomethingWithOutputAndActorUsecaseInput {
 	return DoingSomethingWithOutputAndActorUsecaseInput{
 		stringParam:                     stringParam,
@@ -46,6 +54,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		float64Param:                    float64Param,
 		anonymousNestedStructParam:      anonymousNestedStructParam,
 		namedNestedStructParam:          namedNestedStructParam,
+		stringEnumParam:                 stringEnumParam,
+		intEnumParam:                    intEnumParam,
 		stringSliceParam:                stringSliceParam,
 		intSliceParam:                   intSliceParam,
 		int64SliceParam:                 int64SliceParam,
@@ -55,6 +65,8 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		float64SliceParam:               float64SliceParam,
 		anonymousNestedStructSliceParam: anonymousNestedStructSliceParam,
 		namedNestedStructSliceParam:     namedNestedStructSliceParam,
+		stringEnumSliceParam:            stringEnumSliceParam,
+		intEnumSliceParam:               intEnumSliceParam,
 	}
 }
 
