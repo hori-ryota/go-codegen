@@ -28,7 +28,6 @@ type RPC struct {
 func Generate(
 	usecasePkgInfo *loader.PackageInfo,
 	protoPkgInfo *loader.PackageInfo,
-	usecaseFactoryPackage *types.Package,
 	dstPackage *types.Package,
 ) (string, error) {
 	printer := typeutil.NewPrinter(dstPackage)
@@ -72,16 +71,14 @@ func Generate(
 
 	importPackages := make([]*types.Package, 0, 100)
 	importPackages = append(importPackages, HandlerTemplateUsedPackages...)
-	importPackages = append(importPackages, usecaseFactoryPackage)
 	importPackages = append(importPackages, typeutil.AllImported(usecasePkgInfo)...)
 	importPackages = append(importPackages, typeutil.AllImported(protoPkgInfo)...)
 
 	err := HandlerTemplate.Execute(out, TemplateParam{
-		PackageName:           dstPackage.Name(),
-		ImportPackages:        typeutil.FmtImports(importPackages, dstPackage),
-		Services:              services,
-		TypePrinter:           printer,
-		UsecaseFactoryPackage: usecaseFactoryPackage,
+		PackageName:    dstPackage.Name(),
+		ImportPackages: typeutil.FmtImports(importPackages, dstPackage),
+		Services:       services,
+		TypePrinter:    printer,
 	})
 	if err != nil {
 		return "", err

@@ -42,7 +42,6 @@ import (
 func NewHttprpcCmd() *cobra.Command {
 	var usecaseDir string
 	var protoDir string
-	var usecaseFactoryDir string
 	var outputDir string
 	var useStdOut bool
 
@@ -54,7 +53,6 @@ func NewHttprpcCmd() *cobra.Command {
 			return Run(
 				usecaseDir,
 				protoDir,
-				usecaseFactoryDir,
 				outputDir,
 				useStdOut,
 			)
@@ -67,10 +65,6 @@ func NewHttprpcCmd() *cobra.Command {
 	}
 	httprpcCmd.Flags().StringVarP(&protoDir, "protoDir", "p", ".", "target proto types of Go directory")
 	if err := httprpcCmd.MarkFlagDirname("protoDir"); err != nil {
-		panic(err)
-	}
-	httprpcCmd.Flags().StringVarP(&usecaseFactoryDir, "usecaseFactoryDir", "f", ".", "usecase factory directory (manual implementation")
-	if err := httprpcCmd.MarkFlagDirname("usecaseDir"); err != nil {
 		panic(err)
 	}
 	httprpcCmd.Flags().StringVarP(&outputDir, "outputDir", "o", "", "output directory")
@@ -88,13 +82,11 @@ func NewHttprpcCmd() *cobra.Command {
 func Run(
 	usecaseDir string,
 	protoDir string,
-	usecaseFactoryDir string,
 	outputDir string,
 	useStdOut bool,
 ) error {
 	usecaseDir = filepath.FromSlash(usecaseDir)
 	protoDir = filepath.FromSlash(protoDir)
-	usecaseFactoryDir = filepath.FromSlash(usecaseFactoryDir)
 	outputDir = filepath.FromSlash(outputDir)
 
 	lconf := loader.Config{
@@ -119,13 +111,6 @@ func Run(
 		return err
 	}
 
-	if err := os.MkdirAll(usecaseFactoryDir, 0755); err != nil {
-		return err
-	}
-	usecaseFactoryPackage, err := gocodeutil.LocalPathToGoPackagePath(usecaseFactoryDir)
-	if err != nil {
-		return err
-	}
 	outputPackage, err := gocodeutil.LocalPathToGoPackagePath(outputDir)
 	if err != nil {
 		return err
@@ -134,7 +119,6 @@ func Run(
 	generated, err := httprpc.Generate(
 		lprog.Package(usecasePkgPath),
 		lprog.Package(protoPkgPath),
-		types.NewPackage(usecaseFactoryPackage, path.Base(usecaseFactoryPackage)),
 		types.NewPackage(outputPackage, path.Base(outputPackage)),
 	)
 	if err != nil {

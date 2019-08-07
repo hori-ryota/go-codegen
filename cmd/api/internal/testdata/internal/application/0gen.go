@@ -15,7 +15,7 @@ package application
 //go:generate prototool generate ../../external/adapter/protobuf
 
 //// httprpc server of Go
-//go:generate go run ../../../../../../ api protobuf go_server httprpc -p ../../external/adapter/protobuf -f ../adapter/usecasefactory -o ../adapter/protobuf/httprpc
+//go:generate go run ../../../../../../ api protobuf go_server httprpc -p ../../external/adapter/protobuf -o ../adapter/protobuf/httprpc
 
 //// httprpc client of Go
 

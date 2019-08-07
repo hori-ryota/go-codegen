@@ -7,7 +7,7 @@ import (
 )
 
 func Example() {
-	input := "api protobuf go_server httprpc -t ../../../internal/testdata/internal/application -p ../../../internal/testdata/external/adapter/protobuf -f ../../../internal/testdata/internal/adapter/usecasefactory -o ../../../internal/testdata/internal/adapter/protobuf/httprpc"
+	input := "api protobuf go_server httprpc -t ../../../internal/testdata/internal/application -p ../../../internal/testdata/external/adapter/protobuf -o ../../../internal/testdata/internal/adapter/protobuf/httprpc"
 
 	cmd := prepareCmdWithStdout(input)
 	err := cmd.Execute()
@@ -20,22 +20,22 @@ func Example() {
 	// package httprpc
 	//
 	// import (
+	// 	context "context"
 	// 	ioutil "io/ioutil"
 	// 	http "net/http"
 	//
 	// 	proto "github.com/golang/protobuf/proto"
 	// 	protobuf "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/external/adapter/protobuf"
-	// 	usecasefactory "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/adapter/usecasefactory"
 	// 	application "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/application"
 	// 	domain "github.com/hori-ryota/go-codegen/cmd/api/internal/testdata/internal/domain"
 	// )
 	//
 	// func NewHandlers(
 	// 	handleError func(w http.ResponseWriter, r *http.Request, err error),
-	// 	doingSomethingWithOutputAndActorUsecaseFactory usecasefactory.DoingSomethingWithOutputAndActorUsecaseFactory,
-	// 	doingSomethingWithOutputWithoutActorUsecaseFactory usecasefactory.DoingSomethingWithOutputWithoutActorUsecaseFactory,
-	// 	doingSomethingWithoutOutputAndActorUsecaseFactory usecasefactory.DoingSomethingWithoutOutputAndActorUsecaseFactory,
-	// 	doingSomethingWithoutOutputWithActorUsecaseFactory usecasefactory.DoingSomethingWithoutOutputWithActorUsecaseFactory,
+	// 	doingSomethingWithOutputAndActorUsecaseFactory DoingSomethingWithOutputAndActorUsecaseFactory,
+	// 	doingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory,
+	// 	doingSomethingWithoutOutputAndActorUsecaseFactory DoingSomethingWithoutOutputAndActorUsecaseFactory,
+	// 	doingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory,
 	// ) Handlers {
 	// 	return Handlers{
 	// 		HandleError: handleError,
@@ -48,10 +48,13 @@ func Example() {
 	//
 	// type Handlers struct {
 	// 	HandleError                                        func(w http.ResponseWriter, r *http.Request, err error)
-	// 	DoingSomethingWithOutputAndActorUsecaseFactory     usecasefactory.DoingSomethingWithOutputAndActorUsecaseFactory
-	// 	DoingSomethingWithOutputWithoutActorUsecaseFactory usecasefactory.DoingSomethingWithOutputWithoutActorUsecaseFactory
-	// 	DoingSomethingWithoutOutputAndActorUsecaseFactory  usecasefactory.DoingSomethingWithoutOutputAndActorUsecaseFactory
-	// 	DoingSomethingWithoutOutputWithActorUsecaseFactory usecasefactory.DoingSomethingWithoutOutputWithActorUsecaseFactory
+	// 	DoingSomethingWithOutputAndActorUsecaseFactory     DoingSomethingWithOutputAndActorUsecaseFactory
+	// 	DoingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory
+	// 	DoingSomethingWithoutOutputAndActorUsecaseFactory  DoingSomethingWithoutOutputAndActorUsecaseFactory
+	// 	DoingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory
+	// }
+	// type DoingSomethingWithOutputAndActorUsecaseFactory interface {
+	// 	GenerateDoingSomethingWithOutputAndActorUsecase(context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error)
 	// }
 	//
 	// func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +202,7 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	usecase, err := h.DoingSomethingWithOutputAndActorUsecaseFactory.Generate(r.Context())
+	// 	usecase, err := h.DoingSomethingWithOutputAndActorUsecaseFactory.GenerateDoingSomethingWithOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -231,6 +234,10 @@ func Example() {
 	// 	return
 	// }
 	//
+	// type DoingSomethingWithOutputWithoutActorUsecaseFactory interface {
+	// 	GenerateDoingSomethingWithOutputWithoutActorUsecase(context.Context) (application.DoingSomethingWithOutputWithoutActorUsecase, error)
+	// }
+	//
 	// func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutputWithoutActorHandler(w http.ResponseWriter, r *http.Request) {
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
@@ -251,7 +258,7 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	usecase, err := h.DoingSomethingWithOutputWithoutActorUsecaseFactory.Generate(r.Context())
+	// 	usecase, err := h.DoingSomethingWithOutputWithoutActorUsecaseFactory.GenerateDoingSomethingWithOutputWithoutActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -278,6 +285,10 @@ func Example() {
 	// 	return
 	// }
 	//
+	// type DoingSomethingWithoutOutputAndActorUsecaseFactory interface {
+	// 	GenerateDoingSomethingWithoutOutputAndActorUsecase(context.Context) (application.DoingSomethingWithoutOutputAndActorUsecase, error)
+	// }
+	//
 	// func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
@@ -298,7 +309,7 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	usecase, err := h.DoingSomethingWithoutOutputAndActorUsecaseFactory.Generate(r.Context())
+	// 	usecase, err := h.DoingSomethingWithoutOutputAndActorUsecaseFactory.GenerateDoingSomethingWithoutOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -310,6 +321,10 @@ func Example() {
 	// 		return
 	// 	}
 	// 	return
+	// }
+	//
+	// type DoingSomethingWithoutOutputWithActorUsecaseFactory interface {
+	// 	GenerateDoingSomethingWithoutOutputWithActorUsecase(context.Context) (application.DoingSomethingWithoutOutputWithActorUsecase, error)
 	// }
 	//
 	// func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutOutputWithActorHandler(w http.ResponseWriter, r *http.Request) {
@@ -332,7 +347,7 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	usecase, err := h.DoingSomethingWithoutOutputWithActorUsecaseFactory.Generate(r.Context())
+	// 	usecase, err := h.DoingSomethingWithoutOutputWithActorUsecaseFactory.GenerateDoingSomethingWithoutOutputWithActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
