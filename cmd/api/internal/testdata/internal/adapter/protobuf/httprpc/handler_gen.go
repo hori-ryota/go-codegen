@@ -19,6 +19,7 @@ func NewHandlers(
 	doingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory,
 	doingSomethingWithoutOutputAndActorUsecaseFactory DoingSomethingWithoutOutputAndActorUsecaseFactory,
 	doingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory,
+	someActorToApplicationSomeActorDescriptionParser SomeActorToApplicationSomeActorDescriptionParser,
 ) Handlers {
 	return Handlers{
 		HandleError: handleError,
@@ -26,6 +27,7 @@ func NewHandlers(
 		DoingSomethingWithOutputWithoutActorUsecaseFactory: doingSomethingWithOutputWithoutActorUsecaseFactory,
 		DoingSomethingWithoutOutputAndActorUsecaseFactory:  doingSomethingWithoutOutputAndActorUsecaseFactory,
 		DoingSomethingWithoutOutputWithActorUsecaseFactory: doingSomethingWithoutOutputWithActorUsecaseFactory,
+		SomeActorToApplicationSomeActorDescriptionParser:   someActorToApplicationSomeActorDescriptionParser,
 	}
 }
 
@@ -35,6 +37,10 @@ type Handlers struct {
 	DoingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory
 	DoingSomethingWithoutOutputAndActorUsecaseFactory  DoingSomethingWithoutOutputAndActorUsecaseFactory
 	DoingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory
+	SomeActorToApplicationSomeActorDescriptionParser   SomeActorToApplicationSomeActorDescriptionParser
+}
+type SomeActorToApplicationSomeActorDescriptionParser interface {
+	ParseSomeActorToApplicationSomeActorDescription(context.Context, *http.Request) (application.SomeActorDescription, error)
 }
 type DoingSomethingWithOutputAndActorUsecaseFactory interface {
 	GenerateDoingSomethingWithOutputAndActorUsecase(context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error)
@@ -190,7 +196,7 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 		h.HandleError(w, r, err)
 		return
 	}
-	actor, err := ParseSomeActorToApplicationSomeActorDescription(r)
+	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	if err != nil {
 		h.HandleError(w, r, err)
 		return
@@ -335,7 +341,7 @@ func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutO
 		h.HandleError(w, r, err)
 		return
 	}
-	actor, err := ParseSomeActorToApplicationSomeActorDescription(r)
+	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	if err != nil {
 		h.HandleError(w, r, err)
 		return
