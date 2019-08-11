@@ -115,9 +115,23 @@ type {{ToActorParserTypeName $rootParam.TypePrinter .}} interface {
 type {{.Obj.Name}}Factory interface {
 	Generate{{.Obj.Name}}(context.Context) ({{$rootParam.TypePrinter.PrintRelativeType .Named}}, error)
 }
+type Static{{.Obj.Name}}Factory struct {
+	usecase {{$rootParam.TypePrinter.PrintRelativeType .Named}}
+}
+func NewStatic{{.Obj.Name}}Factory(usecase {{$rootParam.TypePrinter.PrintRelativeType .Named}}) Static{{.Obj.Name}}Factory {
+	return Static{{.Obj.Name}}Factory{usecase:usecase}
+}
+func (f Static{{.Obj.Name}}Factory) Generate{{.Obj.Name}}(ctx context.Context) ({{$rootParam.TypePrinter.PrintRelativeType .Named}}, error) {
+	return f.usecase, nil
+}
 {{$service := .}}
 {{- range .RPCs}}
 func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.ResponseWriter, r *http.Request) {
+	if h.{{$service.Obj.Name}}Factory == nil {
+		w.WriteHeader(http.StatusNotImplemented)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -131,6 +145,10 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 	}
 	input := {{$rootParam.TypePrinter.PrintConverterWitoutErrorCheck "inputProtoType" .InputProtoType .InputType}}
 	
+	if h.{{$service.Obj.Name}}Factory == nil {
+		h.HandleError(w, r, err)
+		return
+	}
 	usecase, err := h.{{$service.Obj.Name}}Factory.Generate{{$service.Obj.Name}}(r.Context())
 	if err != nil {
 		h.HandleError(w, r, err)

@@ -36,6 +36,7 @@ func Example() {
 	// 	doingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory,
 	// 	doingSomethingWithoutOutputAndActorUsecaseFactory DoingSomethingWithoutOutputAndActorUsecaseFactory,
 	// 	doingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory,
+	// 	someActorToApplicationSomeActorDescriptionParser SomeActorToApplicationSomeActorDescriptionParser,
 	// ) Handlers {
 	// 	return Handlers{
 	// 		HandleError: handleError,
@@ -43,6 +44,7 @@ func Example() {
 	// 		DoingSomethingWithOutputWithoutActorUsecaseFactory: doingSomethingWithOutputWithoutActorUsecaseFactory,
 	// 		DoingSomethingWithoutOutputAndActorUsecaseFactory:  doingSomethingWithoutOutputAndActorUsecaseFactory,
 	// 		DoingSomethingWithoutOutputWithActorUsecaseFactory: doingSomethingWithoutOutputWithActorUsecaseFactory,
+	// 		SomeActorToApplicationSomeActorDescriptionParser:   someActorToApplicationSomeActorDescriptionParser,
 	// 	}
 	// }
 	//
@@ -52,12 +54,31 @@ func Example() {
 	// 	DoingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory
 	// 	DoingSomethingWithoutOutputAndActorUsecaseFactory  DoingSomethingWithoutOutputAndActorUsecaseFactory
 	// 	DoingSomethingWithoutOutputWithActorUsecaseFactory DoingSomethingWithoutOutputWithActorUsecaseFactory
+	// 	SomeActorToApplicationSomeActorDescriptionParser   SomeActorToApplicationSomeActorDescriptionParser
+	// }
+	// type SomeActorToApplicationSomeActorDescriptionParser interface {
+	// 	ParseSomeActorToApplicationSomeActorDescription(context.Context, *http.Request) (application.SomeActorDescription, error)
 	// }
 	// type DoingSomethingWithOutputAndActorUsecaseFactory interface {
 	// 	GenerateDoingSomethingWithOutputAndActorUsecase(context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error)
 	// }
+	// type StaticDoingSomethingWithOutputAndActorUsecaseFactory struct {
+	// 	usecase application.DoingSomethingWithOutputAndActorUsecase
+	// }
+	//
+	// func NewStaticDoingSomethingWithOutputAndActorUsecaseFactory(usecase application.DoingSomethingWithOutputAndActorUsecase) StaticDoingSomethingWithOutputAndActorUsecaseFactory {
+	// 	return StaticDoingSomethingWithOutputAndActorUsecaseFactory{usecase: usecase}
+	// }
+	// func (f StaticDoingSomethingWithOutputAndActorUsecaseFactory) GenerateDoingSomethingWithOutputAndActorUsecase(ctx context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error) {
+	// 	return f.usecase, nil
+	// }
 	//
 	// func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
+	// 	if h.DoingSomethingWithOutputAndActorUsecaseFactory == nil {
+	// 		w.WriteHeader(http.StatusNotImplemented)
+	// 		return
+	// 	}
+	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -202,12 +223,16 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
+	// 	if h.DoingSomethingWithOutputAndActorUsecaseFactory == nil {
+	// 		h.HandleError(w, r, err)
+	// 		return
+	// 	}
 	// 	usecase, err := h.DoingSomethingWithOutputAndActorUsecaseFactory.GenerateDoingSomethingWithOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
 	// 	}
-	// 	actor, err := ParseSomeActorToApplicationSomeActorDescription(r)
+	// 	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -237,8 +262,23 @@ func Example() {
 	// type DoingSomethingWithOutputWithoutActorUsecaseFactory interface {
 	// 	GenerateDoingSomethingWithOutputWithoutActorUsecase(context.Context) (application.DoingSomethingWithOutputWithoutActorUsecase, error)
 	// }
+	// type StaticDoingSomethingWithOutputWithoutActorUsecaseFactory struct {
+	// 	usecase application.DoingSomethingWithOutputWithoutActorUsecase
+	// }
+	//
+	// func NewStaticDoingSomethingWithOutputWithoutActorUsecaseFactory(usecase application.DoingSomethingWithOutputWithoutActorUsecase) StaticDoingSomethingWithOutputWithoutActorUsecaseFactory {
+	// 	return StaticDoingSomethingWithOutputWithoutActorUsecaseFactory{usecase: usecase}
+	// }
+	// func (f StaticDoingSomethingWithOutputWithoutActorUsecaseFactory) GenerateDoingSomethingWithOutputWithoutActorUsecase(ctx context.Context) (application.DoingSomethingWithOutputWithoutActorUsecase, error) {
+	// 	return f.usecase, nil
+	// }
 	//
 	// func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutputWithoutActorHandler(w http.ResponseWriter, r *http.Request) {
+	// 	if h.DoingSomethingWithOutputWithoutActorUsecaseFactory == nil {
+	// 		w.WriteHeader(http.StatusNotImplemented)
+	// 		return
+	// 	}
+	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -258,6 +298,10 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
+	// 	if h.DoingSomethingWithOutputWithoutActorUsecaseFactory == nil {
+	// 		h.HandleError(w, r, err)
+	// 		return
+	// 	}
 	// 	usecase, err := h.DoingSomethingWithOutputWithoutActorUsecaseFactory.GenerateDoingSomethingWithOutputWithoutActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -288,8 +332,23 @@ func Example() {
 	// type DoingSomethingWithoutOutputAndActorUsecaseFactory interface {
 	// 	GenerateDoingSomethingWithoutOutputAndActorUsecase(context.Context) (application.DoingSomethingWithoutOutputAndActorUsecase, error)
 	// }
+	// type StaticDoingSomethingWithoutOutputAndActorUsecaseFactory struct {
+	// 	usecase application.DoingSomethingWithoutOutputAndActorUsecase
+	// }
+	//
+	// func NewStaticDoingSomethingWithoutOutputAndActorUsecaseFactory(usecase application.DoingSomethingWithoutOutputAndActorUsecase) StaticDoingSomethingWithoutOutputAndActorUsecaseFactory {
+	// 	return StaticDoingSomethingWithoutOutputAndActorUsecaseFactory{usecase: usecase}
+	// }
+	// func (f StaticDoingSomethingWithoutOutputAndActorUsecaseFactory) GenerateDoingSomethingWithoutOutputAndActorUsecase(ctx context.Context) (application.DoingSomethingWithoutOutputAndActorUsecase, error) {
+	// 	return f.usecase, nil
+	// }
 	//
 	// func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
+	// 	if h.DoingSomethingWithoutOutputAndActorUsecaseFactory == nil {
+	// 		w.WriteHeader(http.StatusNotImplemented)
+	// 		return
+	// 	}
+	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -309,6 +368,10 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
+	// 	if h.DoingSomethingWithoutOutputAndActorUsecaseFactory == nil {
+	// 		h.HandleError(w, r, err)
+	// 		return
+	// 	}
 	// 	usecase, err := h.DoingSomethingWithoutOutputAndActorUsecaseFactory.GenerateDoingSomethingWithoutOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -326,8 +389,23 @@ func Example() {
 	// type DoingSomethingWithoutOutputWithActorUsecaseFactory interface {
 	// 	GenerateDoingSomethingWithoutOutputWithActorUsecase(context.Context) (application.DoingSomethingWithoutOutputWithActorUsecase, error)
 	// }
+	// type StaticDoingSomethingWithoutOutputWithActorUsecaseFactory struct {
+	// 	usecase application.DoingSomethingWithoutOutputWithActorUsecase
+	// }
+	//
+	// func NewStaticDoingSomethingWithoutOutputWithActorUsecaseFactory(usecase application.DoingSomethingWithoutOutputWithActorUsecase) StaticDoingSomethingWithoutOutputWithActorUsecaseFactory {
+	// 	return StaticDoingSomethingWithoutOutputWithActorUsecaseFactory{usecase: usecase}
+	// }
+	// func (f StaticDoingSomethingWithoutOutputWithActorUsecaseFactory) GenerateDoingSomethingWithoutOutputWithActorUsecase(ctx context.Context) (application.DoingSomethingWithoutOutputWithActorUsecase, error) {
+	// 	return f.usecase, nil
+	// }
 	//
 	// func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutOutputWithActorHandler(w http.ResponseWriter, r *http.Request) {
+	// 	if h.DoingSomethingWithoutOutputWithActorUsecaseFactory == nil {
+	// 		w.WriteHeader(http.StatusNotImplemented)
+	// 		return
+	// 	}
+	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
@@ -347,12 +425,16 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
+	// 	if h.DoingSomethingWithoutOutputWithActorUsecaseFactory == nil {
+	// 		h.HandleError(w, r, err)
+	// 		return
+	// 	}
 	// 	usecase, err := h.DoingSomethingWithoutOutputWithActorUsecaseFactory.GenerateDoingSomethingWithoutOutputWithActorUsecase(r.Context())
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
 	// 	}
-	// 	actor, err := ParseSomeActorToApplicationSomeActorDescription(r)
+	// 	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	// 	if err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return

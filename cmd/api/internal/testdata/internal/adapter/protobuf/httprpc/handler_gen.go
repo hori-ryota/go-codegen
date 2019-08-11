@@ -45,8 +45,23 @@ type SomeActorToApplicationSomeActorDescriptionParser interface {
 type DoingSomethingWithOutputAndActorUsecaseFactory interface {
 	GenerateDoingSomethingWithOutputAndActorUsecase(context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error)
 }
+type StaticDoingSomethingWithOutputAndActorUsecaseFactory struct {
+	usecase application.DoingSomethingWithOutputAndActorUsecase
+}
+
+func NewStaticDoingSomethingWithOutputAndActorUsecaseFactory(usecase application.DoingSomethingWithOutputAndActorUsecase) StaticDoingSomethingWithOutputAndActorUsecaseFactory {
+	return StaticDoingSomethingWithOutputAndActorUsecaseFactory{usecase: usecase}
+}
+func (f StaticDoingSomethingWithOutputAndActorUsecaseFactory) GenerateDoingSomethingWithOutputAndActorUsecase(ctx context.Context) (application.DoingSomethingWithOutputAndActorUsecase, error) {
+	return f.usecase, nil
+}
 
 func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
+	if h.DoingSomethingWithOutputAndActorUsecaseFactory == nil {
+		w.WriteHeader(http.StatusNotImplemented)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -191,6 +206,10 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 		return m
 	}()
 
+	if h.DoingSomethingWithOutputAndActorUsecaseFactory == nil {
+		h.HandleError(w, r, err)
+		return
+	}
 	usecase, err := h.DoingSomethingWithOutputAndActorUsecaseFactory.GenerateDoingSomethingWithOutputAndActorUsecase(r.Context())
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -226,8 +245,23 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 type DoingSomethingWithOutputWithoutActorUsecaseFactory interface {
 	GenerateDoingSomethingWithOutputWithoutActorUsecase(context.Context) (application.DoingSomethingWithOutputWithoutActorUsecase, error)
 }
+type StaticDoingSomethingWithOutputWithoutActorUsecaseFactory struct {
+	usecase application.DoingSomethingWithOutputWithoutActorUsecase
+}
+
+func NewStaticDoingSomethingWithOutputWithoutActorUsecaseFactory(usecase application.DoingSomethingWithOutputWithoutActorUsecase) StaticDoingSomethingWithOutputWithoutActorUsecaseFactory {
+	return StaticDoingSomethingWithOutputWithoutActorUsecaseFactory{usecase: usecase}
+}
+func (f StaticDoingSomethingWithOutputWithoutActorUsecaseFactory) GenerateDoingSomethingWithOutputWithoutActorUsecase(ctx context.Context) (application.DoingSomethingWithOutputWithoutActorUsecase, error) {
+	return f.usecase, nil
+}
 
 func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutputWithoutActorHandler(w http.ResponseWriter, r *http.Request) {
+	if h.DoingSomethingWithOutputWithoutActorUsecaseFactory == nil {
+		w.WriteHeader(http.StatusNotImplemented)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -247,6 +281,10 @@ func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutp
 		return m
 	}()
 
+	if h.DoingSomethingWithOutputWithoutActorUsecaseFactory == nil {
+		h.HandleError(w, r, err)
+		return
+	}
 	usecase, err := h.DoingSomethingWithOutputWithoutActorUsecaseFactory.GenerateDoingSomethingWithOutputWithoutActorUsecase(r.Context())
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -277,8 +315,23 @@ func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutp
 type DoingSomethingWithoutOutputAndActorUsecaseFactory interface {
 	GenerateDoingSomethingWithoutOutputAndActorUsecase(context.Context) (application.DoingSomethingWithoutOutputAndActorUsecase, error)
 }
+type StaticDoingSomethingWithoutOutputAndActorUsecaseFactory struct {
+	usecase application.DoingSomethingWithoutOutputAndActorUsecase
+}
+
+func NewStaticDoingSomethingWithoutOutputAndActorUsecaseFactory(usecase application.DoingSomethingWithoutOutputAndActorUsecase) StaticDoingSomethingWithoutOutputAndActorUsecaseFactory {
+	return StaticDoingSomethingWithoutOutputAndActorUsecaseFactory{usecase: usecase}
+}
+func (f StaticDoingSomethingWithoutOutputAndActorUsecaseFactory) GenerateDoingSomethingWithoutOutputAndActorUsecase(ctx context.Context) (application.DoingSomethingWithoutOutputAndActorUsecase, error) {
+	return f.usecase, nil
+}
 
 func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOutputAndActorHandler(w http.ResponseWriter, r *http.Request) {
+	if h.DoingSomethingWithoutOutputAndActorUsecaseFactory == nil {
+		w.WriteHeader(http.StatusNotImplemented)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -298,6 +351,10 @@ func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOu
 		return m
 	}()
 
+	if h.DoingSomethingWithoutOutputAndActorUsecaseFactory == nil {
+		h.HandleError(w, r, err)
+		return
+	}
 	usecase, err := h.DoingSomethingWithoutOutputAndActorUsecaseFactory.GenerateDoingSomethingWithoutOutputAndActorUsecase(r.Context())
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -315,8 +372,23 @@ func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOu
 type DoingSomethingWithoutOutputWithActorUsecaseFactory interface {
 	GenerateDoingSomethingWithoutOutputWithActorUsecase(context.Context) (application.DoingSomethingWithoutOutputWithActorUsecase, error)
 }
+type StaticDoingSomethingWithoutOutputWithActorUsecaseFactory struct {
+	usecase application.DoingSomethingWithoutOutputWithActorUsecase
+}
+
+func NewStaticDoingSomethingWithoutOutputWithActorUsecaseFactory(usecase application.DoingSomethingWithoutOutputWithActorUsecase) StaticDoingSomethingWithoutOutputWithActorUsecaseFactory {
+	return StaticDoingSomethingWithoutOutputWithActorUsecaseFactory{usecase: usecase}
+}
+func (f StaticDoingSomethingWithoutOutputWithActorUsecaseFactory) GenerateDoingSomethingWithoutOutputWithActorUsecase(ctx context.Context) (application.DoingSomethingWithoutOutputWithActorUsecase, error) {
+	return f.usecase, nil
+}
 
 func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutOutputWithActorHandler(w http.ResponseWriter, r *http.Request) {
+	if h.DoingSomethingWithoutOutputWithActorUsecaseFactory == nil {
+		w.WriteHeader(http.StatusNotImplemented)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		h.HandleError(w, r, err)
@@ -336,6 +408,10 @@ func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutO
 		return m
 	}()
 
+	if h.DoingSomethingWithoutOutputWithActorUsecaseFactory == nil {
+		h.HandleError(w, r, err)
+		return
+	}
 	usecase, err := h.DoingSomethingWithoutOutputWithActorUsecaseFactory.GenerateDoingSomethingWithoutOutputWithActorUsecase(r.Context())
 	if err != nil {
 		h.HandleError(w, r, err)
