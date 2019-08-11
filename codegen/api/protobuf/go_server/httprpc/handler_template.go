@@ -36,6 +36,7 @@ func toActorParseMethodName(p typeutil.Printer, actor *types.Var) string {
 var HandlerTemplate = template.Must(template.New("").Funcs(map[string]interface{}{
 	"ToLowerCamel":                strcase.ToLowerCamel,
 	"ToUpperCamel":                strcase.ToUpperCamel,
+	"ToURLPath":                   URLPath,
 	"ExtractActorDescriptorOrNil": extractActorDescriptorOrNil,
 	"ExtractActorDescriptors": func(rootParam TemplateParam) []*types.Var {
 		actors := make(map[string]*types.Var, 10)
@@ -208,7 +209,7 @@ func ApplyMux(mux *http.ServeMux, handler Handlers, middlewares ...func(http.Han
 	{{$service := .}}
 	{{- range .RPCs}}
 	mux.Handle(
-		"{{$service.Obj.Name}}/{{.Name}}",
+		"{{ToURLPath $service.Obj.Name .Name}}",
 		applyMiddleware(http.HandlerFunc(handler.{{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler), middlewares...),
 	)
 	{{- end}}
