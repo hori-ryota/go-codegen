@@ -34,6 +34,10 @@ func (m DoingSomethingWithOutputAndActorUsecaseInput) Float64Param() float64 {
 	return m.float64Param
 }
 
+func (m DoingSomethingWithOutputAndActorUsecaseInput) BytesParam() []byte {
+	return m.bytesParam
+}
+
 func (m DoingSomethingWithOutputAndActorUsecaseInput) AnonymousNestedStructParam() struct{ StringParam string } {
 	return m.anonymousNestedStructParam
 }
@@ -76,6 +80,10 @@ func (m DoingSomethingWithOutputAndActorUsecaseInput) Float32SliceParam() []floa
 
 func (m DoingSomethingWithOutputAndActorUsecaseInput) Float64SliceParam() []float64 {
 	return m.float64SliceParam
+}
+
+func (m DoingSomethingWithOutputAndActorUsecaseInput) BytesSliceParam() [][]byte {
+	return m.bytesSliceParam
 }
 
 func (m DoingSomethingWithOutputAndActorUsecaseInput) AnonymousNestedStructSliceParam() []struct{ StringParam string } {

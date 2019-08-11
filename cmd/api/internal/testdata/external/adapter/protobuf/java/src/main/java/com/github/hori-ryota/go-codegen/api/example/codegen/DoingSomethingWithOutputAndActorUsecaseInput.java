@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private DoingSomethingWithOutputAndActorUsecaseInput() {
     stringParam_ = "";
+    bytesParam_ = com.google.protobuf.ByteString.EMPTY;
     stringEnumParam_ = 0;
     intEnumParam_ = 0;
     stringSliceParam_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -26,6 +27,7 @@ private static final long serialVersionUID = 0L;
     uint64SliceParam_ = emptyLongList();
     float32SliceParam_ = emptyFloatList();
     float64SliceParam_ = emptyDoubleList();
+    bytesSliceParam_ = java.util.Collections.emptyList();
     anonymousNestedStructSliceParam_ = java.util.Collections.emptyList();
     namedNestedStructSliceParam_ = java.util.Collections.emptyList();
     stringEnumSliceParam_ = java.util.Collections.emptyList();
@@ -100,6 +102,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 66: {
+
+            bytesParam_ = input.readBytes();
+            break;
+          }
+          case 74: {
             com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.Builder subBuilder = null;
             if (anonymousNestedStructParam_ != null) {
               subBuilder = anonymousNestedStructParam_.toBuilder();
@@ -112,7 +119,7 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 74: {
+          case 82: {
             com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder subBuilder = null;
             if (namedNestedStructParam_ != null) {
               subBuilder = namedNestedStructParam_.toBuilder();
@@ -125,19 +132,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 80: {
+          case 88: {
             int rawValue = input.readEnum();
 
             stringEnumParam_ = rawValue;
             break;
           }
-          case 88: {
+          case 96: {
             int rawValue = input.readEnum();
 
             intEnumParam_ = rawValue;
             break;
           }
-          case 98: {
+          case 106: {
             java.lang.String s = input.readStringRequireUtf8();
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               stringSliceParam_ = new com.google.protobuf.LazyStringArrayList();
@@ -146,7 +153,7 @@ private static final long serialVersionUID = 0L;
             stringSliceParam_.add(s);
             break;
           }
-          case 104: {
+          case 112: {
             if (!((mutable_bitField0_ & 0x00000002) != 0)) {
               intSliceParam_ = newLongList();
               mutable_bitField0_ |= 0x00000002;
@@ -154,7 +161,7 @@ private static final long serialVersionUID = 0L;
             intSliceParam_.addLong(input.readInt64());
             break;
           }
-          case 106: {
+          case 114: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
@@ -167,7 +174,7 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 112: {
+          case 120: {
             if (!((mutable_bitField0_ & 0x00000004) != 0)) {
               int64SliceParam_ = newLongList();
               mutable_bitField0_ |= 0x00000004;
@@ -175,7 +182,7 @@ private static final long serialVersionUID = 0L;
             int64SliceParam_.addLong(input.readInt64());
             break;
           }
-          case 114: {
+          case 122: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000004) != 0) && input.getBytesUntilLimit() > 0) {
@@ -188,7 +195,7 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 120: {
+          case 128: {
             if (!((mutable_bitField0_ & 0x00000008) != 0)) {
               uintSliceParam_ = newLongList();
               mutable_bitField0_ |= 0x00000008;
@@ -196,7 +203,7 @@ private static final long serialVersionUID = 0L;
             uintSliceParam_.addLong(input.readUInt64());
             break;
           }
-          case 122: {
+          case 130: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000008) != 0) && input.getBytesUntilLimit() > 0) {
@@ -209,7 +216,7 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 128: {
+          case 136: {
             if (!((mutable_bitField0_ & 0x00000010) != 0)) {
               uint64SliceParam_ = newLongList();
               mutable_bitField0_ |= 0x00000010;
@@ -217,7 +224,7 @@ private static final long serialVersionUID = 0L;
             uint64SliceParam_.addLong(input.readUInt64());
             break;
           }
-          case 130: {
+          case 138: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000010) != 0) && input.getBytesUntilLimit() > 0) {
@@ -230,7 +237,7 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 141: {
+          case 149: {
             if (!((mutable_bitField0_ & 0x00000020) != 0)) {
               float32SliceParam_ = newFloatList();
               mutable_bitField0_ |= 0x00000020;
@@ -238,7 +245,7 @@ private static final long serialVersionUID = 0L;
             float32SliceParam_.addFloat(input.readFloat());
             break;
           }
-          case 138: {
+          case 146: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000020) != 0) && input.getBytesUntilLimit() > 0) {
@@ -251,7 +258,7 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 145: {
+          case 153: {
             if (!((mutable_bitField0_ & 0x00000040) != 0)) {
               float64SliceParam_ = newDoubleList();
               mutable_bitField0_ |= 0x00000040;
@@ -259,7 +266,7 @@ private static final long serialVersionUID = 0L;
             float64SliceParam_.addDouble(input.readDouble());
             break;
           }
-          case 146: {
+          case 154: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000040) != 0) && input.getBytesUntilLimit() > 0) {
@@ -272,64 +279,72 @@ private static final long serialVersionUID = 0L;
             input.popLimit(limit);
             break;
           }
-          case 154: {
+          case 162: {
             if (!((mutable_bitField0_ & 0x00000080) != 0)) {
-              anonymousNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam>();
+              bytesSliceParam_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
               mutable_bitField0_ |= 0x00000080;
+            }
+            bytesSliceParam_.add(input.readBytes());
+            break;
+          }
+          case 170: {
+            if (!((mutable_bitField0_ & 0x00000100) != 0)) {
+              anonymousNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam>();
+              mutable_bitField0_ |= 0x00000100;
             }
             anonymousNestedStructSliceParam_.add(
                 input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.parser(), extensionRegistry));
             break;
           }
-          case 162: {
-            if (!((mutable_bitField0_ & 0x00000100) != 0)) {
+          case 178: {
+            if (!((mutable_bitField0_ & 0x00000200) != 0)) {
               namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType>();
-              mutable_bitField0_ |= 0x00000100;
+              mutable_bitField0_ |= 0x00000200;
             }
             namedNestedStructSliceParam_.add(
                 input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.parser(), extensionRegistry));
             break;
           }
-          case 168: {
+          case 184: {
             int rawValue = input.readEnum();
-            if (!((mutable_bitField0_ & 0x00000200) != 0)) {
+            if (!((mutable_bitField0_ & 0x00000400) != 0)) {
               stringEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>();
-              mutable_bitField0_ |= 0x00000200;
+              mutable_bitField0_ |= 0x00000400;
             }
             stringEnumSliceParam_.add(rawValue);
             break;
           }
-          case 170: {
+          case 186: {
             int length = input.readRawVarint32();
             int oldLimit = input.pushLimit(length);
             while(input.getBytesUntilLimit() > 0) {
               int rawValue = input.readEnum();
-              if (!((mutable_bitField0_ & 0x00000200) != 0)) {
+              if (!((mutable_bitField0_ & 0x00000400) != 0)) {
                 stringEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000200;
+                mutable_bitField0_ |= 0x00000400;
               }
               stringEnumSliceParam_.add(rawValue);
             }
             input.popLimit(oldLimit);
             break;
           }
-          case 176: {
+          case 192: {
             int rawValue = input.readEnum();
-            if (!((mutable_bitField0_ & 0x00000400) != 0)) {
+            if (!((mutable_bitField0_ & 0x00000800) != 0)) {
               intEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>();
-              mutable_bitField0_ |= 0x00000400;
+              mutable_bitField0_ |= 0x00000800;
             }
             intEnumSliceParam_.add(rawValue);
             break;
           }
-          case 178: {
+          case 194: {
             int length = input.readRawVarint32();
             int oldLimit = input.pushLimit(length);
             while(input.getBytesUntilLimit() > 0) {
               int rawValue = input.readEnum();
-              if (!((mutable_bitField0_ & 0x00000400) != 0)) {
+              if (!((mutable_bitField0_ & 0x00000800) != 0)) {
                 intEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000400;
+                mutable_bitField0_ |= 0x00000800;
               }
               intEnumSliceParam_.add(rawValue);
             }
@@ -373,15 +388,18 @@ private static final long serialVersionUID = 0L;
         float64SliceParam_.makeImmutable(); // C
       }
       if (((mutable_bitField0_ & 0x00000080) != 0)) {
-        anonymousNestedStructSliceParam_ = java.util.Collections.unmodifiableList(anonymousNestedStructSliceParam_);
+        bytesSliceParam_ = java.util.Collections.unmodifiableList(bytesSliceParam_); // C
       }
       if (((mutable_bitField0_ & 0x00000100) != 0)) {
-        namedNestedStructSliceParam_ = java.util.Collections.unmodifiableList(namedNestedStructSliceParam_);
+        anonymousNestedStructSliceParam_ = java.util.Collections.unmodifiableList(anonymousNestedStructSliceParam_);
       }
       if (((mutable_bitField0_ & 0x00000200) != 0)) {
-        stringEnumSliceParam_ = java.util.Collections.unmodifiableList(stringEnumSliceParam_);
+        namedNestedStructSliceParam_ = java.util.Collections.unmodifiableList(namedNestedStructSliceParam_);
       }
       if (((mutable_bitField0_ & 0x00000400) != 0)) {
+        stringEnumSliceParam_ = java.util.Collections.unmodifiableList(stringEnumSliceParam_);
+      }
+      if (((mutable_bitField0_ & 0x00000800) != 0)) {
         intEnumSliceParam_ = java.util.Collections.unmodifiableList(intEnumSliceParam_);
       }
       this.unknownFields = unknownFields.build();
@@ -2386,58 +2404,67 @@ private static final long serialVersionUID = 0L;
     return float64Param_;
   }
 
-  public static final int ANONYMOUS_NESTED_STRUCT_PARAM_FIELD_NUMBER = 8;
+  public static final int BYTES_PARAM_FIELD_NUMBER = 8;
+  private com.google.protobuf.ByteString bytesParam_;
+  /**
+   * <code>bytes bytes_param = 8;</code>
+   */
+  public com.google.protobuf.ByteString getBytesParam() {
+    return bytesParam_;
+  }
+
+  public static final int ANONYMOUS_NESTED_STRUCT_PARAM_FIELD_NUMBER = 9;
   private com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymousNestedStructParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
    */
   public boolean hasAnonymousNestedStructParam() {
     return anonymousNestedStructParam_ != null;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam getAnonymousNestedStructParam() {
     return anonymousNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.getDefaultInstance() : anonymousNestedStructParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParamOrBuilder getAnonymousNestedStructParamOrBuilder() {
     return getAnonymousNestedStructParam();
   }
 
-  public static final int NAMED_NESTED_STRUCT_PARAM_FIELD_NUMBER = 9;
+  public static final int NAMED_NESTED_STRUCT_PARAM_FIELD_NUMBER = 10;
   private com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType namedNestedStructParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
    */
   public boolean hasNamedNestedStructParam() {
     return namedNestedStructParam_ != null;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructParam() {
     return namedNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
     return getNamedNestedStructParam();
   }
 
-  public static final int STRING_ENUM_PARAM_FIELD_NUMBER = 10;
+  public static final int STRING_ENUM_PARAM_FIELD_NUMBER = 11;
   private int stringEnumParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
    */
   public int getStringEnumParamValue() {
     return stringEnumParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam() {
     @SuppressWarnings("deprecation")
@@ -2445,16 +2472,16 @@ private static final long serialVersionUID = 0L;
     return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNRECOGNIZED : result;
   }
 
-  public static final int INT_ENUM_PARAM_FIELD_NUMBER = 11;
+  public static final int INT_ENUM_PARAM_FIELD_NUMBER = 12;
   private int intEnumParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
    */
   public int getIntEnumParamValue() {
     return intEnumParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam() {
     @SuppressWarnings("deprecation")
@@ -2462,244 +2489,266 @@ private static final long serialVersionUID = 0L;
     return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNRECOGNIZED : result;
   }
 
-  public static final int STRING_SLICE_PARAM_FIELD_NUMBER = 12;
+  public static final int STRING_SLICE_PARAM_FIELD_NUMBER = 13;
   private com.google.protobuf.LazyStringList stringSliceParam_;
   /**
-   * <code>repeated string string_slice_param = 12;</code>
+   * <code>repeated string string_slice_param = 13;</code>
    */
   public com.google.protobuf.ProtocolStringList
       getStringSliceParamList() {
     return stringSliceParam_;
   }
   /**
-   * <code>repeated string string_slice_param = 12;</code>
+   * <code>repeated string string_slice_param = 13;</code>
    */
   public int getStringSliceParamCount() {
     return stringSliceParam_.size();
   }
   /**
-   * <code>repeated string string_slice_param = 12;</code>
+   * <code>repeated string string_slice_param = 13;</code>
    */
   public java.lang.String getStringSliceParam(int index) {
     return stringSliceParam_.get(index);
   }
   /**
-   * <code>repeated string string_slice_param = 12;</code>
+   * <code>repeated string string_slice_param = 13;</code>
    */
   public com.google.protobuf.ByteString
       getStringSliceParamBytes(int index) {
     return stringSliceParam_.getByteString(index);
   }
 
-  public static final int INT_SLICE_PARAM_FIELD_NUMBER = 13;
+  public static final int INT_SLICE_PARAM_FIELD_NUMBER = 14;
   private com.google.protobuf.Internal.LongList intSliceParam_;
   /**
-   * <code>repeated int64 int_slice_param = 13;</code>
+   * <code>repeated int64 int_slice_param = 14;</code>
    */
   public java.util.List<java.lang.Long>
       getIntSliceParamList() {
     return intSliceParam_;
   }
   /**
-   * <code>repeated int64 int_slice_param = 13;</code>
+   * <code>repeated int64 int_slice_param = 14;</code>
    */
   public int getIntSliceParamCount() {
     return intSliceParam_.size();
   }
   /**
-   * <code>repeated int64 int_slice_param = 13;</code>
+   * <code>repeated int64 int_slice_param = 14;</code>
    */
   public long getIntSliceParam(int index) {
     return intSliceParam_.getLong(index);
   }
   private int intSliceParamMemoizedSerializedSize = -1;
 
-  public static final int INT64_SLICE_PARAM_FIELD_NUMBER = 14;
+  public static final int INT64_SLICE_PARAM_FIELD_NUMBER = 15;
   private com.google.protobuf.Internal.LongList int64SliceParam_;
   /**
-   * <code>repeated int64 int64_slice_param = 14;</code>
+   * <code>repeated int64 int64_slice_param = 15;</code>
    */
   public java.util.List<java.lang.Long>
       getInt64SliceParamList() {
     return int64SliceParam_;
   }
   /**
-   * <code>repeated int64 int64_slice_param = 14;</code>
+   * <code>repeated int64 int64_slice_param = 15;</code>
    */
   public int getInt64SliceParamCount() {
     return int64SliceParam_.size();
   }
   /**
-   * <code>repeated int64 int64_slice_param = 14;</code>
+   * <code>repeated int64 int64_slice_param = 15;</code>
    */
   public long getInt64SliceParam(int index) {
     return int64SliceParam_.getLong(index);
   }
   private int int64SliceParamMemoizedSerializedSize = -1;
 
-  public static final int UINT_SLICE_PARAM_FIELD_NUMBER = 15;
+  public static final int UINT_SLICE_PARAM_FIELD_NUMBER = 16;
   private com.google.protobuf.Internal.LongList uintSliceParam_;
   /**
-   * <code>repeated uint64 uint_slice_param = 15;</code>
+   * <code>repeated uint64 uint_slice_param = 16;</code>
    */
   public java.util.List<java.lang.Long>
       getUintSliceParamList() {
     return uintSliceParam_;
   }
   /**
-   * <code>repeated uint64 uint_slice_param = 15;</code>
+   * <code>repeated uint64 uint_slice_param = 16;</code>
    */
   public int getUintSliceParamCount() {
     return uintSliceParam_.size();
   }
   /**
-   * <code>repeated uint64 uint_slice_param = 15;</code>
+   * <code>repeated uint64 uint_slice_param = 16;</code>
    */
   public long getUintSliceParam(int index) {
     return uintSliceParam_.getLong(index);
   }
   private int uintSliceParamMemoizedSerializedSize = -1;
 
-  public static final int UINT64_SLICE_PARAM_FIELD_NUMBER = 16;
+  public static final int UINT64_SLICE_PARAM_FIELD_NUMBER = 17;
   private com.google.protobuf.Internal.LongList uint64SliceParam_;
   /**
-   * <code>repeated uint64 uint64_slice_param = 16;</code>
+   * <code>repeated uint64 uint64_slice_param = 17;</code>
    */
   public java.util.List<java.lang.Long>
       getUint64SliceParamList() {
     return uint64SliceParam_;
   }
   /**
-   * <code>repeated uint64 uint64_slice_param = 16;</code>
+   * <code>repeated uint64 uint64_slice_param = 17;</code>
    */
   public int getUint64SliceParamCount() {
     return uint64SliceParam_.size();
   }
   /**
-   * <code>repeated uint64 uint64_slice_param = 16;</code>
+   * <code>repeated uint64 uint64_slice_param = 17;</code>
    */
   public long getUint64SliceParam(int index) {
     return uint64SliceParam_.getLong(index);
   }
   private int uint64SliceParamMemoizedSerializedSize = -1;
 
-  public static final int FLOAT32_SLICE_PARAM_FIELD_NUMBER = 17;
+  public static final int FLOAT32_SLICE_PARAM_FIELD_NUMBER = 18;
   private com.google.protobuf.Internal.FloatList float32SliceParam_;
   /**
-   * <code>repeated float float32_slice_param = 17;</code>
+   * <code>repeated float float32_slice_param = 18;</code>
    */
   public java.util.List<java.lang.Float>
       getFloat32SliceParamList() {
     return float32SliceParam_;
   }
   /**
-   * <code>repeated float float32_slice_param = 17;</code>
+   * <code>repeated float float32_slice_param = 18;</code>
    */
   public int getFloat32SliceParamCount() {
     return float32SliceParam_.size();
   }
   /**
-   * <code>repeated float float32_slice_param = 17;</code>
+   * <code>repeated float float32_slice_param = 18;</code>
    */
   public float getFloat32SliceParam(int index) {
     return float32SliceParam_.getFloat(index);
   }
   private int float32SliceParamMemoizedSerializedSize = -1;
 
-  public static final int FLOAT64_SLICE_PARAM_FIELD_NUMBER = 18;
+  public static final int FLOAT64_SLICE_PARAM_FIELD_NUMBER = 19;
   private com.google.protobuf.Internal.DoubleList float64SliceParam_;
   /**
-   * <code>repeated double float64_slice_param = 18;</code>
+   * <code>repeated double float64_slice_param = 19;</code>
    */
   public java.util.List<java.lang.Double>
       getFloat64SliceParamList() {
     return float64SliceParam_;
   }
   /**
-   * <code>repeated double float64_slice_param = 18;</code>
+   * <code>repeated double float64_slice_param = 19;</code>
    */
   public int getFloat64SliceParamCount() {
     return float64SliceParam_.size();
   }
   /**
-   * <code>repeated double float64_slice_param = 18;</code>
+   * <code>repeated double float64_slice_param = 19;</code>
    */
   public double getFloat64SliceParam(int index) {
     return float64SliceParam_.getDouble(index);
   }
   private int float64SliceParamMemoizedSerializedSize = -1;
 
-  public static final int ANONYMOUS_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER = 19;
+  public static final int BYTES_SLICE_PARAM_FIELD_NUMBER = 20;
+  private java.util.List<com.google.protobuf.ByteString> bytesSliceParam_;
+  /**
+   * <code>repeated bytes bytes_slice_param = 20;</code>
+   */
+  public java.util.List<com.google.protobuf.ByteString>
+      getBytesSliceParamList() {
+    return bytesSliceParam_;
+  }
+  /**
+   * <code>repeated bytes bytes_slice_param = 20;</code>
+   */
+  public int getBytesSliceParamCount() {
+    return bytesSliceParam_.size();
+  }
+  /**
+   * <code>repeated bytes bytes_slice_param = 20;</code>
+   */
+  public com.google.protobuf.ByteString getBytesSliceParam(int index) {
+    return bytesSliceParam_.get(index);
+  }
+
+  public static final int ANONYMOUS_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER = 21;
   private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> anonymousNestedStructSliceParam_;
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
    */
   public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> getAnonymousNestedStructSliceParamList() {
     return anonymousNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
    */
   public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder> 
       getAnonymousNestedStructSliceParamOrBuilderList() {
     return anonymousNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
    */
   public int getAnonymousNestedStructSliceParamCount() {
     return anonymousNestedStructSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam getAnonymousNestedStructSliceParam(int index) {
     return anonymousNestedStructSliceParam_.get(index);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder getAnonymousNestedStructSliceParamOrBuilder(
       int index) {
     return anonymousNestedStructSliceParam_.get(index);
   }
 
-  public static final int NAMED_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER = 20;
+  public static final int NAMED_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER = 22;
   private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> namedNestedStructSliceParam_;
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> getNamedNestedStructSliceParamList() {
     return namedNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
       getNamedNestedStructSliceParamOrBuilderList() {
     return namedNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public int getNamedNestedStructSliceParamCount() {
     return namedNestedStructSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index) {
     return namedNestedStructSliceParam_.get(index);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
       int index) {
     return namedNestedStructSliceParam_.get(index);
   }
 
-  public static final int STRING_ENUM_SLICE_PARAM_FIELD_NUMBER = 21;
+  public static final int STRING_ENUM_SLICE_PARAM_FIELD_NUMBER = 23;
   private java.util.List<java.lang.Integer> stringEnumSliceParam_;
   private static final com.google.protobuf.Internal.ListAdapter.Converter<
       java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> stringEnumSliceParam_converter_ =
@@ -2712,40 +2761,40 @@ private static final long serialVersionUID = 0L;
             }
           };
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
    */
   public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList() {
     return new com.google.protobuf.Internal.ListAdapter<
         java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
    */
   public int getStringEnumSliceParamCount() {
     return stringEnumSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index) {
     return stringEnumSliceParam_converter_.convert(stringEnumSliceParam_.get(index));
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
    */
   public java.util.List<java.lang.Integer>
   getStringEnumSliceParamValueList() {
     return stringEnumSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
    */
   public int getStringEnumSliceParamValue(int index) {
     return stringEnumSliceParam_.get(index);
   }
   private int stringEnumSliceParamMemoizedSerializedSize;
 
-  public static final int INT_ENUM_SLICE_PARAM_FIELD_NUMBER = 22;
+  public static final int INT_ENUM_SLICE_PARAM_FIELD_NUMBER = 24;
   private java.util.List<java.lang.Integer> intEnumSliceParam_;
   private static final com.google.protobuf.Internal.ListAdapter.Converter<
       java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> intEnumSliceParam_converter_ =
@@ -2758,33 +2807,33 @@ private static final long serialVersionUID = 0L;
             }
           };
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
    */
   public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList() {
     return new com.google.protobuf.Internal.ListAdapter<
         java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
    */
   public int getIntEnumSliceParamCount() {
     return intEnumSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
    */
   public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index) {
     return intEnumSliceParam_converter_.convert(intEnumSliceParam_.get(index));
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
    */
   public java.util.List<java.lang.Integer>
   getIntEnumSliceParamValueList() {
     return intEnumSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
    */
   public int getIntEnumSliceParamValue(int index) {
     return intEnumSliceParam_.get(index);
@@ -2827,78 +2876,84 @@ private static final long serialVersionUID = 0L;
     if (float64Param_ != 0D) {
       output.writeDouble(7, float64Param_);
     }
+    if (!bytesParam_.isEmpty()) {
+      output.writeBytes(8, bytesParam_);
+    }
     if (anonymousNestedStructParam_ != null) {
-      output.writeMessage(8, getAnonymousNestedStructParam());
+      output.writeMessage(9, getAnonymousNestedStructParam());
     }
     if (namedNestedStructParam_ != null) {
-      output.writeMessage(9, getNamedNestedStructParam());
+      output.writeMessage(10, getNamedNestedStructParam());
     }
     if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
-      output.writeEnum(10, stringEnumParam_);
+      output.writeEnum(11, stringEnumParam_);
     }
     if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
-      output.writeEnum(11, intEnumParam_);
+      output.writeEnum(12, intEnumParam_);
     }
     for (int i = 0; i < stringSliceParam_.size(); i++) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 12, stringSliceParam_.getRaw(i));
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 13, stringSliceParam_.getRaw(i));
     }
     if (getIntSliceParamList().size() > 0) {
-      output.writeUInt32NoTag(106);
+      output.writeUInt32NoTag(114);
       output.writeUInt32NoTag(intSliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < intSliceParam_.size(); i++) {
       output.writeInt64NoTag(intSliceParam_.getLong(i));
     }
     if (getInt64SliceParamList().size() > 0) {
-      output.writeUInt32NoTag(114);
+      output.writeUInt32NoTag(122);
       output.writeUInt32NoTag(int64SliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < int64SliceParam_.size(); i++) {
       output.writeInt64NoTag(int64SliceParam_.getLong(i));
     }
     if (getUintSliceParamList().size() > 0) {
-      output.writeUInt32NoTag(122);
+      output.writeUInt32NoTag(130);
       output.writeUInt32NoTag(uintSliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < uintSliceParam_.size(); i++) {
       output.writeUInt64NoTag(uintSliceParam_.getLong(i));
     }
     if (getUint64SliceParamList().size() > 0) {
-      output.writeUInt32NoTag(130);
+      output.writeUInt32NoTag(138);
       output.writeUInt32NoTag(uint64SliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < uint64SliceParam_.size(); i++) {
       output.writeUInt64NoTag(uint64SliceParam_.getLong(i));
     }
     if (getFloat32SliceParamList().size() > 0) {
-      output.writeUInt32NoTag(138);
+      output.writeUInt32NoTag(146);
       output.writeUInt32NoTag(float32SliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < float32SliceParam_.size(); i++) {
       output.writeFloatNoTag(float32SliceParam_.getFloat(i));
     }
     if (getFloat64SliceParamList().size() > 0) {
-      output.writeUInt32NoTag(146);
+      output.writeUInt32NoTag(154);
       output.writeUInt32NoTag(float64SliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < float64SliceParam_.size(); i++) {
       output.writeDoubleNoTag(float64SliceParam_.getDouble(i));
     }
+    for (int i = 0; i < bytesSliceParam_.size(); i++) {
+      output.writeBytes(20, bytesSliceParam_.get(i));
+    }
     for (int i = 0; i < anonymousNestedStructSliceParam_.size(); i++) {
-      output.writeMessage(19, anonymousNestedStructSliceParam_.get(i));
+      output.writeMessage(21, anonymousNestedStructSliceParam_.get(i));
     }
     for (int i = 0; i < namedNestedStructSliceParam_.size(); i++) {
-      output.writeMessage(20, namedNestedStructSliceParam_.get(i));
+      output.writeMessage(22, namedNestedStructSliceParam_.get(i));
     }
     if (getStringEnumSliceParamList().size() > 0) {
-      output.writeUInt32NoTag(170);
+      output.writeUInt32NoTag(186);
       output.writeUInt32NoTag(stringEnumSliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < stringEnumSliceParam_.size(); i++) {
       output.writeEnumNoTag(stringEnumSliceParam_.get(i));
     }
     if (getIntEnumSliceParamList().size() > 0) {
-      output.writeUInt32NoTag(178);
+      output.writeUInt32NoTag(194);
       output.writeUInt32NoTag(intEnumSliceParamMemoizedSerializedSize);
     }
     for (int i = 0; i < intEnumSliceParam_.size(); i++) {
@@ -2940,21 +2995,25 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(7, float64Param_);
     }
+    if (!bytesParam_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(8, bytesParam_);
+    }
     if (anonymousNestedStructParam_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, getAnonymousNestedStructParam());
+        .computeMessageSize(9, getAnonymousNestedStructParam());
     }
     if (namedNestedStructParam_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(9, getNamedNestedStructParam());
+        .computeMessageSize(10, getNamedNestedStructParam());
     }
     if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(10, stringEnumParam_);
+        .computeEnumSize(11, stringEnumParam_);
     }
     if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(11, intEnumParam_);
+        .computeEnumSize(12, intEnumParam_);
     }
     {
       int dataSize = 0;
@@ -3000,7 +3059,7 @@ private static final long serialVersionUID = 0L;
       }
       size += dataSize;
       if (!getUintSliceParamList().isEmpty()) {
-        size += 1;
+        size += 2;
         size += com.google.protobuf.CodedOutputStream
             .computeInt32SizeNoTag(dataSize);
       }
@@ -3042,13 +3101,22 @@ private static final long serialVersionUID = 0L;
       }
       float64SliceParamMemoizedSerializedSize = dataSize;
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < bytesSliceParam_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeBytesSizeNoTag(bytesSliceParam_.get(i));
+      }
+      size += dataSize;
+      size += 2 * getBytesSliceParamList().size();
+    }
     for (int i = 0; i < anonymousNestedStructSliceParam_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(19, anonymousNestedStructSliceParam_.get(i));
+        .computeMessageSize(21, anonymousNestedStructSliceParam_.get(i));
     }
     for (int i = 0; i < namedNestedStructSliceParam_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(20, namedNestedStructSliceParam_.get(i));
+        .computeMessageSize(22, namedNestedStructSliceParam_.get(i));
     }
     {
       int dataSize = 0;
@@ -3105,6 +3173,8 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Double.doubleToLongBits(getFloat64Param())
         != java.lang.Double.doubleToLongBits(
             other.getFloat64Param())) return false;
+    if (!getBytesParam()
+        .equals(other.getBytesParam())) return false;
     if (hasAnonymousNestedStructParam() != other.hasAnonymousNestedStructParam()) return false;
     if (hasAnonymousNestedStructParam()) {
       if (!getAnonymousNestedStructParam()
@@ -3131,6 +3201,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getFloat32SliceParamList())) return false;
     if (!getFloat64SliceParamList()
         .equals(other.getFloat64SliceParamList())) return false;
+    if (!getBytesSliceParamList()
+        .equals(other.getBytesSliceParamList())) return false;
     if (!getAnonymousNestedStructSliceParamList()
         .equals(other.getAnonymousNestedStructSliceParamList())) return false;
     if (!getNamedNestedStructSliceParamList()
@@ -3168,6 +3240,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + FLOAT64_PARAM_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getFloat64Param()));
+    hash = (37 * hash) + BYTES_PARAM_FIELD_NUMBER;
+    hash = (53 * hash) + getBytesParam().hashCode();
     if (hasAnonymousNestedStructParam()) {
       hash = (37 * hash) + ANONYMOUS_NESTED_STRUCT_PARAM_FIELD_NUMBER;
       hash = (53 * hash) + getAnonymousNestedStructParam().hashCode();
@@ -3207,6 +3281,10 @@ private static final long serialVersionUID = 0L;
     if (getFloat64SliceParamCount() > 0) {
       hash = (37 * hash) + FLOAT64_SLICE_PARAM_FIELD_NUMBER;
       hash = (53 * hash) + getFloat64SliceParamList().hashCode();
+    }
+    if (getBytesSliceParamCount() > 0) {
+      hash = (37 * hash) + BYTES_SLICE_PARAM_FIELD_NUMBER;
+      hash = (53 * hash) + getBytesSliceParamList().hashCode();
     }
     if (getAnonymousNestedStructSliceParamCount() > 0) {
       hash = (37 * hash) + ANONYMOUS_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER;
@@ -3373,6 +3451,8 @@ private static final long serialVersionUID = 0L;
 
       float64Param_ = 0D;
 
+      bytesParam_ = com.google.protobuf.ByteString.EMPTY;
+
       if (anonymousNestedStructParamBuilder_ == null) {
         anonymousNestedStructParam_ = null;
       } else {
@@ -3403,22 +3483,24 @@ private static final long serialVersionUID = 0L;
       bitField0_ = (bitField0_ & ~0x00000020);
       float64SliceParam_ = emptyDoubleList();
       bitField0_ = (bitField0_ & ~0x00000040);
+      bytesSliceParam_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000080);
       if (anonymousNestedStructSliceParamBuilder_ == null) {
         anonymousNestedStructSliceParam_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
       } else {
         anonymousNestedStructSliceParamBuilder_.clear();
       }
       if (namedNestedStructSliceParamBuilder_ == null) {
         namedNestedStructSliceParam_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
       } else {
         namedNestedStructSliceParamBuilder_.clear();
       }
       stringEnumSliceParam_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000200);
-      intEnumSliceParam_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000400);
+      intEnumSliceParam_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000800);
       return this;
     }
 
@@ -3453,6 +3535,7 @@ private static final long serialVersionUID = 0L;
       result.uint64Param_ = uint64Param_;
       result.float32Param_ = float32Param_;
       result.float64Param_ = float64Param_;
+      result.bytesParam_ = bytesParam_;
       if (anonymousNestedStructParamBuilder_ == null) {
         result.anonymousNestedStructParam_ = anonymousNestedStructParam_;
       } else {
@@ -3500,32 +3583,37 @@ private static final long serialVersionUID = 0L;
         bitField0_ = (bitField0_ & ~0x00000040);
       }
       result.float64SliceParam_ = float64SliceParam_;
+      if (((bitField0_ & 0x00000080) != 0)) {
+        bytesSliceParam_ = java.util.Collections.unmodifiableList(bytesSliceParam_);
+        bitField0_ = (bitField0_ & ~0x00000080);
+      }
+      result.bytesSliceParam_ = bytesSliceParam_;
       if (anonymousNestedStructSliceParamBuilder_ == null) {
-        if (((bitField0_ & 0x00000080) != 0)) {
+        if (((bitField0_ & 0x00000100) != 0)) {
           anonymousNestedStructSliceParam_ = java.util.Collections.unmodifiableList(anonymousNestedStructSliceParam_);
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000100);
         }
         result.anonymousNestedStructSliceParam_ = anonymousNestedStructSliceParam_;
       } else {
         result.anonymousNestedStructSliceParam_ = anonymousNestedStructSliceParamBuilder_.build();
       }
       if (namedNestedStructSliceParamBuilder_ == null) {
-        if (((bitField0_ & 0x00000100) != 0)) {
+        if (((bitField0_ & 0x00000200) != 0)) {
           namedNestedStructSliceParam_ = java.util.Collections.unmodifiableList(namedNestedStructSliceParam_);
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000200);
         }
         result.namedNestedStructSliceParam_ = namedNestedStructSliceParam_;
       } else {
         result.namedNestedStructSliceParam_ = namedNestedStructSliceParamBuilder_.build();
       }
-      if (((bitField0_ & 0x00000200) != 0)) {
+      if (((bitField0_ & 0x00000400) != 0)) {
         stringEnumSliceParam_ = java.util.Collections.unmodifiableList(stringEnumSliceParam_);
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
       }
       result.stringEnumSliceParam_ = stringEnumSliceParam_;
-      if (((bitField0_ & 0x00000400) != 0)) {
+      if (((bitField0_ & 0x00000800) != 0)) {
         intEnumSliceParam_ = java.util.Collections.unmodifiableList(intEnumSliceParam_);
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
       }
       result.intEnumSliceParam_ = intEnumSliceParam_;
       onBuilt();
@@ -3597,6 +3685,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getFloat64Param() != 0D) {
         setFloat64Param(other.getFloat64Param());
+      }
+      if (other.getBytesParam() != com.google.protobuf.ByteString.EMPTY) {
+        setBytesParam(other.getBytesParam());
       }
       if (other.hasAnonymousNestedStructParam()) {
         mergeAnonymousNestedStructParam(other.getAnonymousNestedStructParam());
@@ -3680,11 +3771,21 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       }
+      if (!other.bytesSliceParam_.isEmpty()) {
+        if (bytesSliceParam_.isEmpty()) {
+          bytesSliceParam_ = other.bytesSliceParam_;
+          bitField0_ = (bitField0_ & ~0x00000080);
+        } else {
+          ensureBytesSliceParamIsMutable();
+          bytesSliceParam_.addAll(other.bytesSliceParam_);
+        }
+        onChanged();
+      }
       if (anonymousNestedStructSliceParamBuilder_ == null) {
         if (!other.anonymousNestedStructSliceParam_.isEmpty()) {
           if (anonymousNestedStructSliceParam_.isEmpty()) {
             anonymousNestedStructSliceParam_ = other.anonymousNestedStructSliceParam_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000100);
           } else {
             ensureAnonymousNestedStructSliceParamIsMutable();
             anonymousNestedStructSliceParam_.addAll(other.anonymousNestedStructSliceParam_);
@@ -3697,7 +3798,7 @@ private static final long serialVersionUID = 0L;
             anonymousNestedStructSliceParamBuilder_.dispose();
             anonymousNestedStructSliceParamBuilder_ = null;
             anonymousNestedStructSliceParam_ = other.anonymousNestedStructSliceParam_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000100);
             anonymousNestedStructSliceParamBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getAnonymousNestedStructSliceParamFieldBuilder() : null;
@@ -3710,7 +3811,7 @@ private static final long serialVersionUID = 0L;
         if (!other.namedNestedStructSliceParam_.isEmpty()) {
           if (namedNestedStructSliceParam_.isEmpty()) {
             namedNestedStructSliceParam_ = other.namedNestedStructSliceParam_;
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000200);
           } else {
             ensureNamedNestedStructSliceParamIsMutable();
             namedNestedStructSliceParam_.addAll(other.namedNestedStructSliceParam_);
@@ -3723,7 +3824,7 @@ private static final long serialVersionUID = 0L;
             namedNestedStructSliceParamBuilder_.dispose();
             namedNestedStructSliceParamBuilder_ = null;
             namedNestedStructSliceParam_ = other.namedNestedStructSliceParam_;
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000200);
             namedNestedStructSliceParamBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getNamedNestedStructSliceParamFieldBuilder() : null;
@@ -3735,7 +3836,7 @@ private static final long serialVersionUID = 0L;
       if (!other.stringEnumSliceParam_.isEmpty()) {
         if (stringEnumSliceParam_.isEmpty()) {
           stringEnumSliceParam_ = other.stringEnumSliceParam_;
-          bitField0_ = (bitField0_ & ~0x00000200);
+          bitField0_ = (bitField0_ & ~0x00000400);
         } else {
           ensureStringEnumSliceParamIsMutable();
           stringEnumSliceParam_.addAll(other.stringEnumSliceParam_);
@@ -3745,7 +3846,7 @@ private static final long serialVersionUID = 0L;
       if (!other.intEnumSliceParam_.isEmpty()) {
         if (intEnumSliceParam_.isEmpty()) {
           intEnumSliceParam_ = other.intEnumSliceParam_;
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000800);
         } else {
           ensureIntEnumSliceParamIsMutable();
           intEnumSliceParam_.addAll(other.intEnumSliceParam_);
@@ -4007,17 +4108,46 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private com.google.protobuf.ByteString bytesParam_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes bytes_param = 8;</code>
+     */
+    public com.google.protobuf.ByteString getBytesParam() {
+      return bytesParam_;
+    }
+    /**
+     * <code>bytes bytes_param = 8;</code>
+     */
+    public Builder setBytesParam(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      bytesParam_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bytes bytes_param = 8;</code>
+     */
+    public Builder clearBytesParam() {
+      
+      bytesParam_ = getDefaultInstance().getBytesParam();
+      onChanged();
+      return this;
+    }
+
     private com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymousNestedStructParam_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParamOrBuilder> anonymousNestedStructParamBuilder_;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public boolean hasAnonymousNestedStructParam() {
       return anonymousNestedStructParamBuilder_ != null || anonymousNestedStructParam_ != null;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam getAnonymousNestedStructParam() {
       if (anonymousNestedStructParamBuilder_ == null) {
@@ -4027,7 +4157,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public Builder setAnonymousNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam value) {
       if (anonymousNestedStructParamBuilder_ == null) {
@@ -4043,7 +4173,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public Builder setAnonymousNestedStructParam(
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.Builder builderForValue) {
@@ -4057,7 +4187,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public Builder mergeAnonymousNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam value) {
       if (anonymousNestedStructParamBuilder_ == null) {
@@ -4075,7 +4205,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public Builder clearAnonymousNestedStructParam() {
       if (anonymousNestedStructParamBuilder_ == null) {
@@ -4089,7 +4219,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.Builder getAnonymousNestedStructParamBuilder() {
       
@@ -4097,7 +4227,7 @@ private static final long serialVersionUID = 0L;
       return getAnonymousNestedStructParamFieldBuilder().getBuilder();
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParamOrBuilder getAnonymousNestedStructParamOrBuilder() {
       if (anonymousNestedStructParamBuilder_ != null) {
@@ -4108,7 +4238,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 8;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam anonymous_nested_struct_param = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParamOrBuilder> 
@@ -4128,13 +4258,13 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> namedNestedStructParamBuilder_;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public boolean hasNamedNestedStructParam() {
       return namedNestedStructParamBuilder_ != null || namedNestedStructParam_ != null;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructParam() {
       if (namedNestedStructParamBuilder_ == null) {
@@ -4144,7 +4274,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder setNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
       if (namedNestedStructParamBuilder_ == null) {
@@ -4160,7 +4290,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder setNamedNestedStructParam(
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
@@ -4174,7 +4304,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder mergeNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
       if (namedNestedStructParamBuilder_ == null) {
@@ -4192,7 +4322,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder clearNamedNestedStructParam() {
       if (namedNestedStructParamBuilder_ == null) {
@@ -4206,7 +4336,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder getNamedNestedStructParamBuilder() {
       
@@ -4214,7 +4344,7 @@ private static final long serialVersionUID = 0L;
       return getNamedNestedStructParamFieldBuilder().getBuilder();
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
       if (namedNestedStructParamBuilder_ != null) {
@@ -4225,7 +4355,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 9;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
@@ -4243,13 +4373,13 @@ private static final long serialVersionUID = 0L;
 
     private int stringEnumParam_ = 0;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
      */
     public int getStringEnumParamValue() {
       return stringEnumParam_;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
      */
     public Builder setStringEnumParamValue(int value) {
       stringEnumParam_ = value;
@@ -4257,7 +4387,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam() {
       @SuppressWarnings("deprecation")
@@ -4265,7 +4395,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNRECOGNIZED : result;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
      */
     public Builder setStringEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
       if (value == null) {
@@ -4277,7 +4407,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 10;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
      */
     public Builder clearStringEnumParam() {
       
@@ -4288,13 +4418,13 @@ private static final long serialVersionUID = 0L;
 
     private int intEnumParam_ = 0;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
      */
     public int getIntEnumParamValue() {
       return intEnumParam_;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
      */
     public Builder setIntEnumParamValue(int value) {
       intEnumParam_ = value;
@@ -4302,7 +4432,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam() {
       @SuppressWarnings("deprecation")
@@ -4310,7 +4440,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNRECOGNIZED : result;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
      */
     public Builder setIntEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
       if (value == null) {
@@ -4322,7 +4452,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 11;</code>
+     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
      */
     public Builder clearIntEnumParam() {
       
@@ -4339,33 +4469,33 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public com.google.protobuf.ProtocolStringList
         getStringSliceParamList() {
       return stringSliceParam_.getUnmodifiableView();
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public int getStringSliceParamCount() {
       return stringSliceParam_.size();
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public java.lang.String getStringSliceParam(int index) {
       return stringSliceParam_.get(index);
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public com.google.protobuf.ByteString
         getStringSliceParamBytes(int index) {
       return stringSliceParam_.getByteString(index);
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public Builder setStringSliceParam(
         int index, java.lang.String value) {
@@ -4378,7 +4508,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public Builder addStringSliceParam(
         java.lang.String value) {
@@ -4391,7 +4521,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public Builder addAllStringSliceParam(
         java.lang.Iterable<java.lang.String> values) {
@@ -4402,7 +4532,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public Builder clearStringSliceParam() {
       stringSliceParam_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -4411,7 +4541,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string string_slice_param = 12;</code>
+     * <code>repeated string string_slice_param = 13;</code>
      */
     public Builder addStringSliceParamBytes(
         com.google.protobuf.ByteString value) {
@@ -4433,7 +4563,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public java.util.List<java.lang.Long>
         getIntSliceParamList() {
@@ -4441,19 +4571,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(intSliceParam_) : intSliceParam_;
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public int getIntSliceParamCount() {
       return intSliceParam_.size();
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public long getIntSliceParam(int index) {
       return intSliceParam_.getLong(index);
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public Builder setIntSliceParam(
         int index, long value) {
@@ -4463,7 +4593,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public Builder addIntSliceParam(long value) {
       ensureIntSliceParamIsMutable();
@@ -4472,7 +4602,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public Builder addAllIntSliceParam(
         java.lang.Iterable<? extends java.lang.Long> values) {
@@ -4483,7 +4613,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int_slice_param = 13;</code>
+     * <code>repeated int64 int_slice_param = 14;</code>
      */
     public Builder clearIntSliceParam() {
       intSliceParam_ = emptyLongList();
@@ -4500,7 +4630,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public java.util.List<java.lang.Long>
         getInt64SliceParamList() {
@@ -4508,19 +4638,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(int64SliceParam_) : int64SliceParam_;
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public int getInt64SliceParamCount() {
       return int64SliceParam_.size();
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public long getInt64SliceParam(int index) {
       return int64SliceParam_.getLong(index);
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public Builder setInt64SliceParam(
         int index, long value) {
@@ -4530,7 +4660,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public Builder addInt64SliceParam(long value) {
       ensureInt64SliceParamIsMutable();
@@ -4539,7 +4669,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public Builder addAllInt64SliceParam(
         java.lang.Iterable<? extends java.lang.Long> values) {
@@ -4550,7 +4680,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated int64 int64_slice_param = 14;</code>
+     * <code>repeated int64 int64_slice_param = 15;</code>
      */
     public Builder clearInt64SliceParam() {
       int64SliceParam_ = emptyLongList();
@@ -4567,7 +4697,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public java.util.List<java.lang.Long>
         getUintSliceParamList() {
@@ -4575,19 +4705,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(uintSliceParam_) : uintSliceParam_;
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public int getUintSliceParamCount() {
       return uintSliceParam_.size();
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public long getUintSliceParam(int index) {
       return uintSliceParam_.getLong(index);
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public Builder setUintSliceParam(
         int index, long value) {
@@ -4597,7 +4727,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public Builder addUintSliceParam(long value) {
       ensureUintSliceParamIsMutable();
@@ -4606,7 +4736,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public Builder addAllUintSliceParam(
         java.lang.Iterable<? extends java.lang.Long> values) {
@@ -4617,7 +4747,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint_slice_param = 15;</code>
+     * <code>repeated uint64 uint_slice_param = 16;</code>
      */
     public Builder clearUintSliceParam() {
       uintSliceParam_ = emptyLongList();
@@ -4634,7 +4764,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public java.util.List<java.lang.Long>
         getUint64SliceParamList() {
@@ -4642,19 +4772,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(uint64SliceParam_) : uint64SliceParam_;
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public int getUint64SliceParamCount() {
       return uint64SliceParam_.size();
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public long getUint64SliceParam(int index) {
       return uint64SliceParam_.getLong(index);
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public Builder setUint64SliceParam(
         int index, long value) {
@@ -4664,7 +4794,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public Builder addUint64SliceParam(long value) {
       ensureUint64SliceParamIsMutable();
@@ -4673,7 +4803,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public Builder addAllUint64SliceParam(
         java.lang.Iterable<? extends java.lang.Long> values) {
@@ -4684,7 +4814,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated uint64 uint64_slice_param = 16;</code>
+     * <code>repeated uint64 uint64_slice_param = 17;</code>
      */
     public Builder clearUint64SliceParam() {
       uint64SliceParam_ = emptyLongList();
@@ -4701,7 +4831,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public java.util.List<java.lang.Float>
         getFloat32SliceParamList() {
@@ -4709,19 +4839,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(float32SliceParam_) : float32SliceParam_;
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public int getFloat32SliceParamCount() {
       return float32SliceParam_.size();
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public float getFloat32SliceParam(int index) {
       return float32SliceParam_.getFloat(index);
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public Builder setFloat32SliceParam(
         int index, float value) {
@@ -4731,7 +4861,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public Builder addFloat32SliceParam(float value) {
       ensureFloat32SliceParamIsMutable();
@@ -4740,7 +4870,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public Builder addAllFloat32SliceParam(
         java.lang.Iterable<? extends java.lang.Float> values) {
@@ -4751,7 +4881,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated float float32_slice_param = 17;</code>
+     * <code>repeated float float32_slice_param = 18;</code>
      */
     public Builder clearFloat32SliceParam() {
       float32SliceParam_ = emptyFloatList();
@@ -4768,7 +4898,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public java.util.List<java.lang.Double>
         getFloat64SliceParamList() {
@@ -4776,19 +4906,19 @@ private static final long serialVersionUID = 0L;
                java.util.Collections.unmodifiableList(float64SliceParam_) : float64SliceParam_;
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public int getFloat64SliceParamCount() {
       return float64SliceParam_.size();
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public double getFloat64SliceParam(int index) {
       return float64SliceParam_.getDouble(index);
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public Builder setFloat64SliceParam(
         int index, double value) {
@@ -4798,7 +4928,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public Builder addFloat64SliceParam(double value) {
       ensureFloat64SliceParamIsMutable();
@@ -4807,7 +4937,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public Builder addAllFloat64SliceParam(
         java.lang.Iterable<? extends java.lang.Double> values) {
@@ -4818,7 +4948,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated double float64_slice_param = 18;</code>
+     * <code>repeated double float64_slice_param = 19;</code>
      */
     public Builder clearFloat64SliceParam() {
       float64SliceParam_ = emptyDoubleList();
@@ -4827,12 +4957,85 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.util.List<com.google.protobuf.ByteString> bytesSliceParam_ = java.util.Collections.emptyList();
+    private void ensureBytesSliceParamIsMutable() {
+      if (!((bitField0_ & 0x00000080) != 0)) {
+        bytesSliceParam_ = new java.util.ArrayList<com.google.protobuf.ByteString>(bytesSliceParam_);
+        bitField0_ |= 0x00000080;
+       }
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getBytesSliceParamList() {
+      return ((bitField0_ & 0x00000080) != 0) ?
+               java.util.Collections.unmodifiableList(bytesSliceParam_) : bytesSliceParam_;
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public int getBytesSliceParamCount() {
+      return bytesSliceParam_.size();
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public com.google.protobuf.ByteString getBytesSliceParam(int index) {
+      return bytesSliceParam_.get(index);
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public Builder setBytesSliceParam(
+        int index, com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureBytesSliceParamIsMutable();
+      bytesSliceParam_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public Builder addBytesSliceParam(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureBytesSliceParamIsMutable();
+      bytesSliceParam_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public Builder addAllBytesSliceParam(
+        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+      ensureBytesSliceParamIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, bytesSliceParam_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated bytes bytes_slice_param = 20;</code>
+     */
+    public Builder clearBytesSliceParam() {
+      bytesSliceParam_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000080);
+      onChanged();
+      return this;
+    }
+
     private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> anonymousNestedStructSliceParam_ =
       java.util.Collections.emptyList();
     private void ensureAnonymousNestedStructSliceParamIsMutable() {
-      if (!((bitField0_ & 0x00000080) != 0)) {
+      if (!((bitField0_ & 0x00000100) != 0)) {
         anonymousNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam>(anonymousNestedStructSliceParam_);
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
        }
     }
 
@@ -4840,7 +5043,7 @@ private static final long serialVersionUID = 0L;
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder> anonymousNestedStructSliceParamBuilder_;
 
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> getAnonymousNestedStructSliceParamList() {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
@@ -4850,7 +5053,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public int getAnonymousNestedStructSliceParamCount() {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
@@ -4860,7 +5063,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam getAnonymousNestedStructSliceParam(int index) {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
@@ -4870,7 +5073,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder setAnonymousNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam value) {
@@ -4887,7 +5090,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder setAnonymousNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder builderForValue) {
@@ -4901,7 +5104,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder addAnonymousNestedStructSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam value) {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
@@ -4917,7 +5120,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder addAnonymousNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam value) {
@@ -4934,7 +5137,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder addAnonymousNestedStructSliceParam(
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder builderForValue) {
@@ -4948,7 +5151,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder addAnonymousNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder builderForValue) {
@@ -4962,7 +5165,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder addAllAnonymousNestedStructSliceParam(
         java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam> values) {
@@ -4977,12 +5180,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder clearAnonymousNestedStructSliceParam() {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
         anonymousNestedStructSliceParam_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
       } else {
         anonymousNestedStructSliceParamBuilder_.clear();
@@ -4990,7 +5193,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public Builder removeAnonymousNestedStructSliceParam(int index) {
       if (anonymousNestedStructSliceParamBuilder_ == null) {
@@ -5003,14 +5206,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder getAnonymousNestedStructSliceParamBuilder(
         int index) {
       return getAnonymousNestedStructSliceParamFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder getAnonymousNestedStructSliceParamOrBuilder(
         int index) {
@@ -5020,7 +5223,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder> 
          getAnonymousNestedStructSliceParamOrBuilderList() {
@@ -5031,14 +5234,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder addAnonymousNestedStructSliceParamBuilder() {
       return getAnonymousNestedStructSliceParamFieldBuilder().addBuilder(
           com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder addAnonymousNestedStructSliceParamBuilder(
         int index) {
@@ -5046,7 +5249,7 @@ private static final long serialVersionUID = 0L;
           index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 19;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam anonymous_nested_struct_slice_param = 21;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder> 
          getAnonymousNestedStructSliceParamBuilderList() {
@@ -5059,7 +5262,7 @@ private static final long serialVersionUID = 0L;
         anonymousNestedStructSliceParamBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParam.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructSliceParamOrBuilder>(
                 anonymousNestedStructSliceParam_,
-                ((bitField0_ & 0x00000080) != 0),
+                ((bitField0_ & 0x00000100) != 0),
                 getParentForChildren(),
                 isClean());
         anonymousNestedStructSliceParam_ = null;
@@ -5070,9 +5273,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> namedNestedStructSliceParam_ =
       java.util.Collections.emptyList();
     private void ensureNamedNestedStructSliceParamIsMutable() {
-      if (!((bitField0_ & 0x00000100) != 0)) {
+      if (!((bitField0_ & 0x00000200) != 0)) {
         namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType>(namedNestedStructSliceParam_);
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
        }
     }
 
@@ -5080,7 +5283,7 @@ private static final long serialVersionUID = 0L;
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> namedNestedStructSliceParamBuilder_;
 
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> getNamedNestedStructSliceParamList() {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5090,7 +5293,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public int getNamedNestedStructSliceParamCount() {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5100,7 +5303,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index) {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5110,7 +5313,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder setNamedNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
@@ -5127,7 +5330,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder setNamedNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
@@ -5141,7 +5344,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5157,7 +5360,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
@@ -5174,7 +5377,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
         com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
@@ -5188,7 +5391,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
@@ -5202,7 +5405,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addAllNamedNestedStructSliceParam(
         java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> values) {
@@ -5217,12 +5420,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder clearNamedNestedStructSliceParam() {
       if (namedNestedStructSliceParamBuilder_ == null) {
         namedNestedStructSliceParam_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
       } else {
         namedNestedStructSliceParamBuilder_.clear();
@@ -5230,7 +5433,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder removeNamedNestedStructSliceParam(int index) {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5243,14 +5446,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder getNamedNestedStructSliceParamBuilder(
         int index) {
       return getNamedNestedStructSliceParamFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
         int index) {
@@ -5260,7 +5463,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
          getNamedNestedStructSliceParamOrBuilderList() {
@@ -5271,14 +5474,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder() {
       return getNamedNestedStructSliceParamFieldBuilder().addBuilder(
           com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder(
         int index) {
@@ -5286,7 +5489,7 @@ private static final long serialVersionUID = 0L;
           index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 20;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder> 
          getNamedNestedStructSliceParamBuilderList() {
@@ -5299,7 +5502,7 @@ private static final long serialVersionUID = 0L;
         namedNestedStructSliceParamBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder>(
                 namedNestedStructSliceParam_,
-                ((bitField0_ & 0x00000100) != 0),
+                ((bitField0_ & 0x00000200) != 0),
                 getParentForChildren(),
                 isClean());
         namedNestedStructSliceParam_ = null;
@@ -5310,32 +5513,32 @@ private static final long serialVersionUID = 0L;
     private java.util.List<java.lang.Integer> stringEnumSliceParam_ =
       java.util.Collections.emptyList();
     private void ensureStringEnumSliceParamIsMutable() {
-      if (!((bitField0_ & 0x00000200) != 0)) {
+      if (!((bitField0_ & 0x00000400) != 0)) {
         stringEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>(stringEnumSliceParam_);
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList() {
       return new com.google.protobuf.Internal.ListAdapter<
           java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public int getStringEnumSliceParamCount() {
       return stringEnumSliceParam_.size();
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index) {
       return stringEnumSliceParam_converter_.convert(stringEnumSliceParam_.get(index));
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder setStringEnumSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
@@ -5348,7 +5551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addStringEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
       if (value == null) {
@@ -5360,7 +5563,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addAllStringEnumSliceParam(
         java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> values) {
@@ -5372,29 +5575,29 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder clearStringEnumSliceParam() {
       stringEnumSliceParam_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000200);
+      bitField0_ = (bitField0_ & ~0x00000400);
       onChanged();
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public java.util.List<java.lang.Integer>
     getStringEnumSliceParamValueList() {
       return java.util.Collections.unmodifiableList(stringEnumSliceParam_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public int getStringEnumSliceParamValue(int index) {
       return stringEnumSliceParam_.get(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder setStringEnumSliceParamValue(
         int index, int value) {
@@ -5404,7 +5607,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addStringEnumSliceParamValue(int value) {
       ensureStringEnumSliceParamIsMutable();
@@ -5413,7 +5616,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 21;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addAllStringEnumSliceParamValue(
         java.lang.Iterable<java.lang.Integer> values) {
@@ -5428,32 +5631,32 @@ private static final long serialVersionUID = 0L;
     private java.util.List<java.lang.Integer> intEnumSliceParam_ =
       java.util.Collections.emptyList();
     private void ensureIntEnumSliceParamIsMutable() {
-      if (!((bitField0_ & 0x00000400) != 0)) {
+      if (!((bitField0_ & 0x00000800) != 0)) {
         intEnumSliceParam_ = new java.util.ArrayList<java.lang.Integer>(intEnumSliceParam_);
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList() {
       return new com.google.protobuf.Internal.ListAdapter<
           java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public int getIntEnumSliceParamCount() {
       return intEnumSliceParam_.size();
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index) {
       return intEnumSliceParam_converter_.convert(intEnumSliceParam_.get(index));
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder setIntEnumSliceParam(
         int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
@@ -5466,7 +5669,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addIntEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
       if (value == null) {
@@ -5478,7 +5681,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addAllIntEnumSliceParam(
         java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> values) {
@@ -5490,29 +5693,29 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder clearIntEnumSliceParam() {
       intEnumSliceParam_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000400);
+      bitField0_ = (bitField0_ & ~0x00000800);
       onChanged();
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public java.util.List<java.lang.Integer>
     getIntEnumSliceParamValueList() {
       return java.util.Collections.unmodifiableList(intEnumSliceParam_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public int getIntEnumSliceParamValue(int index) {
       return intEnumSliceParam_.get(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder setIntEnumSliceParamValue(
         int index, int value) {
@@ -5522,7 +5725,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addIntEnumSliceParamValue(int value) {
       ensureIntEnumSliceParamIsMutable();
@@ -5531,7 +5734,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 22;</code>
+     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addAllIntEnumSliceParamValue(
         java.lang.Iterable<java.lang.Integer> values) {

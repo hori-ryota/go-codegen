@@ -82,6 +82,7 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 			inputProtoType.GetUint64Param(),
 			inputProtoType.GetFloat32Param(),
 			inputProtoType.GetFloat64Param(),
+			inputProtoType.GetBytesParam(),
 			struct{ StringParam string }{
 				StringParam: inputProtoType.GetAnonymousNestedStructParam().GetStringParam(),
 			},
@@ -139,6 +140,7 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 			inputProtoType.GetUint64SliceParam(),
 			inputProtoType.GetFloat32SliceParam(),
 			inputProtoType.GetFloat64SliceParam(),
+			inputProtoType.GetBytesSliceParam(),
 			func() []struct{ StringParam string } {
 				t := make([]struct{ StringParam string }, len(inputProtoType.GetAnonymousNestedStructSliceParam()))
 				for i := range t {

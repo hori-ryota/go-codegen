@@ -136,7 +136,7 @@ func printMessageDef(name string, strct *types.Struct) (string, error) {
 	for i, field := range typeutil.TypeToFields(strct) {
 		ft := field.Type()
 		repeatedStrIfNeeded := ""
-		if slice, ok := ft.Underlying().(*types.Slice); ok {
+		if slice, ok := ft.Underlying().(*types.Slice); ok && ft.Underlying().String() != "[]byte" {
 			repeatedStrIfNeeded = "repeated "
 			ft = slice.Elem()
 		}
@@ -269,6 +269,8 @@ func KnownTypesToProtoType(t types.Type) (string, bool) {
 		return "uint32", true
 	case "uint":
 		return "uint64", true
+	case "[]byte":
+		return "bytes", true
 	case "time.Time":
 		return "google.protobuf.Timestamp", true
 	default:

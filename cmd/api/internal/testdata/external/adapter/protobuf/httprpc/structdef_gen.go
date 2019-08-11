@@ -10,6 +10,7 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	Uint64Param                     uint64
 	Float32Param                    float32
 	Float64Param                    float64
+	BytesParam                      []byte
 	AnonymousNestedStructParam      struct{ StringParam string }
 	NamedNestedStructParam          NamedSomeType
 	StringEnumParam                 StringEnum
@@ -21,6 +22,7 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	Uint64SliceParam                []uint64
 	Float32SliceParam               []float32
 	Float64SliceParam               []float64
+	BytesSliceParam                 [][]byte
 	AnonymousNestedStructSliceParam []struct{ StringParam string }
 	NamedNestedStructSliceParam     []NamedSomeType
 	StringEnumSliceParam            []StringEnum
@@ -35,6 +37,7 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	uint64Param uint64,
 	float32Param float32,
 	float64Param float64,
+	bytesParam []byte,
 	anonymousNestedStructParam struct{ StringParam string },
 	namedNestedStructParam NamedSomeType,
 	stringEnumParam StringEnum,
@@ -46,6 +49,7 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 	uint64SliceParam []uint64,
 	float32SliceParam []float32,
 	float64SliceParam []float64,
+	bytesSliceParam [][]byte,
 	anonymousNestedStructSliceParam []struct{ StringParam string },
 	namedNestedStructSliceParam []NamedSomeType,
 	stringEnumSliceParam []StringEnum,
@@ -59,6 +63,7 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		Uint64Param:                     uint64Param,
 		Float32Param:                    float32Param,
 		Float64Param:                    float64Param,
+		BytesParam:                      bytesParam,
 		AnonymousNestedStructParam:      anonymousNestedStructParam,
 		NamedNestedStructParam:          namedNestedStructParam,
 		StringEnumParam:                 stringEnumParam,
@@ -70,6 +75,7 @@ func NewDoingSomethingWithOutputAndActorUsecaseInput(
 		Uint64SliceParam:                uint64SliceParam,
 		Float32SliceParam:               float32SliceParam,
 		Float64SliceParam:               float64SliceParam,
+		BytesSliceParam:                 bytesSliceParam,
 		AnonymousNestedStructSliceParam: anonymousNestedStructSliceParam,
 		NamedNestedStructSliceParam:     namedNestedStructSliceParam,
 		StringEnumSliceParam:            stringEnumSliceParam,

@@ -51,6 +51,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 		Uint64Param:  input.Uint64Param,
 		Float32Param: input.Float32Param,
 		Float64Param: input.Float64Param,
+		BytesParam:   input.BytesParam,
 		AnonymousNestedStructParam: func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam {
 			t := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam{
 				StringParam: input.AnonymousNestedStructParam.StringParam,
@@ -110,6 +111,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 		Uint64SliceParam:  input.Uint64SliceParam,
 		Float32SliceParam: input.Float32SliceParam,
 		Float64SliceParam: input.Float64SliceParam,
+		BytesSliceParam:   input.BytesSliceParam,
 		AnonymousNestedStructSliceParam: func() []*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam {
 			t := make([]*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam, len(input.AnonymousNestedStructSliceParam))
 			for i := range t {

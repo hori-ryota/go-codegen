@@ -19,6 +19,7 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	uint64Param                uint64  `required:"" getter:""`
 	float32Param               float32 `required:"" getter:""`
 	float64Param               float64 `required:"" getter:""`
+	bytesParam                 []byte  `required:"" getter:""`
 	anonymousNestedStructParam struct {
 		StringParam string
 	} `required:"" getter:""`
@@ -33,6 +34,7 @@ type DoingSomethingWithOutputAndActorUsecaseInput struct {
 	uint64SliceParam                []uint64  `required:"" getter:""`
 	float32SliceParam               []float32 `required:"" getter:""`
 	float64SliceParam               []float64 `required:"" getter:""`
+	bytesSliceParam                 [][]byte  `required:"" getter:""`
 	anonymousNestedStructSliceParam []struct {
 		StringParam string
 	} `required:"" getter:""`
