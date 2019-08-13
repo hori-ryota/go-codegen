@@ -99,7 +99,7 @@ func printEnumDef(w io.Writer, typePrinter typeutil.Printer, def EnumDef, alread
 	fmt.Fprintf(w, "type %s %s\n", def.Type.Obj().Name(), typePrinter.PrintRelativeType(def.Type.Underlying()))
 	fmt.Fprintf(w, "const (\n")
 	for _, v := range def.Values {
-		fmt.Fprintf(w, "%s %s = %s\n", v.Name(), def.Type.Obj().Name(), v.Val())
+		fmt.Fprintf(w, "%s %s = %s\n", v.Name(), def.Type.Obj().Name(), v.Val().ExactString())
 	}
 	fmt.Fprintf(w, ")\n")
 
