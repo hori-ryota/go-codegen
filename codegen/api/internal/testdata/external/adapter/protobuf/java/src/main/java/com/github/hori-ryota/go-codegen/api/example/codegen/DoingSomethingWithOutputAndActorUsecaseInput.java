@@ -120,11 +120,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 82: {
-            com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder subBuilder = null;
+            com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder subBuilder = null;
             if (namedNestedStructParam_ != null) {
               subBuilder = namedNestedStructParam_.toBuilder();
             }
-            namedNestedStructParam_ = input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.parser(), extensionRegistry);
+            namedNestedStructParam_ = input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(namedNestedStructParam_);
               namedNestedStructParam_ = subBuilder.buildPartial();
@@ -298,11 +298,11 @@ private static final long serialVersionUID = 0L;
           }
           case 178: {
             if (!((mutable_bitField0_ & 0x00000200) != 0)) {
-              namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType>();
+              namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType>();
               mutable_bitField0_ |= 0x00000200;
             }
             namedNestedStructSliceParam_.add(
-                input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.parser(), extensionRegistry));
+                input.readMessage(com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.parser(), extensionRegistry));
             break;
           }
           case 184: {
@@ -417,238 +417,6 @@ private static final long serialVersionUID = 0L;
     return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.class, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.Builder.class);
-  }
-
-  /**
-   * Protobuf enum {@code codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum}
-   */
-  public enum StringEnum
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>UNKNOWN_STRING_ENUM = 0;</code>
-     */
-    UNKNOWN_STRING_ENUM(0),
-    /**
-     * <code>STRING_A = 1;</code>
-     */
-    STRING_A(1),
-    /**
-     * <code>STRING_B = 2;</code>
-     */
-    STRING_B(2),
-    /**
-     * <code>STRING_C = 3;</code>
-     */
-    STRING_C(3),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>UNKNOWN_STRING_ENUM = 0;</code>
-     */
-    public static final int UNKNOWN_STRING_ENUM_VALUE = 0;
-    /**
-     * <code>STRING_A = 1;</code>
-     */
-    public static final int STRING_A_VALUE = 1;
-    /**
-     * <code>STRING_B = 2;</code>
-     */
-    public static final int STRING_B_VALUE = 2;
-    /**
-     * <code>STRING_C = 3;</code>
-     */
-    public static final int STRING_C_VALUE = 3;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static StringEnum valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static StringEnum forNumber(int value) {
-      switch (value) {
-        case 0: return UNKNOWN_STRING_ENUM;
-        case 1: return STRING_A;
-        case 2: return STRING_B;
-        case 3: return STRING_C;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<StringEnum>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        StringEnum> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<StringEnum>() {
-            public StringEnum findValueByNumber(int number) {
-              return StringEnum.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final StringEnum[] VALUES = values();
-
-    public static StringEnum valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private StringEnum(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum)
-  }
-
-  /**
-   * Protobuf enum {@code codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum}
-   */
-  public enum IntEnum
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>UNKNOWN_INT_ENUM = 0;</code>
-     */
-    UNKNOWN_INT_ENUM(0),
-    /**
-     * <code>INT_ONE = 1;</code>
-     */
-    INT_ONE(1),
-    /**
-     * <code>INT_THREE = 2;</code>
-     */
-    INT_THREE(2),
-    /**
-     * <code>INT_TWO = 3;</code>
-     */
-    INT_TWO(3),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>UNKNOWN_INT_ENUM = 0;</code>
-     */
-    public static final int UNKNOWN_INT_ENUM_VALUE = 0;
-    /**
-     * <code>INT_ONE = 1;</code>
-     */
-    public static final int INT_ONE_VALUE = 1;
-    /**
-     * <code>INT_THREE = 2;</code>
-     */
-    public static final int INT_THREE_VALUE = 2;
-    /**
-     * <code>INT_TWO = 3;</code>
-     */
-    public static final int INT_TWO_VALUE = 3;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static IntEnum valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static IntEnum forNumber(int value) {
-      switch (value) {
-        case 0: return UNKNOWN_INT_ENUM;
-        case 1: return INT_ONE;
-        case 2: return INT_THREE;
-        case 3: return INT_TWO;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<IntEnum>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        IntEnum> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<IntEnum>() {
-            public IntEnum findValueByNumber(int number) {
-              return IntEnum.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.getDescriptor().getEnumTypes().get(1);
-    }
-
-    private static final IntEnum[] VALUES = values();
-
-    public static IntEnum valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private IntEnum(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum)
   }
 
   public interface AnonymousNestedStructParamOrBuilder extends
@@ -1201,561 +969,6 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParam getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface NamedSomeTypeOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string string_param = 1;</code>
-     */
-    java.lang.String getStringParam();
-    /**
-     * <code>string string_param = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getStringParamBytes();
-  }
-  /**
-   * Protobuf type {@code codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType}
-   */
-  public  static final class NamedSomeType extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)
-      NamedSomeTypeOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use NamedSomeType.newBuilder() to construct.
-    private NamedSomeType(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private NamedSomeType() {
-      stringParam_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new NamedSomeType();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private NamedSomeType(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              stringParam_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.class, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder.class);
-    }
-
-    public static final int STRING_PARAM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object stringParam_;
-    /**
-     * <code>string string_param = 1;</code>
-     */
-    public java.lang.String getStringParam() {
-      java.lang.Object ref = stringParam_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        stringParam_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string string_param = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getStringParamBytes() {
-      java.lang.Object ref = stringParam_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        stringParam_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getStringParamBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stringParam_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getStringParamBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stringParam_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)) {
-        return super.equals(obj);
-      }
-      com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType other = (com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType) obj;
-
-      if (!getStringParam()
-          .equals(other.getStringParam())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + STRING_PARAM_FIELD_NUMBER;
-      hash = (53 * hash) + getStringParam().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.class, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder.class);
-      }
-
-      // Construct using com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        stringParam_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.github.hori-ryota/go-codegen/api/example/codegen.CodegenProto.internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor;
-      }
-
-      @java.lang.Override
-      public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getDefaultInstanceForType() {
-        return com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType build() {
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType buildPartial() {
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType result = new com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType(this);
-        result.stringParam_ = stringParam_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType) {
-          return mergeFrom((com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType other) {
-        if (other == com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance()) return this;
-        if (!other.getStringParam().isEmpty()) {
-          stringParam_ = other.stringParam_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object stringParam_ = "";
-      /**
-       * <code>string string_param = 1;</code>
-       */
-      public java.lang.String getStringParam() {
-        java.lang.Object ref = stringParam_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          stringParam_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string string_param = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getStringParamBytes() {
-        java.lang.Object ref = stringParam_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          stringParam_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string string_param = 1;</code>
-       */
-      public Builder setStringParam(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        stringParam_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string string_param = 1;</code>
-       */
-      public Builder clearStringParam() {
-        
-        stringParam_ = getDefaultInstance().getStringParam();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string string_param = 1;</code>
-       */
-      public Builder setStringParamBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        stringParam_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)
-    }
-
-    // @@protoc_insertion_point(class_scope:codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType)
-    private static final com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType();
-    }
-
-    public static com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<NamedSomeType>
-        PARSER = new com.google.protobuf.AbstractParser<NamedSomeType>() {
-      @java.lang.Override
-      public NamedSomeType parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new NamedSomeType(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<NamedSomeType> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<NamedSomeType> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2435,58 +1648,58 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NAMED_NESTED_STRUCT_PARAM_FIELD_NUMBER = 10;
-  private com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType namedNestedStructParam_;
+  private com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType namedNestedStructParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
   public boolean hasNamedNestedStructParam() {
     return namedNestedStructParam_ != null;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructParam() {
-    return namedNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
+  public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructParam() {
+    return namedNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
     return getNamedNestedStructParam();
   }
 
   public static final int STRING_ENUM_PARAM_FIELD_NUMBER = 11;
   private int stringEnumParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+   * <code>.codegen.StringEnum string_enum_param = 11;</code>
    */
   public int getStringEnumParamValue() {
     return stringEnumParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+   * <code>.codegen.StringEnum string_enum_param = 11;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam() {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumParam() {
     @SuppressWarnings("deprecation")
-    com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.valueOf(stringEnumParam_);
-    return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNRECOGNIZED : result;
+    com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.valueOf(stringEnumParam_);
+    return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.UNRECOGNIZED : result;
   }
 
   public static final int INT_ENUM_PARAM_FIELD_NUMBER = 12;
   private int intEnumParam_;
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+   * <code>.codegen.IntEnum int_enum_param = 12;</code>
    */
   public int getIntEnumParamValue() {
     return intEnumParam_;
   }
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+   * <code>.codegen.IntEnum int_enum_param = 12;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam() {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumParam() {
     @SuppressWarnings("deprecation")
-    com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.valueOf(intEnumParam_);
-    return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNRECOGNIZED : result;
+    com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.valueOf(intEnumParam_);
+    return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.UNRECOGNIZED : result;
   }
 
   public static final int STRING_SLICE_PARAM_FIELD_NUMBER = 13;
@@ -2714,36 +1927,36 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NAMED_NESTED_STRUCT_SLICE_PARAM_FIELD_NUMBER = 22;
-  private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> namedNestedStructSliceParam_;
+  private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> namedNestedStructSliceParam_;
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> getNamedNestedStructSliceParamList() {
+  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> getNamedNestedStructSliceParamList() {
     return namedNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
+  public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> 
       getNamedNestedStructSliceParamOrBuilderList() {
     return namedNestedStructSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   public int getNamedNestedStructSliceParamCount() {
     return namedNestedStructSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index) {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructSliceParam(int index) {
     return namedNestedStructSliceParam_.get(index);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
+  public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
       int index) {
     return namedNestedStructSliceParam_.get(index);
   }
@@ -2751,43 +1964,43 @@ private static final long serialVersionUID = 0L;
   public static final int STRING_ENUM_SLICE_PARAM_FIELD_NUMBER = 23;
   private java.util.List<java.lang.Integer> stringEnumSliceParam_;
   private static final com.google.protobuf.Internal.ListAdapter.Converter<
-      java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> stringEnumSliceParam_converter_ =
+      java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum> stringEnumSliceParam_converter_ =
           new com.google.protobuf.Internal.ListAdapter.Converter<
-              java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum>() {
-            public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum convert(java.lang.Integer from) {
+              java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum>() {
+            public com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum convert(java.lang.Integer from) {
               @SuppressWarnings("deprecation")
-              com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.valueOf(from);
-              return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNRECOGNIZED : result;
+              com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.valueOf(from);
+              return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.UNRECOGNIZED : result;
             }
           };
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
-  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList() {
+  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum> getStringEnumSliceParamList() {
     return new com.google.protobuf.Internal.ListAdapter<
-        java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
+        java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   public int getStringEnumSliceParamCount() {
     return stringEnumSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index) {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumSliceParam(int index) {
     return stringEnumSliceParam_converter_.convert(stringEnumSliceParam_.get(index));
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   public java.util.List<java.lang.Integer>
   getStringEnumSliceParamValueList() {
     return stringEnumSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   public int getStringEnumSliceParamValue(int index) {
     return stringEnumSliceParam_.get(index);
@@ -2797,43 +2010,43 @@ private static final long serialVersionUID = 0L;
   public static final int INT_ENUM_SLICE_PARAM_FIELD_NUMBER = 24;
   private java.util.List<java.lang.Integer> intEnumSliceParam_;
   private static final com.google.protobuf.Internal.ListAdapter.Converter<
-      java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> intEnumSliceParam_converter_ =
+      java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum> intEnumSliceParam_converter_ =
           new com.google.protobuf.Internal.ListAdapter.Converter<
-              java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum>() {
-            public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum convert(java.lang.Integer from) {
+              java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum>() {
+            public com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum convert(java.lang.Integer from) {
               @SuppressWarnings("deprecation")
-              com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.valueOf(from);
-              return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNRECOGNIZED : result;
+              com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.valueOf(from);
+              return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.UNRECOGNIZED : result;
             }
           };
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
-  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList() {
+  public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum> getIntEnumSliceParamList() {
     return new com.google.protobuf.Internal.ListAdapter<
-        java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
+        java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   public int getIntEnumSliceParamCount() {
     return intEnumSliceParam_.size();
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
-  public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index) {
+  public com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumSliceParam(int index) {
     return intEnumSliceParam_converter_.convert(intEnumSliceParam_.get(index));
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   public java.util.List<java.lang.Integer>
   getIntEnumSliceParamValueList() {
     return intEnumSliceParam_;
   }
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   public int getIntEnumSliceParamValue(int index) {
     return intEnumSliceParam_.get(index);
@@ -2885,10 +2098,10 @@ private static final long serialVersionUID = 0L;
     if (namedNestedStructParam_ != null) {
       output.writeMessage(10, getNamedNestedStructParam());
     }
-    if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
+    if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
       output.writeEnum(11, stringEnumParam_);
     }
-    if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
+    if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
       output.writeEnum(12, intEnumParam_);
     }
     for (int i = 0; i < stringSliceParam_.size(); i++) {
@@ -3007,11 +2220,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, getNamedNestedStructParam());
     }
-    if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
+    if (stringEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.UNKNOWN_STRING_ENUM.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(11, stringEnumParam_);
     }
-    if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
+    if (intEnumParam_ != com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.UNKNOWN_INT_ENUM.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(12, intEnumParam_);
     }
@@ -4254,29 +3467,29 @@ private static final long serialVersionUID = 0L;
       return anonymousNestedStructParamBuilder_;
     }
 
-    private com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType namedNestedStructParam_;
+    private com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType namedNestedStructParam_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> namedNestedStructParamBuilder_;
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> namedNestedStructParamBuilder_;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public boolean hasNamedNestedStructParam() {
       return namedNestedStructParamBuilder_ != null || namedNestedStructParam_ != null;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructParam() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructParam() {
       if (namedNestedStructParamBuilder_ == null) {
-        return namedNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
+        return namedNestedStructParam_ == null ? com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
       } else {
         return namedNestedStructParamBuilder_.getMessage();
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
-    public Builder setNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
+    public Builder setNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType value) {
       if (namedNestedStructParamBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -4290,10 +3503,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder setNamedNestedStructParam(
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder builderForValue) {
       if (namedNestedStructParamBuilder_ == null) {
         namedNestedStructParam_ = builderForValue.build();
         onChanged();
@@ -4304,13 +3517,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
-    public Builder mergeNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
+    public Builder mergeNamedNestedStructParam(com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType value) {
       if (namedNestedStructParamBuilder_ == null) {
         if (namedNestedStructParam_ != null) {
           namedNestedStructParam_ =
-            com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.newBuilder(namedNestedStructParam_).mergeFrom(value).buildPartial();
+            com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.newBuilder(namedNestedStructParam_).mergeFrom(value).buildPartial();
         } else {
           namedNestedStructParam_ = value;
         }
@@ -4322,7 +3535,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
     public Builder clearNamedNestedStructParam() {
       if (namedNestedStructParamBuilder_ == null) {
@@ -4336,33 +3549,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder getNamedNestedStructParamBuilder() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder getNamedNestedStructParamBuilder() {
       
       onChanged();
       return getNamedNestedStructParamFieldBuilder().getBuilder();
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder() {
       if (namedNestedStructParamBuilder_ != null) {
         return namedNestedStructParamBuilder_.getMessageOrBuilder();
       } else {
         return namedNestedStructParam_ == null ?
-            com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
+            com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.getDefaultInstance() : namedNestedStructParam_;
       }
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+     * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> 
         getNamedNestedStructParamFieldBuilder() {
       if (namedNestedStructParamBuilder_ == null) {
         namedNestedStructParamBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder>(
+            com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder>(
                 getNamedNestedStructParam(),
                 getParentForChildren(),
                 isClean());
@@ -4373,13 +3586,13 @@ private static final long serialVersionUID = 0L;
 
     private int stringEnumParam_ = 0;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+     * <code>.codegen.StringEnum string_enum_param = 11;</code>
      */
     public int getStringEnumParamValue() {
       return stringEnumParam_;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+     * <code>.codegen.StringEnum string_enum_param = 11;</code>
      */
     public Builder setStringEnumParamValue(int value) {
       stringEnumParam_ = value;
@@ -4387,17 +3600,17 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+     * <code>.codegen.StringEnum string_enum_param = 11;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumParam() {
       @SuppressWarnings("deprecation")
-      com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.valueOf(stringEnumParam_);
-      return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum.UNRECOGNIZED : result;
+      com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.valueOf(stringEnumParam_);
+      return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum.UNRECOGNIZED : result;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+     * <code>.codegen.StringEnum string_enum_param = 11;</code>
      */
-    public Builder setStringEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
+    public Builder setStringEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4407,7 +3620,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+     * <code>.codegen.StringEnum string_enum_param = 11;</code>
      */
     public Builder clearStringEnumParam() {
       
@@ -4418,13 +3631,13 @@ private static final long serialVersionUID = 0L;
 
     private int intEnumParam_ = 0;
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+     * <code>.codegen.IntEnum int_enum_param = 12;</code>
      */
     public int getIntEnumParamValue() {
       return intEnumParam_;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+     * <code>.codegen.IntEnum int_enum_param = 12;</code>
      */
     public Builder setIntEnumParamValue(int value) {
       intEnumParam_ = value;
@@ -4432,17 +3645,17 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+     * <code>.codegen.IntEnum int_enum_param = 12;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumParam() {
       @SuppressWarnings("deprecation")
-      com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.valueOf(intEnumParam_);
-      return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum.UNRECOGNIZED : result;
+      com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum result = com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.valueOf(intEnumParam_);
+      return result == null ? com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum.UNRECOGNIZED : result;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+     * <code>.codegen.IntEnum int_enum_param = 12;</code>
      */
-    public Builder setIntEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
+    public Builder setIntEnumParam(com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4452,7 +3665,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+     * <code>.codegen.IntEnum int_enum_param = 12;</code>
      */
     public Builder clearIntEnumParam() {
       
@@ -5270,22 +4483,22 @@ private static final long serialVersionUID = 0L;
       return anonymousNestedStructSliceParamBuilder_;
     }
 
-    private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> namedNestedStructSliceParam_ =
+    private java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> namedNestedStructSliceParam_ =
       java.util.Collections.emptyList();
     private void ensureNamedNestedStructSliceParamIsMutable() {
       if (!((bitField0_ & 0x00000200) != 0)) {
-        namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType>(namedNestedStructSliceParam_);
+        namedNestedStructSliceParam_ = new java.util.ArrayList<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType>(namedNestedStructSliceParam_);
         bitField0_ |= 0x00000200;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> namedNestedStructSliceParamBuilder_;
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> namedNestedStructSliceParamBuilder_;
 
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> getNamedNestedStructSliceParamList() {
+    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> getNamedNestedStructSliceParamList() {
       if (namedNestedStructSliceParamBuilder_ == null) {
         return java.util.Collections.unmodifiableList(namedNestedStructSliceParam_);
       } else {
@@ -5293,7 +4506,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public int getNamedNestedStructSliceParamCount() {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5303,9 +4516,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index) {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructSliceParam(int index) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         return namedNestedStructSliceParam_.get(index);
       } else {
@@ -5313,10 +4526,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder setNamedNestedStructSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType value) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -5330,10 +4543,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder setNamedNestedStructSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder builderForValue) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         ensureNamedNestedStructSliceParamIsMutable();
         namedNestedStructSliceParam_.set(index, builderForValue.build());
@@ -5344,9 +4557,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public Builder addNamedNestedStructSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
+    public Builder addNamedNestedStructSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType value) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -5360,10 +4573,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType value) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType value) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -5377,10 +4590,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder builderForValue) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         ensureNamedNestedStructSliceParamIsMutable();
         namedNestedStructSliceParam_.add(builderForValue.build());
@@ -5391,10 +4604,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addNamedNestedStructSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder builderForValue) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder builderForValue) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         ensureNamedNestedStructSliceParamIsMutable();
         namedNestedStructSliceParam_.add(index, builderForValue.build());
@@ -5405,10 +4618,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder addAllNamedNestedStructSliceParam(
-        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> values) {
+        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> values) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         ensureNamedNestedStructSliceParamIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5420,7 +4633,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder clearNamedNestedStructSliceParam() {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5433,7 +4646,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
     public Builder removeNamedNestedStructSliceParam(int index) {
       if (namedNestedStructSliceParamBuilder_ == null) {
@@ -5446,16 +4659,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder getNamedNestedStructSliceParamBuilder(
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder getNamedNestedStructSliceParamBuilder(
         int index) {
       return getNamedNestedStructSliceParamFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
         int index) {
       if (namedNestedStructSliceParamBuilder_ == null) {
         return namedNestedStructSliceParam_.get(index);  } else {
@@ -5463,9 +4676,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
+    public java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> 
          getNamedNestedStructSliceParamOrBuilderList() {
       if (namedNestedStructSliceParamBuilder_ != null) {
         return namedNestedStructSliceParamBuilder_.getMessageOrBuilderList();
@@ -5474,33 +4687,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder() {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder() {
       return getNamedNestedStructSliceParamFieldBuilder().addBuilder(
-          com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance());
+          com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder(
+    public com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder addNamedNestedStructSliceParamBuilder(
         int index) {
       return getNamedNestedStructSliceParamFieldBuilder().addBuilder(
-          index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.getDefaultInstance());
+          index, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.getDefaultInstance());
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+     * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
      */
-    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder> 
+    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder> 
          getNamedNestedStructSliceParamBuilderList() {
       return getNamedNestedStructSliceParamFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
+        com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> 
         getNamedNestedStructSliceParamFieldBuilder() {
       if (namedNestedStructSliceParamBuilder_ == null) {
         namedNestedStructSliceParamBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder>(
+            com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType.Builder, com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder>(
                 namedNestedStructSliceParam_,
                 ((bitField0_ & 0x00000200) != 0),
                 getParentForChildren(),
@@ -5519,29 +4732,29 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
-    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList() {
+    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum> getStringEnumSliceParamList() {
       return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
+          java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum>(stringEnumSliceParam_, stringEnumSliceParam_converter_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public int getStringEnumSliceParamCount() {
       return stringEnumSliceParam_.size();
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index) {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumSliceParam(int index) {
       return stringEnumSliceParam_converter_.convert(stringEnumSliceParam_.get(index));
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder setStringEnumSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5551,9 +4764,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
-    public Builder addStringEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value) {
+    public Builder addStringEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5563,19 +4776,19 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addAllStringEnumSliceParam(
-        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> values) {
+        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum> values) {
       ensureStringEnumSliceParamIsMutable();
-      for (com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum value : values) {
+      for (com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum value : values) {
         stringEnumSliceParam_.add(value.getNumber());
       }
       onChanged();
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder clearStringEnumSliceParam() {
       stringEnumSliceParam_ = java.util.Collections.emptyList();
@@ -5584,20 +4797,20 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public java.util.List<java.lang.Integer>
     getStringEnumSliceParamValueList() {
       return java.util.Collections.unmodifiableList(stringEnumSliceParam_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public int getStringEnumSliceParamValue(int index) {
       return stringEnumSliceParam_.get(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder setStringEnumSliceParamValue(
         int index, int value) {
@@ -5607,7 +4820,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addStringEnumSliceParamValue(int value) {
       ensureStringEnumSliceParamIsMutable();
@@ -5616,7 +4829,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+     * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
      */
     public Builder addAllStringEnumSliceParamValue(
         java.lang.Iterable<java.lang.Integer> values) {
@@ -5637,29 +4850,29 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
-    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList() {
+    public java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum> getIntEnumSliceParamList() {
       return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
+          java.lang.Integer, com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum>(intEnumSliceParam_, intEnumSliceParam_converter_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public int getIntEnumSliceParamCount() {
       return intEnumSliceParam_.size();
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
-    public com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index) {
+    public com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumSliceParam(int index) {
       return intEnumSliceParam_converter_.convert(intEnumSliceParam_.get(index));
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder setIntEnumSliceParam(
-        int index, com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
+        int index, com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5669,9 +4882,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
-    public Builder addIntEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value) {
+    public Builder addIntEnumSliceParam(com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5681,19 +4894,19 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addAllIntEnumSliceParam(
-        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> values) {
+        java.lang.Iterable<? extends com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum> values) {
       ensureIntEnumSliceParamIsMutable();
-      for (com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum value : values) {
+      for (com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum value : values) {
         intEnumSliceParam_.add(value.getNumber());
       }
       onChanged();
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder clearIntEnumSliceParam() {
       intEnumSliceParam_ = java.util.Collections.emptyList();
@@ -5702,20 +4915,20 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public java.util.List<java.lang.Integer>
     getIntEnumSliceParamValueList() {
       return java.util.Collections.unmodifiableList(intEnumSliceParam_);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public int getIntEnumSliceParamValue(int index) {
       return intEnumSliceParam_.get(index);
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder setIntEnumSliceParamValue(
         int index, int value) {
@@ -5725,7 +4938,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addIntEnumSliceParamValue(int value) {
       ensureIntEnumSliceParamIsMutable();
@@ -5734,7 +4947,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+     * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
      */
     public Builder addAllIntEnumSliceParamValue(
         java.lang.Iterable<java.lang.Integer> values) {

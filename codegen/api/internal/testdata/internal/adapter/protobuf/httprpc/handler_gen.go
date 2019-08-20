@@ -93,13 +93,13 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 
 				return m
 			}(),
-			func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum) domain.StringEnum {
+			func(s protobuf.StringEnum) domain.StringEnum {
 				switch s {
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A:
+				case protobuf.StringEnum_STRING_A:
 					return domain.StringA
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B:
+				case protobuf.StringEnum_STRING_B:
 					return domain.StringB
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C:
+				case protobuf.StringEnum_STRING_C:
 					return domain.StringC
 
 				default:
@@ -107,13 +107,13 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 					return t
 				}
 			}(inputProtoType.GetStringEnumParam()),
-			func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum) domain.IntEnum {
+			func(s protobuf.IntEnum) domain.IntEnum {
 				switch s {
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE:
+				case protobuf.IntEnum_INT_ONE:
 					return domain.IntOne
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE:
+				case protobuf.IntEnum_INT_THREE:
 					return domain.IntThree
-				case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO:
+				case protobuf.IntEnum_INT_TWO:
 					return domain.IntTwo
 
 				default:
@@ -166,13 +166,13 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 			func() []domain.StringEnum {
 				t := make([]domain.StringEnum, len(inputProtoType.GetStringEnumSliceParam()))
 				for i := range t {
-					t[i] = func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum) domain.StringEnum {
+					t[i] = func(s protobuf.StringEnum) domain.StringEnum {
 						switch s {
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A:
+						case protobuf.StringEnum_STRING_A:
 							return domain.StringA
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B:
+						case protobuf.StringEnum_STRING_B:
 							return domain.StringB
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C:
+						case protobuf.StringEnum_STRING_C:
 							return domain.StringC
 
 						default:
@@ -186,13 +186,13 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 			func() []domain.IntEnum {
 				t := make([]domain.IntEnum, len(inputProtoType.GetIntEnumSliceParam()))
 				for i := range t {
-					t[i] = func(s protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum) domain.IntEnum {
+					t[i] = func(s protobuf.IntEnum) domain.IntEnum {
 						switch s {
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE:
+						case protobuf.IntEnum_INT_ONE:
 							return domain.IntOne
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE:
+						case protobuf.IntEnum_INT_THREE:
 							return domain.IntThree
-						case protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO:
+						case protobuf.IntEnum_INT_TWO:
 							return domain.IntTwo
 
 						default:

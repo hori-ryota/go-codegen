@@ -3,7 +3,9 @@ package protobuf
 import (
 	"bytes"
 	"fmt"
+	"go/token"
 	"go/types"
+	"io"
 	"sort"
 	"strconv"
 	"strings"
@@ -22,16 +24,7 @@ type TemplateParam struct {
 }
 
 var Template = template.Must(template.New("").Funcs(map[string]interface{}{
-	"PrintMessageDef": func(t *types.Named) string {
-		if t == nil {
-			return ""
-		}
-		s, err := printMessageDef(t.Obj().Name(), t.Underlying().(*types.Struct))
-		if err != nil {
-			panic(err)
-		}
-		return s
-	},
+	"PrintMessageDefs": printMessageDefs,
 	"ToImportList": func(rootParam TemplateParam) []string {
 		importList := make([]string, 0, 10)
 		for _, service := range rootParam.Services {
@@ -50,6 +43,7 @@ var Template = template.Must(template.New("").Funcs(map[string]interface{}{
 	"plus": func(a, b int) string { return strconv.Itoa(a + b) },
 }).Parse(strings.TrimSpace(`
 syntax = "proto3";
+
 package {{.Package}};
 
 {{- if .GoPackage}}
@@ -66,27 +60,15 @@ option java_outer_classname = "{{.JavaOuterClassName}}";
 {{- range ToImportList . }}
 import "{{.}}";
 {{- end}}
-
 {{- range .Services}}
 
 service {{.Name}} {
 {{- range .RPCs}}
-  rpc {{.MethodName}} ({{.InputType.Obj.Name}}) returns ({{if .OutputType}}{{.OutputType.Obj.Name}}{{else}}google.protobuf.Empty{{end}});
+  rpc {{.MethodName}}({{.InputType.Obj.Name}}) returns ({{if .OutputType}}{{.OutputType.Obj.Name}}{{else}}google.protobuf.Empty{{end}});
 {{- end}}
 }
 {{- end}}
-
-{{- range .Services}}
-{{- range .RPCs}}
-
-{{PrintMessageDef .InputType}}
-{{- if .OutputType}}
-
-{{PrintMessageDef .OutputType}}
-{{- end}}
-{{- end}}
-{{- end}}
-
+{{PrintMessageDefs .Services}}
 `)))
 
 func removeDuplicateAndEmpty(s []string) []string {
@@ -127,100 +109,103 @@ func toImportList(t types.Type) []string {
 	return nil
 }
 
-func printMessageDef(name string, strct *types.Struct) (string, error) {
+func printMessageDefs(services []Service) string {
 	w := new(bytes.Buffer)
-	fmt.Fprintf(w, "message %s {\n", strcase.ToUpperCamel(name))
-
-	alreadyDefined := make(map[string]bool)
-
-	for i, field := range typeutil.TypeToFields(strct) {
-		ft := field.Type()
-		repeatedStrIfNeeded := ""
-		if slice, ok := ft.Underlying().(*types.Slice); ok && ft.Underlying().String() != "[]byte" {
-			repeatedStrIfNeeded = "repeated "
-			ft = slice.Elem()
-		}
-		if ptr, ok := ft.Underlying().(*types.Pointer); ok {
-			ft = ptr.Elem()
-		}
-
-		if named, ok := ft.(*types.Named); ok {
-			enumValues := typeutil.TypeToEnumValues(named)
-			if len(enumValues) > 0 {
-				enumName := named.Obj().Name()
-				if !alreadyDefined[enumName] {
-					enumDef := printEnumDef(named, enumValues)
-					fmt.Fprintln(w, AddIndent(enumDef, 1))
-					alreadyDefined[enumName] = true
-				}
-
-				fmt.Fprint(w, AddIndent(
-					fmt.Sprintf(
-						"%s%s %s = %d;\n",
-						repeatedStrIfNeeded,
-						strcase.ToUpperCamel(enumName),
-						strcase.ToLowerSnake(field.Name()),
-						i+1,
-					),
-					1,
-				))
-				continue
+	alreadyDefined := make(map[string]bool, 100)
+	for _, s := range services {
+		for _, rpc := range s.RPCs {
+			printMessageDef(w, rpc.InputType, alreadyDefined)
+			if rpc.OutputType != nil {
+				printMessageDef(w, rpc.OutputType, alreadyDefined)
 			}
 		}
-
-		if typeStr, ok := KnownTypesToProtoType(ft); ok {
-			fmt.Fprint(w, AddIndent(
-				fmt.Sprintf(
-					"%s%s %s = %d;\n",
-					repeatedStrIfNeeded,
-					typeStr,
-					strcase.ToLowerSnake(field.Name()),
-					i+1,
-				),
-				1,
-			))
-			continue
-		}
-
-		if strct, ok := ft.Underlying().(*types.Struct); ok {
-			nestedTypeName := field.Name()
-			if named, ok := ft.(*types.Named); ok {
-				nestedTypeName = named.Obj().Name()
-			}
-			if !alreadyDefined[nestedTypeName] {
-				nestedMessageDef, err := printMessageDef(nestedTypeName, strct)
-				if err != nil {
-					return "", err
-				}
-				fmt.Fprintln(w, AddIndent(nestedMessageDef, 1))
-				alreadyDefined[nestedTypeName] = true
-			}
-
-			fmt.Fprint(w, AddIndent(
-				fmt.Sprintf(
-					"%s%s %s = %d;\n",
-					repeatedStrIfNeeded,
-					strcase.ToUpperCamel(nestedTypeName),
-					strcase.ToLowerSnake(field.Name()),
-					i+1,
-				),
-				1,
-			))
-			continue
-		}
-		return "", fmt.Errorf("unknown field type '%s", field)
 	}
-	fmt.Fprint(w, "}")
-
-	return w.String(), nil
+	return w.String()
 }
 
-func printEnumDef(t *types.Named, values []*types.Const) string {
-	w := new(bytes.Buffer)
-	fmt.Fprintf(w, "enum %s {\n", strcase.ToUpperCamel(t.Obj().Name()))
-	fmt.Fprintf(w, AddIndent(fmt.Sprintf("UNKNOWN_%s = 0;\n", strcase.ToUpperSnake(t.Obj().Name())), 1))
-	for i, v := range values {
-		if strings.ToLower(v.Name()) == "unknown" {
+func printMessageDef(w io.Writer, def *types.Named, alreadyDefined map[string]bool) {
+	name := strcase.ToUpperCamel(def.Obj().Name())
+	if alreadyDefined[name] {
+		return
+	}
+
+	needsMoreDef := make([]*types.Named, 0, 2)
+	needsMoreEnumDef := make([]EnumDef, 0, 2)
+	internalAlreadyDefined := make(map[string]bool, 2)
+
+	fmt.Fprintf(w, "\nmessage %s {\n", name)
+
+	for i, field := range typeutil.TypeToFields(def) {
+		ft := field.Type()
+		repeatedMark := ""
+
+	PEELING:
+		for {
+			switch t := ft.Underlying().(type) {
+			case *types.Pointer:
+				ft = t.Elem()
+			case *types.Slice:
+				if t.String() == "[]byte" {
+					break PEELING
+				}
+				ft = t.Elem()
+				repeatedMark += "repeated "
+			default:
+				break PEELING
+			}
+		}
+
+		var typeName string
+
+		switch ft := ft.(type) {
+		case *types.Struct:
+			// for anonymous struct
+			typeName = strcase.ToUpperCamel(field.Name())
+
+			// define nested message
+			b := new(bytes.Buffer)
+			printMessageDef(
+				b,
+				types.NewNamed(types.NewTypeName(token.NoPos, nil, typeName, nil), ft, nil),
+				internalAlreadyDefined,
+			)
+			fmt.Fprint(w, AddIndent(b.String(), 1))
+		default:
+			typeName = toTypeStr(ft, &needsMoreDef, &needsMoreEnumDef)
+		}
+
+		fmt.Fprint(w, AddIndent(
+			fmt.Sprintf(
+				"%s%s %s = %d;\n",
+				repeatedMark,
+				typeName,
+				strcase.ToLowerSnake(field.Name()),
+				i+1,
+			),
+			1,
+		))
+	}
+	fmt.Fprintln(w, "}")
+
+	alreadyDefined[strcase.ToUpperCamel(def.Obj().Name())] = true
+
+	for _, moreDef := range needsMoreDef {
+		printMessageDef(w, moreDef, alreadyDefined)
+	}
+	for _, enumDef := range needsMoreEnumDef {
+		printEnumDef(w, enumDef, alreadyDefined)
+	}
+}
+
+func printEnumDef(w io.Writer, def EnumDef, alreadyDefined map[string]bool) {
+	if alreadyDefined[strcase.ToUpperCamel(def.Type.Obj().Name())] {
+		return
+	}
+
+	fmt.Fprintf(w, "\nenum %s {\n", strcase.ToUpperCamel(def.Type.Obj().Name()))
+	fmt.Fprintf(w, AddIndent(fmt.Sprintf("UNKNOWN_%s = 0;\n", strcase.ToUpperSnake(def.Type.Obj().Name())), 1))
+	for i, v := range def.Values {
+		if strings.Contains(strings.ToLower(v.Name()), "unknown") {
 			continue
 		}
 		fmt.Fprint(w, AddIndent(
@@ -233,9 +218,9 @@ func printEnumDef(t *types.Named, values []*types.Const) string {
 		))
 	}
 
-	fmt.Fprint(w, "}")
+	fmt.Fprintln(w, "}")
 
-	return w.String()
+	alreadyDefined[strcase.ToUpperCamel(def.Type.Obj().Name())] = true
 }
 
 func AddIndent(s string, indent int) string {
@@ -276,4 +261,38 @@ func KnownTypesToProtoType(t types.Type) (string, bool) {
 	default:
 		return "", false
 	}
+}
+
+func toTypeStr(
+	t types.Type,
+	needsMoreDef *[]*types.Named,
+	needsMoreEnumDef *[]EnumDef,
+) string {
+	if named, ok := t.(*types.Named); ok {
+		enumValues := typeutil.TypeToEnumValues(named)
+		if len(enumValues) > 0 {
+			*needsMoreEnumDef = append(*needsMoreEnumDef, EnumDef{
+				Type:   named,
+				Values: enumValues,
+			})
+			return strcase.ToUpperCamel(named.Obj().Name())
+		}
+	}
+
+	if typeStr, ok := KnownTypesToProtoType(t); ok {
+		return typeStr
+	}
+
+	if named, ok := t.(*types.Named); ok {
+		if _, ok := t.Underlying().(*types.Struct); ok {
+			*needsMoreDef = append(*needsMoreDef, named)
+			return strcase.ToUpperCamel(named.Obj().Name())
+		}
+	}
+	panic(fmt.Errorf("unknown type '%s", t))
+}
+
+type EnumDef struct {
+	Type   *types.Named
+	Values []*types.Const
 }

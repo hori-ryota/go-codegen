@@ -66,35 +66,35 @@ public interface DoingSomethingWithOutputAndActorUsecaseInputOrBuilder extends
   com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.AnonymousNestedStructParamOrBuilder getAnonymousNestedStructParamOrBuilder();
 
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
   boolean hasNamedNestedStructParam();
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructParam();
+  com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructParam();
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_param = 10;</code>
+   * <code>.codegen.NamedSomeType named_nested_struct_param = 10;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder();
+  com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructParamOrBuilder();
 
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+   * <code>.codegen.StringEnum string_enum_param = 11;</code>
    */
   int getStringEnumParamValue();
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_param = 11;</code>
+   * <code>.codegen.StringEnum string_enum_param = 11;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumParam();
+  com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumParam();
 
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+   * <code>.codegen.IntEnum int_enum_param = 12;</code>
    */
   int getIntEnumParamValue();
   /**
-   * <code>.codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_param = 12;</code>
+   * <code>.codegen.IntEnum int_enum_param = 12;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumParam();
+  com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumParam();
 
   /**
    * <code>repeated string string_slice_param = 13;</code>
@@ -231,70 +231,70 @@ public interface DoingSomethingWithOutputAndActorUsecaseInputOrBuilder extends
       int index);
 
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType> 
+  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType> 
       getNamedNestedStructSliceParamList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType getNamedNestedStructSliceParam(int index);
+  com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeType getNamedNestedStructSliceParam(int index);
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
   int getNamedNestedStructSliceParamCount();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder> 
+  java.util.List<? extends com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder> 
       getNamedNestedStructSliceParamOrBuilderList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeType named_nested_struct_slice_param = 22;</code>
+   * <code>repeated .codegen.NamedSomeType named_nested_struct_slice_param = 22;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
+  com.github.hori-ryota/go-codegen/api/example/codegen.NamedSomeTypeOrBuilder getNamedNestedStructSliceParamOrBuilder(
       int index);
 
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
-  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum> getStringEnumSliceParamList();
+  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum> getStringEnumSliceParamList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   int getStringEnumSliceParamCount();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum getStringEnumSliceParam(int index);
+  com.github.hori-ryota/go-codegen/api/example/codegen.StringEnum getStringEnumSliceParam(int index);
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   java.util.List<java.lang.Integer>
   getStringEnumSliceParamValueList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.StringEnum string_enum_slice_param = 23;</code>
+   * <code>repeated .codegen.StringEnum string_enum_slice_param = 23;</code>
    */
   int getStringEnumSliceParamValue(int index);
 
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
-  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum> getIntEnumSliceParamList();
+  java.util.List<com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum> getIntEnumSliceParamList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   int getIntEnumSliceParamCount();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
-  com.github.hori-ryota/go-codegen/api/example/codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum getIntEnumSliceParam(int index);
+  com.github.hori-ryota/go-codegen/api/example/codegen.IntEnum getIntEnumSliceParam(int index);
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   java.util.List<java.lang.Integer>
   getIntEnumSliceParamValueList();
   /**
-   * <code>repeated .codegen.DoingSomethingWithOutputAndActorUsecaseInput.IntEnum int_enum_slice_param = 24;</code>
+   * <code>repeated .codegen.IntEnum int_enum_slice_param = 24;</code>
    */
   int getIntEnumSliceParamValue(int index);
 }

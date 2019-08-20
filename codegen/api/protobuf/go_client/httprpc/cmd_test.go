@@ -75,37 +75,37 @@ func Example() {
 	// 			}
 	// 			return &t
 	// 		}(),
-	// 		NamedNestedStructParam: func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType {
-	// 			t := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType{
+	// 		NamedNestedStructParam: func() *protobuf.NamedSomeType {
+	// 			t := protobuf.NamedSomeType{
 	// 				StringParam: input.NamedNestedStructParam.StringParam,
 	// 			}
 	// 			return &t
 	// 		}(),
-	// 		StringEnumParam: func(s StringEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
+	// 		StringEnumParam: func(s StringEnum) protobuf.StringEnum {
 	// 			switch s {
 	// 			case StringA:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A
+	// 				return protobuf.StringEnum_STRING_A
 	// 			case StringB:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B
+	// 				return protobuf.StringEnum_STRING_B
 	// 			case StringC:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C
+	// 				return protobuf.StringEnum_STRING_C
 	//
 	// 			default:
-	// 				var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum
+	// 				var t protobuf.StringEnum
 	// 				return t
 	// 			}
 	// 		}(input.StringEnumParam),
-	// 		IntEnumParam: func(s IntEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
+	// 		IntEnumParam: func(s IntEnum) protobuf.IntEnum {
 	// 			switch s {
 	// 			case IntOne:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE
+	// 				return protobuf.IntEnum_INT_ONE
 	// 			case IntThree:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE
+	// 				return protobuf.IntEnum_INT_THREE
 	// 			case IntTwo:
-	// 				return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO
+	// 				return protobuf.IntEnum_INT_TWO
 	//
 	// 			default:
-	// 				var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum
+	// 				var t protobuf.IntEnum
 	// 				return t
 	// 			}
 	// 		}(input.IntEnumParam),
@@ -141,11 +141,11 @@ func Example() {
 	// 			}
 	// 			return t
 	// 		}(),
-	// 		NamedNestedStructSliceParam: func() []*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType {
-	// 			t := make([]*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType, len(input.NamedNestedStructSliceParam))
+	// 		NamedNestedStructSliceParam: func() []*protobuf.NamedSomeType {
+	// 			t := make([]*protobuf.NamedSomeType, len(input.NamedNestedStructSliceParam))
 	// 			for i := range t {
-	// 				t[i] = func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType {
-	// 					t := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType{
+	// 				t[i] = func() *protobuf.NamedSomeType {
+	// 					t := protobuf.NamedSomeType{
 	// 						StringParam: input.NamedNestedStructSliceParam[i].StringParam,
 	// 					}
 	// 					return &t
@@ -153,40 +153,40 @@ func Example() {
 	// 			}
 	// 			return t
 	// 		}(),
-	// 		StringEnumSliceParam: func() []protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
-	// 			t := make([]protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum, len(input.StringEnumSliceParam))
+	// 		StringEnumSliceParam: func() []protobuf.StringEnum {
+	// 			t := make([]protobuf.StringEnum, len(input.StringEnumSliceParam))
 	// 			for i := range t {
-	// 				t[i] = func(s StringEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum {
+	// 				t[i] = func(s StringEnum) protobuf.StringEnum {
 	// 					switch s {
 	// 					case StringA:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_A
+	// 						return protobuf.StringEnum_STRING_A
 	// 					case StringB:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_B
+	// 						return protobuf.StringEnum_STRING_B
 	// 					case StringC:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_STRING_C
+	// 						return protobuf.StringEnum_STRING_C
 	//
 	// 					default:
-	// 						var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_StringEnum
+	// 						var t protobuf.StringEnum
 	// 						return t
 	// 					}
 	// 				}(input.StringEnumSliceParam[i])
 	// 			}
 	// 			return t
 	// 		}(),
-	// 		IntEnumSliceParam: func() []protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
-	// 			t := make([]protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum, len(input.IntEnumSliceParam))
+	// 		IntEnumSliceParam: func() []protobuf.IntEnum {
+	// 			t := make([]protobuf.IntEnum, len(input.IntEnumSliceParam))
 	// 			for i := range t {
-	// 				t[i] = func(s IntEnum) protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum {
+	// 				t[i] = func(s IntEnum) protobuf.IntEnum {
 	// 					switch s {
 	// 					case IntOne:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_ONE
+	// 						return protobuf.IntEnum_INT_ONE
 	// 					case IntThree:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_THREE
+	// 						return protobuf.IntEnum_INT_THREE
 	// 					case IntTwo:
-	// 						return protobuf.DoingSomethingWithOutputAndActorUsecaseInput_INT_TWO
+	// 						return protobuf.IntEnum_INT_TWO
 	//
 	// 					default:
-	// 						var t protobuf.DoingSomethingWithOutputAndActorUsecaseInput_IntEnum
+	// 						var t protobuf.IntEnum
 	// 						return t
 	// 					}
 	// 				}(input.IntEnumSliceParam[i])

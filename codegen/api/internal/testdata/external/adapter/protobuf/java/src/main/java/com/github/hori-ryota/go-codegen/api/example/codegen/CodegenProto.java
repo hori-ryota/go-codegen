@@ -25,15 +25,15 @@ public final class CodegenProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_codegen_NamedSomeType_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_codegen_NamedSomeType_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseOutput_descriptor;
   static final 
@@ -69,7 +69,7 @@ public final class CodegenProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\rcodegen.proto\022\007codegen\032\033google/protobu" +
-      "f/empty.proto\"\253\014\n,DoingSomethingWithOutp" +
+      "f/empty.proto\"\333\010\n,DoingSomethingWithOutp" +
       "utAndActorUsecaseInput\022\024\n\014string_param\030\001" +
       " \001(\t\022\021\n\tint_param\030\002 \001(\003\022\023\n\013int64_param\030\003" +
       " \001(\003\022\022\n\nuint_param\030\004 \001(\004\022\024\n\014uint64_param" +
@@ -77,70 +77,63 @@ public final class CodegenProto {
       "_param\030\007 \001(\001\022\023\n\013bytes_param\030\010 \001(\014\022w\n\035ano" +
       "nymous_nested_struct_param\030\t \001(\0132P.codeg" +
       "en.DoingSomethingWithOutputAndActorUseca" +
-      "seInput.AnonymousNestedStructParam\022f\n\031na" +
-      "med_nested_struct_param\030\n \001(\0132C.codegen." +
-      "DoingSomethingWithOutputAndActorUsecaseI" +
-      "nput.NamedSomeType\022[\n\021string_enum_param\030" +
-      "\013 \001(\0162@.codegen.DoingSomethingWithOutput" +
-      "AndActorUsecaseInput.StringEnum\022U\n\016int_e" +
-      "num_param\030\014 \001(\0162=.codegen.DoingSomething" +
-      "WithOutputAndActorUsecaseInput.IntEnum\022\032" +
-      "\n\022string_slice_param\030\r \003(\t\022\027\n\017int_slice_" +
-      "param\030\016 \003(\003\022\031\n\021int64_slice_param\030\017 \003(\003\022\030" +
-      "\n\020uint_slice_param\030\020 \003(\004\022\032\n\022uint64_slice" +
-      "_param\030\021 \003(\004\022\033\n\023float32_slice_param\030\022 \003(" +
-      "\002\022\033\n\023float64_slice_param\030\023 \003(\001\022\031\n\021bytes_" +
-      "slice_param\030\024 \003(\014\022\202\001\n#anonymous_nested_s" +
-      "truct_slice_param\030\025 \003(\0132U.codegen.DoingS" +
-      "omethingWithOutputAndActorUsecaseInput.A" +
-      "nonymousNestedStructSliceParam\022l\n\037named_" +
-      "nested_struct_slice_param\030\026 \003(\0132C.codege" +
-      "n.DoingSomethingWithOutputAndActorUsecas" +
-      "eInput.NamedSomeType\022a\n\027string_enum_slic" +
-      "e_param\030\027 \003(\0162@.codegen.DoingSomethingWi" +
-      "thOutputAndActorUsecaseInput.StringEnum\022" +
-      "[\n\024int_enum_slice_param\030\030 \003(\0162=.codegen." +
-      "DoingSomethingWithOutputAndActorUsecaseI" +
-      "nput.IntEnum\0322\n\032AnonymousNestedStructPar" +
-      "am\022\024\n\014string_param\030\001 \001(\t\032%\n\rNamedSomeTyp" +
-      "e\022\024\n\014string_param\030\001 \001(\t\0327\n\037AnonymousNest" +
-      "edStructSliceParam\022\024\n\014string_param\030\001 \001(\t" +
-      "\"O\n\nStringEnum\022\027\n\023UNKNOWN_STRING_ENUM\020\000\022" +
-      "\014\n\010STRING_A\020\001\022\014\n\010STRING_B\020\002\022\014\n\010STRING_C\020" +
-      "\003\"H\n\007IntEnum\022\024\n\020UNKNOWN_INT_ENUM\020\000\022\013\n\007IN" +
-      "T_ONE\020\001\022\r\n\tINT_THREE\020\002\022\013\n\007INT_TWO\020\003\"E\n-D" +
-      "oingSomethingWithOutputAndActorUsecaseOu" +
-      "tput\022\024\n\014string_param\030\001 \001(\t\"H\n0DoingSomet" +
-      "hingWithOutputWithoutActorUsecaseInput\022\024" +
-      "\n\014string_param\030\001 \001(\t\"I\n1DoingSomethingWi" +
-      "thOutputWithoutActorUsecaseOutput\022\024\n\014str" +
-      "ing_param\030\001 \001(\t\"G\n/DoingSomethingWithout" +
-      "OutputAndActorUsecaseInput\022\024\n\014string_par" +
-      "am\030\001 \001(\t\"H\n0DoingSomethingWithoutOutputW" +
-      "ithActorUsecaseInput\022\024\n\014string_param\030\001 \001" +
-      "(\t2\272\001\n\'DoingSomethingWithOutputAndActorU" +
-      "secase\022\216\001\n\035DoSomethingWithOutputAndActor" +
-      "\0225.codegen.DoingSomethingWithOutputAndAc" +
-      "torUsecaseInput\0326.codegen.DoingSomething" +
-      "WithOutputAndActorUsecaseOutput2\312\001\n+Doin" +
-      "gSomethingWithOutputWithoutActorUsecase\022" +
-      "\232\001\n!DoSomethingWithOutputWithoutActor\0229." +
-      "codegen.DoingSomethingWithOutputWithoutA" +
-      "ctorUsecaseInput\032:.codegen.DoingSomethin" +
-      "gWithOutputWithoutActorUsecaseOutput2\242\001\n" +
-      "*DoingSomethingWithoutOutputAndActorUsec" +
-      "ase\022t\n DoSomethingWithoutOutputAndActor\022" +
-      "8.codegen.DoingSomethingWithoutOutputAnd" +
-      "ActorUsecaseInput\032\026.google.protobuf.Empt" +
-      "y2\245\001\n+DoingSomethingWithoutOutputWithAct" +
-      "orUsecase\022v\n!DoSomethingWithoutOutputWit" +
-      "hActor\0229.codegen.DoingSomethingWithoutOu" +
-      "tputWithActorUsecaseInput\032\026.google.proto" +
-      "buf.EmptyB\240\001\n4com.github.hori-ryota/go-c" +
-      "odegen/api/example/codegenB\014CodegenProto" +
-      "P\001ZXgithub.com/hori-ryota/go-codegen/cod" +
-      "egen/api/internal/testdata/external/adap" +
-      "ter/protobufb\006proto3"
+      "seInput.AnonymousNestedStructParam\0229\n\031na" +
+      "med_nested_struct_param\030\n \001(\0132\026.codegen." +
+      "NamedSomeType\022.\n\021string_enum_param\030\013 \001(\016" +
+      "2\023.codegen.StringEnum\022(\n\016int_enum_param\030" +
+      "\014 \001(\0162\020.codegen.IntEnum\022\032\n\022string_slice_" +
+      "param\030\r \003(\t\022\027\n\017int_slice_param\030\016 \003(\003\022\031\n\021" +
+      "int64_slice_param\030\017 \003(\003\022\030\n\020uint_slice_pa" +
+      "ram\030\020 \003(\004\022\032\n\022uint64_slice_param\030\021 \003(\004\022\033\n" +
+      "\023float32_slice_param\030\022 \003(\002\022\033\n\023float64_sl" +
+      "ice_param\030\023 \003(\001\022\031\n\021bytes_slice_param\030\024 \003" +
+      "(\014\022\202\001\n#anonymous_nested_struct_slice_par" +
+      "am\030\025 \003(\0132U.codegen.DoingSomethingWithOut" +
+      "putAndActorUsecaseInput.AnonymousNestedS" +
+      "tructSliceParam\022?\n\037named_nested_struct_s" +
+      "lice_param\030\026 \003(\0132\026.codegen.NamedSomeType" +
+      "\0224\n\027string_enum_slice_param\030\027 \003(\0162\023.code" +
+      "gen.StringEnum\022.\n\024int_enum_slice_param\030\030" +
+      " \003(\0162\020.codegen.IntEnum\0322\n\032AnonymousNeste" +
+      "dStructParam\022\024\n\014string_param\030\001 \001(\t\0327\n\037An" +
+      "onymousNestedStructSliceParam\022\024\n\014string_" +
+      "param\030\001 \001(\t\"%\n\rNamedSomeType\022\024\n\014string_p" +
+      "aram\030\001 \001(\t\"E\n-DoingSomethingWithOutputAn" +
+      "dActorUsecaseOutput\022\024\n\014string_param\030\001 \001(" +
+      "\t\"H\n0DoingSomethingWithOutputWithoutActo" +
+      "rUsecaseInput\022\024\n\014string_param\030\001 \001(\t\"I\n1D" +
+      "oingSomethingWithOutputWithoutActorUseca" +
+      "seOutput\022\024\n\014string_param\030\001 \001(\t\"G\n/DoingS" +
+      "omethingWithoutOutputAndActorUsecaseInpu" +
+      "t\022\024\n\014string_param\030\001 \001(\t\"H\n0DoingSomethin" +
+      "gWithoutOutputWithActorUsecaseInput\022\024\n\014s" +
+      "tring_param\030\001 \001(\t*O\n\nStringEnum\022\027\n\023UNKNO" +
+      "WN_STRING_ENUM\020\000\022\014\n\010STRING_A\020\001\022\014\n\010STRING" +
+      "_B\020\002\022\014\n\010STRING_C\020\003*H\n\007IntEnum\022\024\n\020UNKNOWN" +
+      "_INT_ENUM\020\000\022\013\n\007INT_ONE\020\001\022\r\n\tINT_THREE\020\002\022" +
+      "\013\n\007INT_TWO\020\0032\272\001\n\'DoingSomethingWithOutpu" +
+      "tAndActorUsecase\022\216\001\n\035DoSomethingWithOutp" +
+      "utAndActor\0225.codegen.DoingSomethingWithO" +
+      "utputAndActorUsecaseInput\0326.codegen.Doin" +
+      "gSomethingWithOutputAndActorUsecaseOutpu" +
+      "t2\312\001\n+DoingSomethingWithOutputWithoutAct" +
+      "orUsecase\022\232\001\n!DoSomethingWithOutputWitho" +
+      "utActor\0229.codegen.DoingSomethingWithOutp" +
+      "utWithoutActorUsecaseInput\032:.codegen.Doi" +
+      "ngSomethingWithOutputWithoutActorUsecase" +
+      "Output2\242\001\n*DoingSomethingWithoutOutputAn" +
+      "dActorUsecase\022t\n DoSomethingWithoutOutpu" +
+      "tAndActor\0228.codegen.DoingSomethingWithou" +
+      "tOutputAndActorUsecaseInput\032\026.google.pro" +
+      "tobuf.Empty2\245\001\n+DoingSomethingWithoutOut" +
+      "putWithActorUsecase\022v\n!DoSomethingWithou" +
+      "tOutputWithActor\0229.codegen.DoingSomethin" +
+      "gWithoutOutputWithActorUsecaseInput\032\026.go" +
+      "ogle.protobuf.EmptyB\240\001\n4com.github.hori-" +
+      "ryota/go-codegen/api/example/codegenB\014Co" +
+      "degenProtoP\001ZXgithub.com/hori-ryota/go-c" +
+      "odegen/codegen/api/internal/testdata/ext" +
+      "ernal/adapter/protobufb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -159,44 +152,44 @@ public final class CodegenProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam_descriptor,
         new java.lang.String[] { "StringParam", });
-    internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor =
-      internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_descriptor.getNestedTypes().get(1);
-    internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_NamedSomeType_descriptor,
-        new java.lang.String[] { "StringParam", });
     internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam_descriptor =
-      internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_descriptor.getNestedTypes().get(2);
+      internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_descriptor.getNestedTypes().get(1);
     internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam_descriptor,
         new java.lang.String[] { "StringParam", });
-    internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseOutput_descriptor =
+    internal_static_codegen_NamedSomeType_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_codegen_NamedSomeType_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_codegen_NamedSomeType_descriptor,
+        new java.lang.String[] { "StringParam", });
+    internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseOutput_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseOutput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithOutputAndActorUsecaseOutput_descriptor,
         new java.lang.String[] { "StringParam", });
     internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseInput_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseInput_descriptor,
         new java.lang.String[] { "StringParam", });
     internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseOutput_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseOutput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithOutputWithoutActorUsecaseOutput_descriptor,
         new java.lang.String[] { "StringParam", });
     internal_static_codegen_DoingSomethingWithoutOutputAndActorUsecaseInput_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_codegen_DoingSomethingWithoutOutputAndActorUsecaseInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithoutOutputAndActorUsecaseInput_descriptor,
         new java.lang.String[] { "StringParam", });
     internal_static_codegen_DoingSomethingWithoutOutputWithActorUsecaseInput_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_codegen_DoingSomethingWithoutOutputWithActorUsecaseInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_codegen_DoingSomethingWithoutOutputWithActorUsecaseInput_descriptor,
