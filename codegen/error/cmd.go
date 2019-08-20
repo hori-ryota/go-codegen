@@ -19,22 +19,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package main
+package error
 
 import (
-	"github.com/hori-ryota/go-codegen/codegen"
-	"github.com/hori-ryota/zaperr"
-	"go.uber.org/zap"
+	"github.com/hori-ryota/go-codegen/codegen/error/go_definition"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logger, err := zap.NewDevelopment()
-	if err != nil {
-		panic(err)
+func NewErrorCmd() *cobra.Command {
+	var targetDir string
+	var codes []string
+
+	errorCmd := &cobra.Command{
+		Use:   "error",
+		Short: "error genreator",
+		Long:  `error is a generator command for error.`,
 	}
 
-	cmd := codegen.NewRootCmd()
-	if err := cmd.Execute(); err != nil {
-		logger.Fatal("failed to execute", zaperr.ToField(err))
+	errorCmd.PersistentFlags().StringVarP(&targetDir, "targetDir", "t", ".", "target directory")
+	if err := errorCmd.MarkPersistentFlagDirname("targetDir"); err != nil {
+		panic(err)
 	}
+	errorCmd.PersistentFlags().StringSliceVarP(&codes, "codes", "c", nil, "error codes to define")
+
+	errorCmd.AddCommand(go_definition.NewGoDefinitionCmd(
+		&targetDir, &codes,
+	))
+	return errorCmd
 }

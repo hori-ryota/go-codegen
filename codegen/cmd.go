@@ -19,22 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package main
+package codegen
 
 import (
-	"github.com/hori-ryota/go-codegen/codegen"
-	"github.com/hori-ryota/zaperr"
-	"go.uber.org/zap"
+	"github.com/hori-ryota/go-codegen/codegen/api"
+	"github.com/hori-ryota/go-codegen/codegen/error"
+	"github.com/hori-ryota/go-codegen/codegen/go_accessor"
+	"github.com/hori-ryota/go-codegen/codegen/go_constructor"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logger, err := zap.NewDevelopment()
-	if err != nil {
-		panic(err)
-	}
+func NewRootCmd() *cobra.Command {
+	rootCmd := &cobra.Command{
+		Use:   "go-codegen",
+		Short: "code generator for Go",
+		Long: `go-codegen is a generator library for Go.
 
-	cmd := codegen.NewRootCmd()
-	if err := cmd.Execute(); err != nil {
-		logger.Fatal("failed to execute", zaperr.ToField(err))
+go-codegen mainly generates codes for Domain Driven Development.`,
 	}
+	rootCmd.AddCommand(go_accessor.NewGoAccessorCmd())
+	rootCmd.AddCommand(go_constructor.NewGoConstructorCmd())
+	rootCmd.AddCommand(error.NewErrorCmd())
+	rootCmd.AddCommand(api.NewAPICmd())
+	return rootCmd
 }

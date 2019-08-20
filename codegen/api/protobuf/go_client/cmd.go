@@ -19,22 +19,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package main
+package go_client
 
 import (
-	"github.com/hori-ryota/go-codegen/codegen"
-	"github.com/hori-ryota/zaperr"
-	"go.uber.org/zap"
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_client/httprpc"
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_client/structdef"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logger, err := zap.NewDevelopment()
-	if err != nil {
-		panic(err)
+func NewGoClientCmd() *cobra.Command {
+
+	goClientCmd := &cobra.Command{
+		Use:   "go_client",
+		Short: "go_client genreator",
+		Long:  `go_client is a generator command for Go Client.`,
 	}
 
-	cmd := codegen.NewRootCmd()
-	if err := cmd.Execute(); err != nil {
-		logger.Fatal("failed to execute", zaperr.ToField(err))
-	}
+	goClientCmd.AddCommand(httprpc.NewHttprpcCmd())
+	goClientCmd.AddCommand(structdef.NewStructdefCmd())
+	return goClientCmd
 }

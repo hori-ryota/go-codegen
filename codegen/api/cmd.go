@@ -19,22 +19,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package main
+package api
 
 import (
-	"github.com/hori-ryota/go-codegen/codegen"
-	"github.com/hori-ryota/zaperr"
-	"go.uber.org/zap"
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logger, err := zap.NewDevelopment()
-	if err != nil {
-		panic(err)
+func NewAPICmd() *cobra.Command {
+
+	apiCmd := &cobra.Command{
+		Use:   "api",
+		Short: "api genreator",
+		Long:  `api is a generator command for api.`,
 	}
 
-	cmd := codegen.NewRootCmd()
-	if err := cmd.Execute(); err != nil {
-		logger.Fatal("failed to execute", zaperr.ToField(err))
-	}
+	apiCmd.AddCommand(protobuf.NewProtobufCmd())
+	return apiCmd
 }
