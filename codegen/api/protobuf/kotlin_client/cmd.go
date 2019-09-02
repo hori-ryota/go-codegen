@@ -22,6 +22,7 @@ THE SOFTWARE.
 package kotlin_client
 
 import (
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/kotlin_client/httprpc"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/kotlin_client/structdef"
 	"github.com/spf13/cobra"
 )
@@ -34,7 +35,7 @@ func NewKotlinClientCmd() *cobra.Command {
 		Long:  `kotlin_client is a generator command for Go Client.`,
 	}
 
-	// kotlinClientCmd.AddCommand(httprpc.NewHttprpcCmd())
+	kotlinClientCmd.AddCommand(httprpc.NewHttprpcCmd())
 	kotlinClientCmd.AddCommand(structdef.NewStructdefCmd())
 	return kotlinClientCmd
 }

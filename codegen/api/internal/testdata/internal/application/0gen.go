@@ -27,3 +27,5 @@ package application
 //// httprpc client of Kotlin
 ////// structdef
 //go:generate go run ../../../../../../ api protobuf kotlin_client structdef -o ../../external/adapter/protobuf/kotlin/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen
+////// client of kotlin
+//go:generate go run ../../../../../../ api protobuf kotlin_client httprpc -o ../../external/adapter/protobuf/kotlin/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen --kotlinClassName CodegenExampleApi

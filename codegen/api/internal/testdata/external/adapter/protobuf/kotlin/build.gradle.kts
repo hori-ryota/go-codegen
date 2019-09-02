@@ -56,6 +56,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Version.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Version.kotlinxCoroutines}")
+                implementation("io.ktor:ktor-client-core:${Version.ktor}")
             }
         }
 
@@ -63,6 +65,8 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Version.kotlinxSerialization}")
+                // TODO which ktor engine? https://ktor.io/clients/http-client/engines.html#jvm
+                implementation("io.ktor:ktor-client-apache:${Version.ktor}")
             }
         }
 
@@ -70,12 +74,16 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Version.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.kotlinxCoroutines}")
+                implementation("io.ktor:ktor-client-android:${Version.ktor}")
             }
         }
 
         js().compilations["main"].defaultSourceSet {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Version.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Version.kotlinxCoroutines}")
+                implementation("io.ktor:ktor-client-js:${Version.ktor}")
             }
         }
 
@@ -83,6 +91,8 @@ kotlin {
             kotlin.srcDir("src/iosMain")
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Version.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Version.kotlinxCoroutines}")
+                implementation("io.ktor:ktor-client-ios:${Version.ktor}")
             }
         }
 
