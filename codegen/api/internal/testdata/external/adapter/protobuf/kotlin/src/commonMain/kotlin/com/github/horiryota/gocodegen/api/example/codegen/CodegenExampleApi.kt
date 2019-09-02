@@ -28,7 +28,7 @@ class CodegenExampleApi(private val urlBase: String, private val client: HttpCli
         }
     }
 
-    fun doSomethingWithOutputWithoutActor(input: DoingSomethingWithOutputWithoutActorUsecaseInput, coroutineScope: CoroutineScope = defaultCoroutineScope): Deferred<DoingSomethingWithOutputAndActorUsecaseOutput> {
+    fun doSomethingWithOutputWithoutActor(input: DoingSomethingWithOutputWithoutActorUsecaseInput, coroutineScope: CoroutineScope = defaultCoroutineScope): Deferred<DoingSomethingWithOutputWithoutActorUsecaseOutput> {
         return coroutineScope.async {
             val protoData = ProtoBuf.dump(DoingSomethingWithOutputWithoutActorUsecaseInput.serializer(), input)
             val url = "$urlBase/DoingSomethingWithOutputWithoutActorUsecase/DoSomethingWithOutputWithoutActor"
@@ -39,7 +39,7 @@ class CodegenExampleApi(private val urlBase: String, private val client: HttpCli
                 body = protoData
             }
             // TODO handle error
-            ProtoBuf.load(DoingSomethingWithOutputAndActorUsecaseOutput.serializer(), response.readBytes())
+            ProtoBuf.load(DoingSomethingWithOutputWithoutActorUsecaseOutput.serializer(), response.readBytes())
         }
     }
 

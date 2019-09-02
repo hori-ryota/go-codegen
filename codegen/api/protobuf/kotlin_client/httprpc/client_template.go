@@ -39,7 +39,7 @@ class {{.KotlinClassName}}(private val urlBase: String, private val client: Http
 {{- range .Services}}
 {{$service := .}}
 {{- range .RPCs}}
-    fun {{ToLowerCamel .Name}}(input: {{ToUpperCamel .InputType.Obj.Name}}, coroutineScope: CoroutineScope = defaultCoroutineScope): {{if .OutputType}}Deferred<DoingSomethingWithOutputAndActorUsecaseOutput>{{else}}Job{{end}} {
+    fun {{ToLowerCamel .Name}}(input: {{ToUpperCamel .InputType.Obj.Name}}, coroutineScope: CoroutineScope = defaultCoroutineScope): {{if .OutputType}}Deferred<{{ToUpperCamel .OutputType.Obj.Name}}>{{else}}Job{{end}} {
         return coroutineScope.{{if .OutputType}}async{{else}}launch{{end}} {
             val protoData = ProtoBuf.dump({{ToUpperCamel .InputType.Obj.Name}}.serializer(), input)
             val url = "$urlBase/{{ToURLPath $service.Obj.Name .Name}}"
@@ -51,7 +51,7 @@ class {{.KotlinClassName}}(private val urlBase: String, private val client: Http
                 body = protoData
             }
             // TODO handle error
-            ProtoBuf.load(DoingSomethingWithOutputAndActorUsecaseOutput.serializer(), response.readBytes())
+            ProtoBuf.load({{ToUpperCamel .OutputType.Obj.Name}}.serializer(), response.readBytes())
             {{- else}}
             client.post<HttpResponse> {
                 url(url)
