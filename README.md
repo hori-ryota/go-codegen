@@ -255,9 +255,11 @@ func (e errorImpl) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 For example, in the adapter for communication API, like followings.
 
 Before:
+
 ![apiimpl before](./docs/apiimpl_before.png)
 
 After:
+
 ![apiimpl after](./docs/apiimpl_after.png)
 
 - [go\-codegen/codegen/api](https://github.com/hori-ryota/go-codegen/tree/master/codegen/api)
