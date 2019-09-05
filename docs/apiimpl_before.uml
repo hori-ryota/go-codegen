@@ -37,8 +37,8 @@ folder server {
 }
 
 () network
-APIClient --> network
-network -> Endpoint
+APIClient <--> network
+network <-> Endpoint
 
 APIDocs <|..|> Endpoint: sync
 APIDocs <|..|> APIClient: sync

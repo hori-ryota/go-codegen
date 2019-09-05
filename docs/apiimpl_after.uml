@@ -1,7 +1,11 @@
 @startuml
 
-[APIClient]
-() network as network
+
+cloud generated {
+  [APIClient]
+  () network as network
+  [Endpoint] as Endpoint
+}
 
 folder client {
   [UsecaseInput] as ClientUsecaseInput
@@ -20,7 +24,6 @@ folder client {
 }
 
 folder server {
-  cloud "Endpoint?" as Endpoint
   [UsecaseInput] as BackendUsecaseInput
   control Usecase as BackendUsecase
   [UsecaseOutput] as BackendUsecaseOutput
@@ -32,9 +35,7 @@ folder server {
   BackendUsecaseOutput <- BackendUsecase
 }
 
-APIClient -> network
-network -> Endpoint
+APIClient <-> network
+network <-> Endpoint
 '
-APIClient <|. Endpoint : auto generated
-
 @enduml
