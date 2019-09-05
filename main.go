@@ -22,6 +22,8 @@ THE SOFTWARE.
 package main
 
 import (
+	"os"
+
 	"github.com/hori-ryota/go-codegen/codegen"
 	"github.com/hori-ryota/zaperr"
 	"go.uber.org/zap"
@@ -35,6 +37,6 @@ func main() {
 
 	cmd := codegen.NewRootCmd()
 	if err := cmd.Execute(); err != nil {
-		logger.Fatal("failed to execute", zaperr.ToField(err))
+		logger.Fatal("failed to execute", zaperr.ToField(err), zap.Strings("args", os.Args))
 	}
 }

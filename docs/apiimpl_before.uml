@@ -1,0 +1,46 @@
+@startuml
+
+file APIDocs
+
+folder client {
+  [APIClient]
+  [UsecaseInput] as ClientUsecaseInput
+  control Usecase as ClientUsecase
+  [UsecaseOutput] as ClientUsecaseOutput
+  control Converter as ClientUsecaseInputConverter
+  control Converter as ClientUsecaseOutputConverter
+
+  ClientUsecase -> ClientUsecaseInput
+  ClientUsecaseInput -> ClientUsecaseInputConverter
+  ClientUsecaseInputConverter --> APIClient
+
+  ClientUsecase <-- ClientUsecaseOutput
+  ClientUsecaseOutput <- ClientUsecaseOutputConverter
+  ClientUsecaseOutputConverter <- APIClient
+}
+
+folder server {
+  [Endpoint]
+  [UsecaseInput] as BackendUsecaseInput
+  control Usecase as BackendUsecase
+  [UsecaseOutput] as BackendUsecaseOutput
+  control Converter as BackendUsecaseInputConverter
+  control Converter as BackendUsecaseOutputConverter
+
+  Endpoint -> BackendUsecaseInputConverter
+  BackendUsecaseInputConverter -> BackendUsecaseInput
+  BackendUsecaseInput --> BackendUsecase
+
+  Endpoint <-- BackendUsecaseOutputConverter
+  BackendUsecaseOutputConverter <- BackendUsecaseOutput
+  BackendUsecaseOutput <- BackendUsecase
+}
+
+() network
+APIClient --> network
+network -> Endpoint
+
+APIDocs <|..|> Endpoint: sync
+APIDocs <|..|> APIClient: sync
+
+@enduml
