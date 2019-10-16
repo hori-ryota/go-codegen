@@ -22,6 +22,9 @@ func Generate(pkgInfo *loader.PackageInfo) (string, error) {
 		if !ok {
 			continue
 		}
+		if named.Obj().Name() != name {
+			continue
+		}
 		strct, ok := named.Underlying().(*types.Struct)
 		if !ok {
 			continue
