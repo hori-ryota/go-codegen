@@ -1,9 +1,13 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetPreset
+// import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetPreset
+
+val publishingVersion = "0.0.1"
+val publishingName = "CodegenExampleLib"
 
 plugins {
-    id("com.android.library")
+    id("com.android.library") version Version.androidPlugin
     kotlin("multiplatform") version Version.kotlin
     id("kotlinx-serialization") version Version.kotlin
+    id("com.moowork.node") version "1.3.1"
 }
 
 repositories {
@@ -13,7 +17,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(29)
     sourceSets {
         getByName("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -21,9 +25,12 @@ android {
     }
 }
 
-kotlin {
-    val libName = "CodegenExampleLib"
+node {
+    version = "v12.11.1"
+    npmVersion = "6.12.1"
+}
 
+kotlin {
     val iosTargets = listOf("iosArm32", "iosArm64", "iosX64")
 
     jvm {
@@ -36,7 +43,9 @@ kotlin {
     js {
         compilations["main"].kotlinOptions {
             main = "noCall"
-            target = "v5"
+            moduleKind = "umd"
+            sourceMap = true
+            nodejs()
         }
     }
     // TODO wasm
@@ -44,13 +53,14 @@ kotlin {
     //    binaries.executable()
     // }
 
-    iosTargets.forEach {
-        targetFromPreset(presets[it] as KotlinNativeTargetPreset) {
-            binaries.framework(libName, listOf(RELEASE, DEBUG)) {
-                isStatic = true
-            }
-        }
-    }
+    // TODO bump ktor version for kotlin 1.3.61
+    // iosTargets.forEach {
+    //     targetFromPreset(presets[it] as KotlinNativeTargetPreset) {
+    //         binaries.framework(publishingName, listOf(RELEASE, DEBUG)) {
+    //             isStatic = true
+    //         }
+    //     }
+    // }
 
     sourceSets {
         val commonMain by getting {
@@ -96,12 +106,12 @@ kotlin {
             }
         }
 
-        iosTargets.forEach {
-            targetFromPreset(kotlin.presets[it] as KotlinNativeTargetPreset) {
-                compilations["main"].defaultSourceSet {
-                    dependsOn(ios)
-                }
-            }
-        }
+        // iosTargets.forEach {
+        //     targetFromPreset(kotlin.presets[it] as KotlinNativeTargetPreset) {
+        //         compilations["main"].defaultSourceSet {
+        //             dependsOn(ios)
+        //         }
+        //     }
+        // }
     }
 }

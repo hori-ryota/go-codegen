@@ -24,8 +24,8 @@ package application
 ////// client of go
 //go:generate go run ../../../../../../ api protobuf go_client httprpc -p ../../external/adapter/protobuf -c ../../external/adapter/protobuf/httprpc -o ../../external/adapter/protobuf/httprpc
 
-//// httprpc client of Kotlin
+//// httprpc client of Kotlin multiplatform
 ////// structdef
-//go:generate go run ../../../../../../ api protobuf kotlin_client structdef -o ../../external/adapter/protobuf/kotlin/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen
-////// client of kotlin
-//go:generate go run ../../../../../../ api protobuf kotlin_client httprpc -o ../../external/adapter/protobuf/kotlin/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen --kotlinClassName CodegenExampleApi
+//go:generate go run ../../../../../../ api protobuf kotlin_client structdef -o ../../external/adapter/protobuf/kotlinmpp/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen
+////// client of kotlin multiplatform
+//go:generate go run ../../../../../../ api protobuf kotlin_client httprpc -o ../../external/adapter/protobuf/kotlinmpp/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen --kotlinClassName CodegenExampleApi

@@ -48,6 +48,12 @@ func FmtImports(pkgs []*types.Package, current *types.Package) string {
 		}
 		m[pkg.Name()] = pkg.Path()
 	}
+	if _, ok := m["fmt"]; !ok {
+		m["fmt"] = "fmt"
+	}
+	if _, ok := m["runtime"]; !ok {
+		m["runtime"] = "runtime"
+	}
 	return gocodeutil.FmtImports(m)
 }
 
