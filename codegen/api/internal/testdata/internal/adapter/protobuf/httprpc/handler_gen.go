@@ -103,8 +103,8 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 					return domain.StringC
 
 				default:
-					var t domain.StringEnum
-					return t
+					var t0 domain.StringEnum
+					return t0
 				}
 			}(inputProtoType.GetStringEnumParam()),
 			func(s protobuf.IntEnum) domain.IntEnum {
@@ -117,56 +117,56 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 					return domain.IntTwo
 
 				default:
-					var t domain.IntEnum
-					return t
+					var t0 domain.IntEnum
+					return t0
 				}
 			}(inputProtoType.GetIntEnumParam()),
 			inputProtoType.GetStringSliceParam(),
 			func() []int {
-				t := make([]int, len(inputProtoType.GetIntSliceParam()))
-				for i := range t {
-					t[i] = int(inputProtoType.GetIntSliceParam()[i])
+				t0 := make([]int, len(inputProtoType.GetIntSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = int(inputProtoType.GetIntSliceParam()[i0])
 				}
-				return t
+				return t0
 			}(),
 			inputProtoType.GetInt64SliceParam(),
 			func() []uint {
-				t := make([]uint, len(inputProtoType.GetUintSliceParam()))
-				for i := range t {
-					t[i] = uint(inputProtoType.GetUintSliceParam()[i])
+				t0 := make([]uint, len(inputProtoType.GetUintSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = uint(inputProtoType.GetUintSliceParam()[i0])
 				}
-				return t
+				return t0
 			}(),
 			inputProtoType.GetUint64SliceParam(),
 			inputProtoType.GetFloat32SliceParam(),
 			inputProtoType.GetFloat64SliceParam(),
 			inputProtoType.GetBytesSliceParam(),
 			func() []struct{ StringParam string } {
-				t := make([]struct{ StringParam string }, len(inputProtoType.GetAnonymousNestedStructSliceParam()))
-				for i := range t {
-					t[i] = struct{ StringParam string }{
-						StringParam: inputProtoType.GetAnonymousNestedStructSliceParam()[i].GetStringParam(),
+				t0 := make([]struct{ StringParam string }, len(inputProtoType.GetAnonymousNestedStructSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = struct{ StringParam string }{
+						StringParam: inputProtoType.GetAnonymousNestedStructSliceParam()[i0].GetStringParam(),
 					}
 				}
-				return t
+				return t0
 			}(),
 			func() []application.NamedSomeType {
-				t := make([]application.NamedSomeType, len(inputProtoType.GetNamedNestedStructSliceParam()))
-				for i := range t {
-					t[i] = func() application.NamedSomeType {
+				t0 := make([]application.NamedSomeType, len(inputProtoType.GetNamedNestedStructSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = func() application.NamedSomeType {
 						m := application.NewNamedSomeType(
-							inputProtoType.GetNamedNestedStructSliceParam()[i].GetStringParam(),
+							inputProtoType.GetNamedNestedStructSliceParam()[i0].GetStringParam(),
 						)
 
 						return m
 					}()
 				}
-				return t
+				return t0
 			}(),
 			func() []domain.StringEnum {
-				t := make([]domain.StringEnum, len(inputProtoType.GetStringEnumSliceParam()))
-				for i := range t {
-					t[i] = func(s protobuf.StringEnum) domain.StringEnum {
+				t0 := make([]domain.StringEnum, len(inputProtoType.GetStringEnumSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = func(s protobuf.StringEnum) domain.StringEnum {
 						switch s {
 						case protobuf.StringEnum_STRING_A:
 							return domain.StringA
@@ -176,17 +176,17 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 							return domain.StringC
 
 						default:
-							var t domain.StringEnum
-							return t
+							var t1 domain.StringEnum
+							return t1
 						}
-					}(inputProtoType.GetStringEnumSliceParam()[i])
+					}(inputProtoType.GetStringEnumSliceParam()[i0])
 				}
-				return t
+				return t0
 			}(),
 			func() []domain.IntEnum {
-				t := make([]domain.IntEnum, len(inputProtoType.GetIntEnumSliceParam()))
-				for i := range t {
-					t[i] = func(s protobuf.IntEnum) domain.IntEnum {
+				t0 := make([]domain.IntEnum, len(inputProtoType.GetIntEnumSliceParam()))
+				for i0 := range t0 {
+					t0[i0] = func(s protobuf.IntEnum) domain.IntEnum {
 						switch s {
 						case protobuf.IntEnum_INT_ONE:
 							return domain.IntOne
@@ -196,12 +196,12 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 							return domain.IntTwo
 
 						default:
-							var t domain.IntEnum
-							return t
+							var t1 domain.IntEnum
+							return t1
 						}
-					}(inputProtoType.GetIntEnumSliceParam()[i])
+					}(inputProtoType.GetIntEnumSliceParam()[i0])
 				}
-				return t
+				return t0
 			}(),
 		)
 

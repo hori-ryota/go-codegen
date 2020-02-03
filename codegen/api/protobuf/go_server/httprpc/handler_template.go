@@ -11,10 +11,11 @@ import (
 )
 
 type TemplateParam struct {
-	PackageName    string
-	ImportPackages string
-	Services       []Service
-	TypePrinter    typeutil.Printer
+	PackageName       string
+	ImportPackages    string
+	Services          []Service
+	TypePrinter       typeutil.Printer
+	SerializerPackage string
 }
 
 func extractActorDescriptorOrNil(f RPC) *types.Var {
@@ -140,7 +141,7 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 	}
 
 	inputProtoType := {{$rootParam.TypePrinter.PrintRelativeType .InputProtoType}}{}
-	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
+	if err := {{$rootParam.SerializerPackage}}.Unmarshal(body, &inputProtoType); err != nil {
 		h.HandleError(w, r, err)
 		return
 	}
@@ -174,7 +175,7 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 		return
 	}
 	outputProtoType := {{$rootParam.TypePrinter.PrintConverterWitoutErrorCheck "outputType" .OutputType .OutputProtoType}}
-	b, err := proto.Marshal(&outputProtoType)
+	b, err := {{$rootParam.SerializerPackage}}.Marshal(&outputProtoType)
 	if err != nil {
 		h.HandleError(w, r, err)
 		return

@@ -7,7 +7,6 @@ import (
 	"go/types"
 	"io"
 	"sort"
-	"strconv"
 	"strings"
 	"text/template"
 
@@ -40,7 +39,6 @@ var Template = template.Must(template.New("").Funcs(map[string]interface{}{
 
 		return removeDuplicateAndEmpty(importList)
 	},
-	"plus": func(a, b int) string { return strconv.Itoa(a + b) },
 }).Parse(strings.TrimSpace(`
 syntax = "proto3";
 

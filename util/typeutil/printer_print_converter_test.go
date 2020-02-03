@@ -50,11 +50,11 @@ func TestPrinter_PrintConverterWitoutErrorCheck(t *testing.T) {
 			)),
 			t: types.NewSlice(types.Universe.Lookup("string").Type()),
 			want: `func() []string {
-				t := make([]string, len(p))
-				for i := range t {
-					t[i] = string(p[i])
+				t0 := make([]string, len(p))
+				for i0 := range t0 {
+					t0[i0] = string(p[i0])
 				}
-				return t
+				return t0
 			}()`,
 		},
 		{
@@ -67,11 +67,11 @@ func TestPrinter_PrintConverterWitoutErrorCheck(t *testing.T) {
 				nil,
 			)),
 			want: `func() []foo.NamedString {
-				t := make([]foo.NamedString, len(p))
-				for i := range t {
-					t[i] = foo.NamedString(p[i])
+				t0 := make([]foo.NamedString, len(p))
+				for i0 := range t0 {
+					t0[i0] = foo.NamedString(p[i0])
 				}
-				return t
+				return t0
 			}()`,
 		},
 		{
@@ -80,8 +80,8 @@ func TestPrinter_PrintConverterWitoutErrorCheck(t *testing.T) {
 			s:    types.Universe.Lookup("string").Type(),
 			t:    types.NewPointer(types.Universe.Lookup("string").Type()),
 			want: `func() *string {
-				t := p
-				return &t
+				t0 := p
+				return &t0
 			}()`,
 		},
 		{
@@ -91,8 +91,8 @@ func TestPrinter_PrintConverterWitoutErrorCheck(t *testing.T) {
 			t:    types.Universe.Lookup("string").Type(),
 			want: `func(s *string) string {
 				if s == nil {
-					var t string
-					return t
+					var t0 string
+					return t0
 				}
 				return *s
 			}(p)`,
@@ -103,14 +103,14 @@ func TestPrinter_PrintConverterWitoutErrorCheck(t *testing.T) {
 			s:    types.NewSlice(types.Universe.Lookup("string").Type()),
 			t:    types.NewSlice(types.NewPointer(types.Universe.Lookup("string").Type())),
 			want: `func() []*string {
-				t := make([]*string, len(p))
-				for i := range t {
-					t[i] = func() *string {
-				t := p[i]
-				return &t
+				t0 := make([]*string, len(p))
+				for i0 := range t0 {
+					t0[i0] = func() *string {
+				t1 := p[i0]
+				return &t1
 			}()
 				}
-				return t
+				return t0
 			}()`,
 		},
 	} {

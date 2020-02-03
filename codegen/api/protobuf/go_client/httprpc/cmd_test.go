@@ -70,16 +70,16 @@ func Example() {
 	// 		Float64Param: input.Float64Param,
 	// 		BytesParam:   input.BytesParam,
 	// 		AnonymousNestedStructParam: func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam {
-	// 			t := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam{
+	// 			t0 := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructParam{
 	// 				StringParam: input.AnonymousNestedStructParam.StringParam,
 	// 			}
-	// 			return &t
+	// 			return &t0
 	// 		}(),
 	// 		NamedNestedStructParam: func() *protobuf.NamedSomeType {
-	// 			t := protobuf.NamedSomeType{
+	// 			t0 := protobuf.NamedSomeType{
 	// 				StringParam: input.NamedNestedStructParam.StringParam,
 	// 			}
-	// 			return &t
+	// 			return &t0
 	// 		}(),
 	// 		StringEnumParam: func(s StringEnum) protobuf.StringEnum {
 	// 			switch s {
@@ -91,8 +91,8 @@ func Example() {
 	// 				return protobuf.StringEnum_STRING_C
 	//
 	// 			default:
-	// 				var t protobuf.StringEnum
-	// 				return t
+	// 				var t0 protobuf.StringEnum
+	// 				return t0
 	// 			}
 	// 		}(input.StringEnumParam),
 	// 		IntEnumParam: func(s IntEnum) protobuf.IntEnum {
@@ -105,58 +105,58 @@ func Example() {
 	// 				return protobuf.IntEnum_INT_TWO
 	//
 	// 			default:
-	// 				var t protobuf.IntEnum
-	// 				return t
+	// 				var t0 protobuf.IntEnum
+	// 				return t0
 	// 			}
 	// 		}(input.IntEnumParam),
 	// 		StringSliceParam: input.StringSliceParam,
 	// 		IntSliceParam: func() []int64 {
-	// 			t := make([]int64, len(input.IntSliceParam))
-	// 			for i := range t {
-	// 				t[i] = int64(input.IntSliceParam[i])
+	// 			t0 := make([]int64, len(input.IntSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = int64(input.IntSliceParam[i0])
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 		Int64SliceParam: input.Int64SliceParam,
 	// 		UintSliceParam: func() []uint64 {
-	// 			t := make([]uint64, len(input.UintSliceParam))
-	// 			for i := range t {
-	// 				t[i] = uint64(input.UintSliceParam[i])
+	// 			t0 := make([]uint64, len(input.UintSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = uint64(input.UintSliceParam[i0])
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 		Uint64SliceParam:  input.Uint64SliceParam,
 	// 		Float32SliceParam: input.Float32SliceParam,
 	// 		Float64SliceParam: input.Float64SliceParam,
 	// 		BytesSliceParam:   input.BytesSliceParam,
 	// 		AnonymousNestedStructSliceParam: func() []*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam {
-	// 			t := make([]*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam, len(input.AnonymousNestedStructSliceParam))
-	// 			for i := range t {
-	// 				t[i] = func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam {
-	// 					t := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam{
-	// 						StringParam: input.AnonymousNestedStructSliceParam[i].StringParam,
+	// 			t0 := make([]*protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam, len(input.AnonymousNestedStructSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = func() *protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam {
+	// 					t1 := protobuf.DoingSomethingWithOutputAndActorUsecaseInput_AnonymousNestedStructSliceParam{
+	// 						StringParam: input.AnonymousNestedStructSliceParam[i0].StringParam,
 	// 					}
-	// 					return &t
+	// 					return &t1
 	// 				}()
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 		NamedNestedStructSliceParam: func() []*protobuf.NamedSomeType {
-	// 			t := make([]*protobuf.NamedSomeType, len(input.NamedNestedStructSliceParam))
-	// 			for i := range t {
-	// 				t[i] = func() *protobuf.NamedSomeType {
-	// 					t := protobuf.NamedSomeType{
-	// 						StringParam: input.NamedNestedStructSliceParam[i].StringParam,
+	// 			t0 := make([]*protobuf.NamedSomeType, len(input.NamedNestedStructSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = func() *protobuf.NamedSomeType {
+	// 					t1 := protobuf.NamedSomeType{
+	// 						StringParam: input.NamedNestedStructSliceParam[i0].StringParam,
 	// 					}
-	// 					return &t
+	// 					return &t1
 	// 				}()
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 		StringEnumSliceParam: func() []protobuf.StringEnum {
-	// 			t := make([]protobuf.StringEnum, len(input.StringEnumSliceParam))
-	// 			for i := range t {
-	// 				t[i] = func(s StringEnum) protobuf.StringEnum {
+	// 			t0 := make([]protobuf.StringEnum, len(input.StringEnumSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = func(s StringEnum) protobuf.StringEnum {
 	// 					switch s {
 	// 					case StringA:
 	// 						return protobuf.StringEnum_STRING_A
@@ -166,17 +166,17 @@ func Example() {
 	// 						return protobuf.StringEnum_STRING_C
 	//
 	// 					default:
-	// 						var t protobuf.StringEnum
-	// 						return t
+	// 						var t1 protobuf.StringEnum
+	// 						return t1
 	// 					}
-	// 				}(input.StringEnumSliceParam[i])
+	// 				}(input.StringEnumSliceParam[i0])
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 		IntEnumSliceParam: func() []protobuf.IntEnum {
-	// 			t := make([]protobuf.IntEnum, len(input.IntEnumSliceParam))
-	// 			for i := range t {
-	// 				t[i] = func(s IntEnum) protobuf.IntEnum {
+	// 			t0 := make([]protobuf.IntEnum, len(input.IntEnumSliceParam))
+	// 			for i0 := range t0 {
+	// 				t0[i0] = func(s IntEnum) protobuf.IntEnum {
 	// 					switch s {
 	// 					case IntOne:
 	// 						return protobuf.IntEnum_INT_ONE
@@ -186,12 +186,12 @@ func Example() {
 	// 						return protobuf.IntEnum_INT_TWO
 	//
 	// 					default:
-	// 						var t protobuf.IntEnum
-	// 						return t
+	// 						var t1 protobuf.IntEnum
+	// 						return t1
 	// 					}
-	// 				}(input.IntEnumSliceParam[i])
+	// 				}(input.IntEnumSliceParam[i0])
 	// 			}
-	// 			return t
+	// 			return t0
 	// 		}(),
 	// 	}
 	// 	b, err := proto.Marshal(&inputProtoType)

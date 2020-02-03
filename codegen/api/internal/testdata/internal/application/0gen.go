@@ -9,6 +9,8 @@ package application
 
 //// protobuf
 //go:generate go run ../../../../../../ api protobuf -o ../../external/adapter/protobuf/codegen.proto --protoPackage codegen --javaPackage com.github.horiryota.gocodegen.api.example.codegen --javaOuterClassName CodegenProto
+//// protobuf of error
+//go:generate go run ../../../../../../ error protobuf -o ../../external/adapter/protobuf/error.proto --protoPackage codegen --javaPackage com.github.horiryota.gocodegen.api.example.codegen --javaOuterClassName ErrorProto
 //// prototool.yaml
 //go:generate go run ../../../../../../ api protobuf prototoolyaml -o ../../external/adapter/protobuf --javaOutputDir ../../external/adapter/protobuf/java/src/main/java
 //// prototool generate

@@ -14,17 +14,31 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 	sourceType types.Type,
 	targetType types.Type,
 ) (string, error) {
+	return p.printConverterWitoutErrorCheck(
+		sourceName,
+		sourceType,
+		targetType,
+		0,
+	)
+}
+
+func (p Printer) printConverterWitoutErrorCheck(
+	sourceName string,
+	sourceType types.Type,
+	targetType types.Type,
+	nestNum int,
+) (string, error) {
 	targetTypeStr := p.PrintRelativeType(targetType)
 
 	if namedTarget, ok := targetType.(*types.Named); ok {
 		constructor := SearchConstructor(namedTarget)
 		if constructor != nil {
 			targetValueName := "m"
-			constructorStr, err := p.FillConstructor(constructor, sourceName, sourceType)
+			constructorStr, err := p.FillConstructor(constructor, sourceName, sourceType, nestNum)
 			if err != nil {
 				return "", err
 			}
-			settersStr, err := p.PrintAssignToSetters(sourceName, sourceType, targetValueName, namedTarget)
+			settersStr, err := p.PrintAssignToSetters(sourceName, sourceType, targetValueName, namedTarget, nestNum)
 			if err != nil {
 				return "", err
 			}
@@ -72,13 +86,14 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 			switch s {
 			%s
 			default:
-				var t %s
-				return t
+				var t%d %s
+				return t%d
 			}
 			}(%s)`,
 				p.PrintRelativeType(sourceType), targetTypeStr,
 				b.String(),
-				targetTypeStr,
+				nestNum, targetTypeStr,
+				nestNum,
 				sourceName,
 			), nil
 		}
@@ -96,24 +111,27 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 		if !ok {
 			return "", fmt.Errorf("unknown type pair '%s' '%s'", sourceType, targetType)
 		}
-		elemConverter, err := p.PrintConverterWitoutErrorCheck(
-			fmt.Sprintf("%s[i]", sourceName),
+		elemConverter, err := p.printConverterWitoutErrorCheck(
+			fmt.Sprintf("%s[i%d]", sourceName, nestNum),
 			sourceSlice.Elem(),
 			targetSlice.Elem(),
+			nestNum+1,
 		)
 		if err != nil {
 			return "", err
 		}
 		return fmt.Sprintf(`func() %s {
-				t := make(%s, len(%s))
-				for i := range t {
-					t[i] = %s
+				t%d := make(%s, len(%s))
+				for i%d := range t%d {
+					t%d[i%d] = %s
 				}
-				return t
+				return t%d
 			}()`,
 			targetTypeStr,
-			targetTypeStr, sourceName,
-			elemConverter,
+			nestNum, targetTypeStr, sourceName,
+			nestNum, nestNum,
+			nestNum, nestNum, elemConverter,
+			nestNum,
 		), nil
 	}
 
@@ -128,8 +146,8 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 			if v == "" || t == nil {
 				continue
 			}
-			getvalueStr, err := p.PrintConverterWitoutErrorCheck(
-				fmt.Sprintf("%s.%s", sourceName, v), t, field.Type(),
+			getvalueStr, err := p.printConverterWitoutErrorCheck(
+				fmt.Sprintf("%s.%s", sourceName, v), t, field.Type(), nestNum,
 			)
 			if err != nil {
 				return "", err
@@ -141,43 +159,47 @@ func (p Printer) PrintConverterWitoutErrorCheck(
 	}
 
 	if targetPointer, ok := targetType.Underlying().(*types.Pointer); ok {
-		elemConverter, err := p.PrintConverterWitoutErrorCheck(
+		elemConverter, err := p.printConverterWitoutErrorCheck(
 			sourceName,
 			sourceType,
 			targetPointer.Elem(),
+			nestNum,
 		)
 		if err != nil {
 			return "", err
 		}
 		return fmt.Sprintf(`func() %s {
-				t := %s
-				return &t
+				t%d := %s
+				return &t%d
 			}()`,
 			targetTypeStr,
-			elemConverter,
+			nestNum, elemConverter,
+			nestNum,
 		), nil
 	}
 
 	if sourcePointer, ok := sourceType.Underlying().(*types.Pointer); ok {
 		sourceValueName := "s"
-		elemConverter, err := p.PrintConverterWitoutErrorCheck(
+		elemConverter, err := p.printConverterWitoutErrorCheck(
 			"*"+sourceValueName,
 			sourcePointer.Elem(),
 			targetType,
+			nestNum,
 		)
 		if err != nil {
 			return "", err
 		}
 		return fmt.Sprintf(`func(%s %s) %s {
 				if %s == nil {
-					var t %s
-					return t
+					var t%d %s
+					return t%d
 				}
 				return %s
 			}(%s)`,
 			sourceValueName, p.PrintRelativeType(sourceType), targetTypeStr,
 			sourceValueName,
-			targetTypeStr,
+			nestNum, targetTypeStr,
+			nestNum,
 			elemConverter,
 			sourceName,
 		), nil
@@ -194,6 +216,7 @@ func (p Printer) FillConstructor(
 	constructor *types.Func,
 	sourceName string,
 	sourceType types.Type,
+	nestNum int,
 ) (string, error) {
 	b := new(bytes.Buffer)
 	fmt.Fprintf(b, "%s(\n", p.PrintRelativeFuncName(constructor))
@@ -202,8 +225,8 @@ func (p Printer) FillConstructor(
 		if v == "" || t == nil {
 			return "", fmt.Errorf("mismatched constructor type for '%s' of '%s' from '%s'", param, constructor, sourceType)
 		}
-		getvalueStr, err := p.PrintConverterWitoutErrorCheck(
-			fmt.Sprintf("%s.%s", sourceName, v), t, param.Type(),
+		getvalueStr, err := p.printConverterWitoutErrorCheck(
+			fmt.Sprintf("%s.%s", sourceName, v), t, param.Type(), nestNum,
 		)
 		if err != nil {
 			return "", err
@@ -219,6 +242,7 @@ func (p Printer) PrintAssignToSetters(
 	sourceType types.Type,
 	targetName string,
 	targetType *types.Named,
+	nestNum int,
 ) (string, error) {
 	b := new(bytes.Buffer)
 	for _, setter := range ListSetters(targetType, !IsContainedInPackage(p.dstPackage, targetType)) {
@@ -234,8 +258,8 @@ func (p Printer) PrintAssignToSetters(
 		if v == "" || t == nil {
 			continue
 		}
-		getvalueStr, err := p.PrintConverterWitoutErrorCheck(
-			fmt.Sprintf("%s.%s", sourceName, v), t, setterParam.Type(),
+		getvalueStr, err := p.printConverterWitoutErrorCheck(
+			fmt.Sprintf("%s.%s", sourceName, v), t, setterParam.Type(), nestNum,
 		)
 		if err != nil {
 			return "", err

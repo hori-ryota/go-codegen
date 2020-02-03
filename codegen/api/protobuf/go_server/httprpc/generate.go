@@ -29,6 +29,7 @@ func Generate(
 	usecasePkgInfo *loader.PackageInfo,
 	protoPkgInfo *loader.PackageInfo,
 	dstPackage *types.Package,
+	serializerPackage *types.Package,
 ) (string, error) {
 	printer := typeutil.NewPrinter(dstPackage)
 
@@ -73,12 +74,14 @@ func Generate(
 	importPackages = append(importPackages, HandlerTemplateUsedPackages...)
 	importPackages = append(importPackages, typeutil.AllImported(usecasePkgInfo)...)
 	importPackages = append(importPackages, typeutil.AllImported(protoPkgInfo)...)
+	importPackages = append(importPackages, serializerPackage)
 
 	err := HandlerTemplate.Execute(out, TemplateParam{
-		PackageName:    dstPackage.Name(),
-		ImportPackages: typeutil.FmtImports(importPackages, dstPackage),
-		Services:       services,
-		TypePrinter:    printer,
+		PackageName:       dstPackage.Name(),
+		ImportPackages:    typeutil.FmtImports(importPackages, dstPackage),
+		Services:          services,
+		TypePrinter:       printer,
+		SerializerPackage: serializerPackage.Name(),
 	})
 	if err != nil {
 		return "", err
@@ -140,7 +143,7 @@ func ParseRPC(method *types.Func, protoPkgInfo *loader.PackageInfo) (*RPC, error
 
 func extractProtoType(usecaseType *types.Named, protoPkgInfo *loader.PackageInfo) *types.Named {
 	for _, name := range protoPkgInfo.Pkg.Scope().Names() {
-		if strings.ToLower(usecaseType.Obj().Name()) != strings.ToLower(name) {
+		if !strings.EqualFold(usecaseType.Obj().Name(), name) {
 			continue
 		}
 		obj := protoPkgInfo.Pkg.Scope().Lookup(name)

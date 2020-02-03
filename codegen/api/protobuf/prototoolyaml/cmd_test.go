@@ -24,7 +24,7 @@ func Example() {
 	//
 	//   plugins:
 	//     - name: go
-	//       output: ../../../../../../../../../..
+	//       output: ../../../../../../../../../.. # GOPATH
 	//     - name: java
 	//       output: java/src/main/java
 }
