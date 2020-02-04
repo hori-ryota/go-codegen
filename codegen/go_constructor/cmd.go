@@ -42,7 +42,7 @@ func NewGoConstructorCmd() *cobra.Command {
 
 	goConstructorCmd := &cobra.Command{
 		Use:   "go_constructor",
-		Short: "constructor genreator for Go",
+		Short: "constructor generator for Go",
 		Long:  `go_constructor is a generator command for Go constructor.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(targetDir, useStdOut)

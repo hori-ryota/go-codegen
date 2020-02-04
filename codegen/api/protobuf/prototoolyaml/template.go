@@ -54,7 +54,7 @@ generate:
 
   plugins:
     - name: go
-      output: {{ToGoPath .OutputDir}} # GOPATH
+      output: {{ToGoPath .OutputDir}} # GOPATH/src
 	{{- if .JavaOutputDir}}
     - name: java
       output: {{Rel .OutputDir .JavaOutputDir}}

@@ -30,7 +30,7 @@ func NewAPICmd() *cobra.Command {
 
 	apiCmd := &cobra.Command{
 		Use:   "api",
-		Short: "api genreator",
+		Short: "api generator",
 		Long:  `api is a generator command for api.`,
 	}
 

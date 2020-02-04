@@ -31,7 +31,7 @@ func NewGoClientCmd() *cobra.Command {
 
 	goClientCmd := &cobra.Command{
 		Use:   "go_client",
-		Short: "go_client genreator",
+		Short: "go_client generator",
 		Long:  `go_client is a generator command for Go Client.`,
 	}
 

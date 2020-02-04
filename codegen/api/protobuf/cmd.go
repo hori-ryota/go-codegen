@@ -52,7 +52,7 @@ func NewProtobufCmd() *cobra.Command {
 
 	protobufCmd := &cobra.Command{
 		Use:   "protobuf",
-		Short: "proto genreator",
+		Short: "proto generator",
 		Long:  `protobuf is a generator command for proto.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(

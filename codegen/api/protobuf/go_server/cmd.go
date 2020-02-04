@@ -30,7 +30,7 @@ func NewGoServerCmd() *cobra.Command {
 
 	goServerCmd := &cobra.Command{
 		Use:   "go_server",
-		Short: "go_server genreator",
+		Short: "go_server generator",
 		Long:  `go_server is a generator command for Go Server.`,
 	}
 

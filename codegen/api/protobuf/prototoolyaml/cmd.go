@@ -38,7 +38,7 @@ func NewPrototoolYamlCmd() *cobra.Command {
 
 	prototoolYamlCmd := &cobra.Command{
 		Use:   "prototoolyaml",
-		Short: "yaml genreator for prototool",
+		Short: "yaml generator for prototool",
 		Long:  `prototoolyaml is a yaml generator command for prototool.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(

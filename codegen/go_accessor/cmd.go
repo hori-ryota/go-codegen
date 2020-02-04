@@ -42,7 +42,7 @@ func NewGoAccessorCmd() *cobra.Command {
 
 	goAccessorCmd := &cobra.Command{
 		Use:   "go_accessor",
-		Short: "accessor genreator for Go",
+		Short: "accessor generator for Go",
 		Long:  `go_accessor is a generator command for Go accessor.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(targetDir, useStdOut)

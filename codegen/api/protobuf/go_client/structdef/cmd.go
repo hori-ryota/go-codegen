@@ -45,7 +45,7 @@ func NewStructdefCmd() *cobra.Command {
 
 	structdefCmd := &cobra.Command{
 		Use:   "structdef",
-		Short: "structdef handler genreator",
+		Short: "structdef handler generator",
 		Long:  `structdef is a generator command of structdef for client.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(

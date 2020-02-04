@@ -48,7 +48,7 @@ func NewHttprpcCmd() *cobra.Command {
 
 	httprpcCmd := &cobra.Command{
 		Use:   "httprpc",
-		Short: "httprpc handler genreator",
+		Short: "httprpc handler generator",
 		Long:  `httprpc is a generator command of httprpc handler.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(

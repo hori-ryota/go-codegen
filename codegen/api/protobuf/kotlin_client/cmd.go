@@ -31,7 +31,7 @@ func NewKotlinClientCmd() *cobra.Command {
 
 	kotlinClientCmd := &cobra.Command{
 		Use:   "kotlin_client",
-		Short: "kotlin_client genreator",
+		Short: "kotlin_client generator",
 		Long:  `kotlin_client is a generator command for Go Client.`,
 	}
 
