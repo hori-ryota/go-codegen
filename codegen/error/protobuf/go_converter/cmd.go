@@ -19,10 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package httprpc
+package go_converter
 
 import (
-	"errors"
 	"fmt"
 	"go/importer"
 	"go/parser"
@@ -39,66 +38,54 @@ import (
 	"golang.org/x/tools/go/loader"
 )
 
-func NewHttprpcCmd() *cobra.Command {
-	var usecaseDir string
+func NewGoConverterCmd() *cobra.Command {
+	var errorDefinitionDir string
 	var protoDir string
-	var clientTypedefDir string
 	var outputDir string
-	var serializerPackage string
 	var useStdOut bool
 
-	httprpcCmd := &cobra.Command{
-		Use:   "httprpc",
-		Short: "httprpc client generator",
-		Long:  `httprpc is a generator command of httprpc client.`,
+	goConverterCmd := &cobra.Command{
+		Use:   "go_converter",
+		Short: "converter generator of go for error",
+		Long:  `go_converter is a generator command of converter for error in Go.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(
-				usecaseDir,
+				errorDefinitionDir,
 				protoDir,
-				clientTypedefDir,
 				outputDir,
-				serializerPackage,
 				useStdOut,
 			)
 		},
 	}
 
-	httprpcCmd.Flags().StringVarP(&usecaseDir, "usecaseDir", "t", ".", "target usecase directory")
-	if err := httprpcCmd.MarkFlagDirname("usecaseDir"); err != nil {
+	goConverterCmd.Flags().StringVarP(&errorDefinitionDir, "errorDefinitionDir", "t", ".", "target error definition directory")
+	if err := goConverterCmd.MarkFlagDirname("errorDefinitionDir"); err != nil {
 		panic(err)
 	}
-	httprpcCmd.Flags().StringVarP(&protoDir, "protoDir", "p", ".", "target proto types of Go directory")
-	if err := httprpcCmd.MarkFlagDirname("protoDir"); err != nil {
+	goConverterCmd.Flags().StringVarP(&protoDir, "protoDir", "p", ".", "target proto types of Go directory")
+	if err := goConverterCmd.MarkFlagDirname("protoDir"); err != nil {
 		panic(err)
 	}
-	httprpcCmd.Flags().StringVarP(&clientTypedefDir, "clientTypedefDir", "c", ".", "target client side typedefs of Go directory")
-	if err := httprpcCmd.MarkFlagDirname("clientTypedefDir"); err != nil {
+	goConverterCmd.Flags().StringVarP(&outputDir, "outputDir", "o", "", "output directory")
+	if err := goConverterCmd.MarkFlagRequired("outputDir"); err != nil {
 		panic(err)
 	}
-	httprpcCmd.Flags().StringVarP(&outputDir, "outputDir", "o", "", "output directory")
-	if err := httprpcCmd.MarkFlagRequired("outputDir"); err != nil {
+	if err := goConverterCmd.MarkFlagDirname("outputDir"); err != nil {
 		panic(err)
 	}
-	if err := httprpcCmd.MarkFlagDirname("outputDir"); err != nil {
-		panic(err)
-	}
-	httprpcCmd.Flags().StringVarP(&serializerPackage, "serializerPackage", "s", "proto", "serializer package(proto or json)")
-	httprpcCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
+	goConverterCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
 
-	return httprpcCmd
+	return goConverterCmd
 }
 
 func Run(
-	usecaseDir string,
+	errorDefinitionDir string,
 	protoDir string,
-	clientTypedefDir string,
 	outputDir string,
-	serializerPackage string,
 	useStdOut bool,
 ) error {
-	usecaseDir = filepath.FromSlash(usecaseDir)
+	errorDefinitionDir = filepath.FromSlash(errorDefinitionDir)
 	protoDir = filepath.FromSlash(protoDir)
-	clientTypedefDir = filepath.FromSlash(clientTypedefDir)
 	outputDir = filepath.FromSlash(outputDir)
 
 	lconf := loader.Config{
@@ -108,21 +95,16 @@ func Run(
 		},
 		AllowErrors: true,
 	}
-	usecasePkgPath, err := gocodeutil.LocalPathToGoPackagePath(usecaseDir)
+	errorDefinitionPkgPath, err := gocodeutil.LocalPathToGoPackagePath(errorDefinitionDir)
 	if err != nil {
 		return err
 	}
-	lconf.Import(usecasePkgPath)
+	lconf.Import(errorDefinitionPkgPath)
 	protoPkgPath, err := gocodeutil.LocalPathToGoPackagePath(protoDir)
 	if err != nil {
 		return err
 	}
 	lconf.Import(protoPkgPath)
-	clientTypedefPkgPath, err := gocodeutil.LocalPathToGoPackagePath(clientTypedefDir)
-	if err != nil {
-		return err
-	}
-	lconf.Import(clientTypedefPkgPath)
 	lprog, err := lconf.Load()
 	if err != nil {
 		return err
@@ -133,22 +115,10 @@ func Run(
 		return err
 	}
 
-	var serializerPackageObj *types.Package
-	switch strings.ToLower(serializerPackage) {
-	case "proto":
-		serializerPackageObj = types.NewPackage("github.com/golang/protobuf/proto", "proto")
-	case "json":
-		serializerPackageObj = types.NewPackage("encoding/json", "json")
-	default:
-		return errors.New("unknown serializer package: " + serializerPackage)
-	}
-
 	generated, err := Generate(
-		lprog.Package(usecasePkgPath),
-		lprog.Package(protoPkgPath),
-		lprog.Package(clientTypedefPkgPath),
+		lprog.Package(errorDefinitionPkgPath).Pkg,
+		lprog.Package(protoPkgPath).Pkg,
 		types.NewPackage(outputPackage, path.Base(outputPackage)),
-		serializerPackageObj,
 	)
 	if err != nil {
 		return err
@@ -166,5 +136,5 @@ func Run(
 		return err
 	}
 
-	return ioutil.WriteFile(filepath.Join(outputDir, "client_gen.go"), []byte(generated), 0644)
+	return ioutil.WriteFile(filepath.Join(outputDir, "error_converter_gen.go"), []byte(generated), 0644)
 }

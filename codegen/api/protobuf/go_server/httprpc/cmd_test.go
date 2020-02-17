@@ -254,6 +254,7 @@ func Example() {
 	// 		h.HandleError(w, r, err)
 	// 		return
 	// 	}
+	// 	w.Header().Set("Content-Type", "application/protobuf")
 	// 	if _, err := w.Write(b); err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -324,6 +325,7 @@ func Example() {
 	// 		h.HandleError(w, r, err)
 	// 		return
 	// 	}
+	// 	w.Header().Set("Content-Type", "application/protobuf")
 	// 	if _, err := w.Write(b); err != nil {
 	// 		h.HandleError(w, r, err)
 	// 		return
@@ -459,22 +461,22 @@ func Example() {
 	// func ApplyMux(mux *http.ServeMux, handler Handlers, middlewares ...func(http.Handler) http.Handler) {
 	//
 	// 	mux.Handle(
-	// 		"DoingSomethingWithOutputAndActorUsecase/DoSomethingWithOutputAndActor",
+	// 		"/DoingSomethingWithOutputAndActorUsecase/DoSomethingWithOutputAndActor",
 	// 		applyMiddleware(http.HandlerFunc(handler.DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAndActorHandler), middlewares...),
 	// 	)
 	//
 	// 	mux.Handle(
-	// 		"DoingSomethingWithOutputWithoutActorUsecase/DoSomethingWithOutputWithoutActor",
+	// 		"/DoingSomethingWithOutputWithoutActorUsecase/DoSomethingWithOutputWithoutActor",
 	// 		applyMiddleware(http.HandlerFunc(handler.DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutputWithoutActorHandler), middlewares...),
 	// 	)
 	//
 	// 	mux.Handle(
-	// 		"DoingSomethingWithoutOutputAndActorUsecase/DoSomethingWithoutOutputAndActor",
+	// 		"/DoingSomethingWithoutOutputAndActorUsecase/DoSomethingWithoutOutputAndActor",
 	// 		applyMiddleware(http.HandlerFunc(handler.DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOutputAndActorHandler), middlewares...),
 	// 	)
 	//
 	// 	mux.Handle(
-	// 		"DoingSomethingWithoutOutputWithActorUsecase/DoSomethingWithoutOutputWithActor",
+	// 		"/DoingSomethingWithoutOutputWithActorUsecase/DoSomethingWithoutOutputWithActor",
 	// 		applyMiddleware(http.HandlerFunc(handler.DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutOutputWithActorHandler), middlewares...),
 	// 	)
 	// }

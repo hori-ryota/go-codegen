@@ -23,6 +23,7 @@ func (c ErrorCode) String() string {
 
 type Error interface {
 	Error() string
+	Code() ErrorCode
 	Details() []ErrorDetail
 
 	IsUnknown() bool
@@ -48,6 +49,9 @@ type errorImpl struct {
 
 func (e errorImpl) Error() string {
 	return fmt.Sprintf("%s:%s:%s", e.code, e.details, e.source)
+}
+func (e errorImpl) Code() ErrorCode {
+	return e.code
 }
 func (e errorImpl) Details() []ErrorDetail {
 	return e.details

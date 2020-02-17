@@ -37,26 +37,30 @@ import (
 	"golang.org/x/tools/go/loader"
 )
 
-func NewGoDefinitionCmd(
-	targetDir *string,
-	codes *[]string,
-) *cobra.Command {
+func NewGoDefinitionCmd() *cobra.Command {
+	var targetDir string
 	var outputDir string
+	var codes []string
 	var useStdOut bool
 
 	goDefinitionCmd := &cobra.Command{
 		Use:   "go_definition",
-		Short: "definition genreator for Go",
+		Short: "definition generator for Go",
 		Long:  `go_definition is a generator command for Go definition.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return Run(*targetDir, *codes, outputDir, useStdOut)
+			return Run(targetDir, codes, outputDir, useStdOut)
 		},
 	}
 
+	goDefinitionCmd.Flags().StringVarP(&targetDir, "targetDir", "t", ".", "target directory")
+	if err := goDefinitionCmd.MarkFlagDirname("targetDir"); err != nil {
+		panic(err)
+	}
 	goDefinitionCmd.Flags().StringVarP(&outputDir, "outputDir", "o", ".", "output directory")
 	if err := goDefinitionCmd.MarkFlagDirname("outputDir"); err != nil {
 		panic(err)
 	}
+	goDefinitionCmd.Flags().StringSliceVarP(&codes, "codes", "c", nil, "error codes to define")
 	goDefinitionCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
 
 	return goDefinitionCmd

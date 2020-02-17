@@ -23,27 +23,19 @@ package error
 
 import (
 	"github.com/hori-ryota/go-codegen/codegen/error/go_definition"
+	"github.com/hori-ryota/go-codegen/codegen/error/protobuf"
 	"github.com/spf13/cobra"
 )
 
 func NewErrorCmd() *cobra.Command {
-	var targetDir string
-	var codes []string
 
 	errorCmd := &cobra.Command{
 		Use:   "error",
-		Short: "error genreator",
+		Short: "error generator",
 		Long:  `error is a generator command for error.`,
 	}
 
-	errorCmd.PersistentFlags().StringVarP(&targetDir, "targetDir", "t", ".", "target directory")
-	if err := errorCmd.MarkPersistentFlagDirname("targetDir"); err != nil {
-		panic(err)
-	}
-	errorCmd.PersistentFlags().StringSliceVarP(&codes, "codes", "c", nil, "error codes to define")
-
-	errorCmd.AddCommand(go_definition.NewGoDefinitionCmd(
-		&targetDir, &codes,
-	))
+	errorCmd.AddCommand(go_definition.NewGoDefinitionCmd())
+	errorCmd.AddCommand(protobuf.NewProtobufCmd())
 	return errorCmd
 }

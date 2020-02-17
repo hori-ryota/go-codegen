@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package codegen;
+option go_package = "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf";
+option java_multiple_files = true;
+option java_package = "com.github.horiryota.gocodegen.api.example.codegen";
+option java_outer_classname = "ErrorProto";
+
+message Error {
+  string code = 1;
+  repeated ErrorDetail details = 2;
+}
+
+message ErrorDetail {
+  string code = 1;
+  repeated string args = 2;
+}

@@ -20,23 +20,19 @@ import (
 func NewClient(
 	httpClient *http.Client,
 	urlBase url.URL,
-	errorResponseParser ErrorResponseParser,
+	handleErrorResponse func(resp *http.Response) error,
 ) Client {
 	return Client{
 		httpClient:          httpClient,
 		urlBase:             urlBase,
-		errorResponseParser: errorResponseParser,
+		handleErrorResponse: handleErrorResponse,
 	}
 }
 
 type Client struct {
 	httpClient          *http.Client
 	urlBase             url.URL
-	errorResponseParser ErrorResponseParser
-}
-
-type ErrorResponseParser interface {
-	ParseError(resp *http.Response) error
+	handleErrorResponse func(resp *http.Response) error
 }
 
 func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSomethingWithOutputAndActorUsecaseInput) (output DoingSomethingWithOutputAndActorUsecaseOutput, err error) {
@@ -198,7 +194,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 	}()
 
 	if resp.StatusCode >= 400 {
-		err := c.errorResponseParser.ParseError(resp)
+		err := c.handleErrorResponse(resp)
 		return output, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
@@ -248,7 +244,7 @@ func (c Client) DoSomethingWithOutputWithoutActor(ctx context.Context, input Doi
 	}()
 
 	if resp.StatusCode >= 400 {
-		err := c.errorResponseParser.ParseError(resp)
+		err := c.handleErrorResponse(resp)
 		return output, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
@@ -298,7 +294,7 @@ func (c Client) DoSomethingWithoutOutputAndActor(ctx context.Context, input Doin
 	}()
 
 	if resp.StatusCode >= 400 {
-		err := c.errorResponseParser.ParseError(resp)
+		err := c.handleErrorResponse(resp)
 		return err
 	}
 	return nil
@@ -332,7 +328,7 @@ func (c Client) DoSomethingWithoutOutputWithActor(ctx context.Context, input Doi
 	}()
 
 	if resp.StatusCode >= 400 {
-		err := c.errorResponseParser.ParseError(resp)
+		err := c.handleErrorResponse(resp)
 		return err
 	}
 	return nil

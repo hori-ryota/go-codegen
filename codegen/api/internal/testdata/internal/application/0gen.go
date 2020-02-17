@@ -18,6 +18,7 @@ package application
 
 //// httprpc server of Go
 //go:generate go run ../../../../../../ api protobuf go_server httprpc -p ../../external/adapter/protobuf -o ../adapter/protobuf/httprpc
+//go:generate go run ../../../../../../ error protobuf go_converter -t ../domain -p ../../external/adapter/protobuf -o ../adapter/protobuf/httprpc
 
 //// httprpc client of Go
 
