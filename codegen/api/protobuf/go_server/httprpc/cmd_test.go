@@ -30,8 +30,20 @@ func Example() {
 	// 	domain "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
 	// )
 	//
+	// type ErrorType string
+	//
+	// const (
+	// 	FailedToReadRequestError          ErrorType = "failed to read request"
+	// 	FailedToUnmarshalRequestError     ErrorType = "failed to unmarshal request"
+	// 	FailedToGenerateUsecaseError      ErrorType = "failed to generate usecase"
+	// 	FailedToParseActorDescriptorError ErrorType = "failed to parse actor descriptor"
+	// 	FromUsecaseError                  ErrorType = "from usecase error"
+	// 	FailedToMarshalResponseError      ErrorType = "failed to marshal response"
+	// 	FailedToWriteResponseError        ErrorType = "failed to write response"
+	// )
+	//
 	// func NewHandlers(
-	// 	handleError func(w http.ResponseWriter, r *http.Request, err error),
+	// 	handleError func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error),
 	// 	doingSomethingWithOutputAndActorUsecaseFactory DoingSomethingWithOutputAndActorUsecaseFactory,
 	// 	doingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory,
 	// 	doingSomethingWithoutOutputAndActorUsecaseFactory DoingSomethingWithoutOutputAndActorUsecaseFactory,
@@ -49,7 +61,7 @@ func Example() {
 	// }
 	//
 	// type Handlers struct {
-	// 	HandleError                                        func(w http.ResponseWriter, r *http.Request, err error)
+	// 	HandleError                                        func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error)
 	// 	DoingSomethingWithOutputAndActorUsecaseFactory     DoingSomethingWithOutputAndActorUsecaseFactory
 	// 	DoingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory
 	// 	DoingSomethingWithoutOutputAndActorUsecaseFactory  DoingSomethingWithoutOutputAndActorUsecaseFactory
@@ -81,13 +93,13 @@ func Example() {
 	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToReadRequestError, err)
 	// 		return
 	// 	}
 	//
 	// 	inputProtoType := protobuf.DoingSomethingWithOutputAndActorUsecaseInput{}
 	// 	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 	// 		return
 	// 	}
 	// 	input := func() application.DoingSomethingWithOutputAndActorUsecaseInput {
@@ -225,25 +237,21 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	if h.DoingSomethingWithOutputAndActorUsecaseFactory == nil {
-	// 		h.HandleError(w, r, err)
-	// 		return
-	// 	}
 	// 	usecase, err := h.DoingSomethingWithOutputAndActorUsecaseFactory.GenerateDoingSomethingWithOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToGenerateUsecaseError, err)
 	// 		return
 	// 	}
 	// 	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToParseActorDescriptorError, err)
 	// 		return
 	// 	}
 	// 	outputType, err := usecase.DoSomethingWithOutputAndActor(
 	// 		r.Context(), input, actor,
 	// 	)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FromUsecaseError, err)
 	// 		return
 	// 	}
 	// 	outputProtoType := protobuf.DoingSomethingWithOutputAndActorUsecaseOutput{
@@ -251,12 +259,12 @@ func Example() {
 	// 	}
 	// 	b, err := proto.Marshal(&outputProtoType)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 	// 		return
 	// 	}
 	// 	w.Header().Set("Content-Type", "application/protobuf")
 	// 	if _, err := w.Write(b); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToWriteResponseError, err)
 	// 		return
 	// 	}
 	// 	return
@@ -284,13 +292,13 @@ func Example() {
 	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToReadRequestError, err)
 	// 		return
 	// 	}
 	//
 	// 	inputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseInput{}
 	// 	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 	// 		return
 	// 	}
 	// 	input := func() application.DoingSomethingWithOutputWithoutActorUsecaseInput {
@@ -301,20 +309,16 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	if h.DoingSomethingWithOutputWithoutActorUsecaseFactory == nil {
-	// 		h.HandleError(w, r, err)
-	// 		return
-	// 	}
 	// 	usecase, err := h.DoingSomethingWithOutputWithoutActorUsecaseFactory.GenerateDoingSomethingWithOutputWithoutActorUsecase(r.Context())
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToGenerateUsecaseError, err)
 	// 		return
 	// 	}
 	// 	outputType, err := usecase.DoSomethingWithOutputWithoutActor(
 	// 		r.Context(), input,
 	// 	)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FromUsecaseError, err)
 	// 		return
 	// 	}
 	// 	outputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseOutput{
@@ -322,12 +326,12 @@ func Example() {
 	// 	}
 	// 	b, err := proto.Marshal(&outputProtoType)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 	// 		return
 	// 	}
 	// 	w.Header().Set("Content-Type", "application/protobuf")
 	// 	if _, err := w.Write(b); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToWriteResponseError, err)
 	// 		return
 	// 	}
 	// 	return
@@ -355,13 +359,13 @@ func Example() {
 	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToReadRequestError, err)
 	// 		return
 	// 	}
 	//
 	// 	inputProtoType := protobuf.DoingSomethingWithoutOutputAndActorUsecaseInput{}
 	// 	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 	// 		return
 	// 	}
 	// 	input := func() application.DoingSomethingWithoutOutputAndActorUsecaseInput {
@@ -372,19 +376,15 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	if h.DoingSomethingWithoutOutputAndActorUsecaseFactory == nil {
-	// 		h.HandleError(w, r, err)
-	// 		return
-	// 	}
 	// 	usecase, err := h.DoingSomethingWithoutOutputAndActorUsecaseFactory.GenerateDoingSomethingWithoutOutputAndActorUsecase(r.Context())
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToGenerateUsecaseError, err)
 	// 		return
 	// 	}
 	// 	if err := usecase.DoSomethingWithoutOutputAndActor(
 	// 		r.Context(), input,
 	// 	); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FromUsecaseError, err)
 	// 		return
 	// 	}
 	// 	return
@@ -412,13 +412,13 @@ func Example() {
 	//
 	// 	body, err := ioutil.ReadAll(r.Body)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToReadRequestError, err)
 	// 		return
 	// 	}
 	//
 	// 	inputProtoType := protobuf.DoingSomethingWithoutOutputWithActorUsecaseInput{}
 	// 	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 	// 		return
 	// 	}
 	// 	input := func() application.DoingSomethingWithoutOutputWithActorUsecaseInput {
@@ -429,24 +429,20 @@ func Example() {
 	// 		return m
 	// 	}()
 	//
-	// 	if h.DoingSomethingWithoutOutputWithActorUsecaseFactory == nil {
-	// 		h.HandleError(w, r, err)
-	// 		return
-	// 	}
 	// 	usecase, err := h.DoingSomethingWithoutOutputWithActorUsecaseFactory.GenerateDoingSomethingWithoutOutputWithActorUsecase(r.Context())
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToGenerateUsecaseError, err)
 	// 		return
 	// 	}
 	// 	actor, err := h.SomeActorToApplicationSomeActorDescriptionParser.ParseSomeActorToApplicationSomeActorDescription(r.Context(), r)
 	// 	if err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FailedToParseActorDescriptorError, err)
 	// 		return
 	// 	}
 	// 	if err := usecase.DoSomethingWithoutOutputWithActor(
 	// 		r.Context(), input, actor,
 	// 	); err != nil {
-	// 		h.HandleError(w, r, err)
+	// 		h.HandleError(w, r, FromUsecaseError, err)
 	// 		return
 	// 	}
 	// 	return
@@ -483,7 +479,7 @@ func Example() {
 	//
 	// func applyMiddleware(h http.Handler, middlewares ...func(http.Handler) http.Handler) http.Handler {
 	// 	for i := range middlewares {
-	// 		h = middlewares[len(middlewares)-i](h)
+	// 		h = middlewares[len(middlewares)-i-1](h)
 	// 	}
 	// 	return h
 	// }

@@ -88,8 +88,20 @@ package {{.PackageName}}
 {{$rootParam := .}}
 {{$actors := ExtractActorDescriptors $rootParam}}
 
+type ErrorType string
+
+const (
+	FailedToReadRequestError ErrorType = "failed to read request"
+	FailedToUnmarshalRequestError ErrorType = "failed to unmarshal request"
+	FailedToGenerateUsecaseError ErrorType = "failed to generate usecase"
+	FailedToParseActorDescriptorError ErrorType = "failed to parse actor descriptor"
+	FromUsecaseError ErrorType = "from usecase error"
+	FailedToMarshalResponseError ErrorType = "failed to marshal response"
+	FailedToWriteResponseError ErrorType = "failed to write response"
+)
+
 func NewHandlers(
-	handleError func(w http.ResponseWriter, r *http.Request, err error),
+	handleError func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error),
 	{{- range .Services}}
 	{{ToLowerCamel .Obj.Name}}Factory {{ToUpperCamel .Obj.Name}}Factory,
 	{{- end}}
@@ -109,7 +121,7 @@ func NewHandlers(
 }
 
 type Handlers struct {
-	HandleError func(w http.ResponseWriter, r *http.Request, err error)
+	HandleError func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error)
 	{{- range .Services}}
 	{{ToUpperCamel .Obj.Name}}Factory {{ToUpperCamel .Obj.Name}}Factory
 	{{- end}}
@@ -147,24 +159,20 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToReadRequestError, err)
 		return
 	}
 
 	inputProtoType := {{$rootParam.TypePrinter.PrintRelativeType .InputProtoType}}{}
 	if err := {{$rootParam.SerializerPackage}}.Unmarshal(body, &inputProtoType); err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 		return
 	}
 	input := {{$rootParam.TypePrinter.PrintConverterWitoutErrorCheck "inputProtoType" .InputProtoType .InputType}}
 	
-	if h.{{$service.Obj.Name}}Factory == nil {
-		h.HandleError(w, r, err)
-		return
-	}
 	usecase, err := h.{{$service.Obj.Name}}Factory.Generate{{$service.Obj.Name}}(r.Context())
 	if err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToGenerateUsecaseError, err)
 		return
 	}
 
@@ -172,7 +180,7 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 	{{- if $actor}}
 	actor, err := h.{{ToUpperCamel (ToActorParserTypeName $rootParam.TypePrinter $actor)}}.{{ToActorParseMethodName $rootParam.TypePrinter $actor}}(r.Context(), r)
 	if err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToParseActorDescriptorError, err)
 		return
 	}
 	{{- end}}
@@ -182,18 +190,18 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 		r.Context(), input,{{if $actor}} actor,{{end}}
 	)
 	if err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FromUsecaseError, err)
 		return
 	}
 	outputProtoType := {{$rootParam.TypePrinter.PrintConverterWitoutErrorCheck "outputType" .OutputType .OutputProtoType}}
 	b, err := {{$rootParam.SerializerPackage}}.Marshal(&outputProtoType)
 	if err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToMarshalResponseError, err)
 		return
 	}
 	w.Header().Set("Content-Type", "{{ContentType $rootParam.SerializerPackage}}")
 	if _, err := w.Write(b); err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FailedToWriteResponseError, err)
 		return
 	}
 	return
@@ -201,7 +209,7 @@ func (h Handlers){{ToUpperCamel $service.Obj.Name}}{{.Name}}Handler(w http.Respo
 	if err := usecase.{{.Name}}(
 		r.Context(), input,{{if $actor}} actor,{{end}}
 	); err != nil {
-		h.HandleError(w, r, err)
+		h.HandleError(w, r, FromUsecaseError, err)
 		return
 	}
 	return
@@ -231,7 +239,7 @@ func ApplyMux(mux *http.ServeMux, handler Handlers, middlewares ...func(http.Han
 
 func applyMiddleware(h http.Handler, middlewares ...func(http.Handler) http.Handler) http.Handler {
 	for i := range middlewares {
-		h = middlewares[len(middlewares)-i](h)
+		h = middlewares[len(middlewares)-i-1](h)
 	}
 	return h
 }
