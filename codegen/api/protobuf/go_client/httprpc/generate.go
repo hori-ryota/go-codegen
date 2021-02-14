@@ -30,7 +30,6 @@ func Generate(
 	protoPkgInfo *loader.PackageInfo,
 	clientTypedefPkgInfo *loader.PackageInfo,
 	dstPackage *types.Package,
-	serializerPackage *types.Package,
 ) (string, error) {
 	printer := typeutil.NewPrinter(dstPackage)
 
@@ -75,14 +74,12 @@ func Generate(
 	importPackages = append(importPackages, ClientTemplateUsedPackages...)
 	importPackages = append(importPackages, typeutil.AllImported(protoPkgInfo)...)
 	importPackages = append(importPackages, typeutil.AllImported(clientTypedefPkgInfo)...)
-	importPackages = append(importPackages, serializerPackage)
 
 	err := ClientTemplate.Execute(out, TemplateParam{
-		PackageName:       dstPackage.Name(),
-		ImportPackages:    typeutil.FmtImports(importPackages, dstPackage),
-		Services:          services,
-		TypePrinter:       printer,
-		SerializerPackage: serializerPackage.Name(),
+		PackageName:    dstPackage.Name(),
+		ImportPackages: typeutil.FmtImports(importPackages, dstPackage),
+		Services:       services,
+		TypePrinter:    printer,
 	})
 	if err != nil {
 		return "", err

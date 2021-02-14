@@ -4,6 +4,7 @@ package httprpc
 
 import (
 	context "context"
+	json "encoding/json"
 	ioutil "io/ioutil"
 	http "net/http"
 
@@ -25,8 +26,88 @@ const (
 	FailedToWriteResponseError        ErrorType = "failed to write response"
 )
 
+type BodyMarshaler interface {
+	Marshal(v proto.Message) (data []byte, err error)
+	ContentType() string
+}
+
+type bodyMarshaler struct {
+	marshalFunc func(v proto.Message) (data []byte, err error)
+	contentType string
+}
+
+func (m bodyMarshaler) Marshal(v proto.Message) ([]byte, error) {
+	return m.marshalFunc(v)
+}
+
+func (m bodyMarshaler) ContentType() string {
+	return m.contentType
+}
+
+func NewBodyMarshaler(
+	marshalFunc func(v proto.Message) (data []byte, err error),
+	contentType string,
+) BodyMarshaler {
+	return bodyMarshaler{
+		marshalFunc: marshalFunc,
+		contentType: contentType,
+	}
+}
+
+func NewJSONBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		func(v proto.Message) ([]byte, error) {
+			return json.Marshal(v)
+		},
+		"application/json",
+	)
+}
+
+func NewProtoBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		proto.Marshal,
+		"application/protobuf",
+	)
+}
+
+type BodyUnmarshaler interface {
+	Unmarshal(data []byte, v proto.Message) error
+}
+
+type bodyUnmarshaler struct {
+	unmarshalFunc func(data []byte, v proto.Message) error
+}
+
+func (m bodyUnmarshaler) Unmarshal(data []byte, v proto.Message) error {
+	return m.unmarshalFunc(data, v)
+}
+
+func NewBodyUnmarshaler(
+	unmarshalFunc func(data []byte, v proto.Message) error,
+) BodyUnmarshaler {
+	return bodyUnmarshaler{
+		unmarshalFunc: unmarshalFunc,
+	}
+}
+
+func NewJSONBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		func(data []byte, v proto.Message) error {
+			return json.Unmarshal(data, v)
+		},
+	)
+}
+
+func NewProtoBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		proto.Unmarshal,
+	)
+}
+
 func NewHandlers(
 	handleError func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error),
+	bodyMarshaler BodyMarshaler,
+	bodyUnmarshaler BodyUnmarshaler,
 	doingSomethingWithOutputAndActorUsecaseFactory DoingSomethingWithOutputAndActorUsecaseFactory,
 	doingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory,
 	doingSomethingWithoutOutputAndActorUsecaseFactory DoingSomethingWithoutOutputAndActorUsecaseFactory,
@@ -34,7 +115,9 @@ func NewHandlers(
 	someActorToApplicationSomeActorDescriptionParser SomeActorToApplicationSomeActorDescriptionParser,
 ) Handlers {
 	return Handlers{
-		HandleError: handleError,
+		HandleError:     handleError,
+		bodyMarshaler:   bodyMarshaler,
+		bodyUnmarshaler: bodyUnmarshaler,
 		DoingSomethingWithOutputAndActorUsecaseFactory:     doingSomethingWithOutputAndActorUsecaseFactory,
 		DoingSomethingWithOutputWithoutActorUsecaseFactory: doingSomethingWithOutputWithoutActorUsecaseFactory,
 		DoingSomethingWithoutOutputAndActorUsecaseFactory:  doingSomethingWithoutOutputAndActorUsecaseFactory,
@@ -45,6 +128,8 @@ func NewHandlers(
 
 type Handlers struct {
 	HandleError                                        func(w http.ResponseWriter, r *http.Request, errorType ErrorType, err error)
+	bodyMarshaler                                      BodyMarshaler
+	bodyUnmarshaler                                    BodyUnmarshaler
 	DoingSomethingWithOutputAndActorUsecaseFactory     DoingSomethingWithOutputAndActorUsecaseFactory
 	DoingSomethingWithOutputWithoutActorUsecaseFactory DoingSomethingWithOutputWithoutActorUsecaseFactory
 	DoingSomethingWithoutOutputAndActorUsecaseFactory  DoingSomethingWithoutOutputAndActorUsecaseFactory
@@ -81,7 +166,7 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 	}
 
 	inputProtoType := protobuf.DoingSomethingWithOutputAndActorUsecaseInput{}
-	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
+	if err := h.bodyUnmarshaler.Unmarshal(body, &inputProtoType); err != nil {
 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 		return
 	}
@@ -240,12 +325,12 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 	outputProtoType := protobuf.DoingSomethingWithOutputAndActorUsecaseOutput{
 		StringParam: outputType.StringParam(),
 	}
-	b, err := proto.Marshal(&outputProtoType)
+	b, err := h.bodyMarshaler.Marshal(&outputProtoType)
 	if err != nil {
 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 		return
 	}
-	w.Header().Set("Content-Type", "application/protobuf")
+	w.Header().Set("Content-Type", c.bodyMarshaler.ContentType())
 	if _, err := w.Write(b); err != nil {
 		h.HandleError(w, r, FailedToWriteResponseError, err)
 		return
@@ -280,7 +365,7 @@ func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutp
 	}
 
 	inputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseInput{}
-	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
+	if err := h.bodyUnmarshaler.Unmarshal(body, &inputProtoType); err != nil {
 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 		return
 	}
@@ -307,12 +392,12 @@ func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutp
 	outputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseOutput{
 		StringParam: outputType.StringParam(),
 	}
-	b, err := proto.Marshal(&outputProtoType)
+	b, err := h.bodyMarshaler.Marshal(&outputProtoType)
 	if err != nil {
 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 		return
 	}
-	w.Header().Set("Content-Type", "application/protobuf")
+	w.Header().Set("Content-Type", c.bodyMarshaler.ContentType())
 	if _, err := w.Write(b); err != nil {
 		h.HandleError(w, r, FailedToWriteResponseError, err)
 		return
@@ -347,7 +432,7 @@ func (h Handlers) DoingSomethingWithoutOutputAndActorUsecaseDoSomethingWithoutOu
 	}
 
 	inputProtoType := protobuf.DoingSomethingWithoutOutputAndActorUsecaseInput{}
-	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
+	if err := h.bodyUnmarshaler.Unmarshal(body, &inputProtoType); err != nil {
 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 		return
 	}
@@ -400,7 +485,7 @@ func (h Handlers) DoingSomethingWithoutOutputWithActorUsecaseDoSomethingWithoutO
 	}
 
 	inputProtoType := protobuf.DoingSomethingWithoutOutputWithActorUsecaseInput{}
-	if err := proto.Unmarshal(body, &inputProtoType); err != nil {
+	if err := h.bodyUnmarshaler.Unmarshal(body, &inputProtoType); err != nil {
 		h.HandleError(w, r, FailedToUnmarshalRequestError, err)
 		return
 	}

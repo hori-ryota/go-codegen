@@ -29,7 +29,6 @@ func Generate(
 	usecasePkgInfo *loader.PackageInfo,
 	protoPkgInfo *loader.PackageInfo,
 	dstPackage *types.Package,
-	serializerPackage *types.Package,
 ) (string, error) {
 	printer := typeutil.NewPrinter(dstPackage)
 
@@ -74,14 +73,12 @@ func Generate(
 	importPackages = append(importPackages, HandlerTemplateUsedPackages...)
 	importPackages = append(importPackages, typeutil.AllImported(usecasePkgInfo)...)
 	importPackages = append(importPackages, typeutil.AllImported(protoPkgInfo)...)
-	importPackages = append(importPackages, serializerPackage)
 
 	err := HandlerTemplate.Execute(out, TemplateParam{
-		PackageName:       dstPackage.Name(),
-		ImportPackages:    typeutil.FmtImports(importPackages, dstPackage),
-		Services:          services,
-		TypePrinter:       printer,
-		SerializerPackage: serializerPackage.Name(),
+		PackageName:    dstPackage.Name(),
+		ImportPackages: typeutil.FmtImports(importPackages, dstPackage),
+		Services:       services,
+		TypePrinter:    printer,
 	})
 	if err != nil {
 		return "", err

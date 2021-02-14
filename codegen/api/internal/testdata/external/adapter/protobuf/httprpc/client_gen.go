@@ -5,6 +5,7 @@ package httprpc
 import (
 	bytes "bytes"
 	context "context"
+	json "encoding/json"
 	io "io"
 	ioutil "io/ioutil"
 	http "net/http"
@@ -17,14 +18,105 @@ import (
 	zap "go.uber.org/zap"
 )
 
+type BodyMarshaler interface {
+	Marshal(v proto.Message) (data []byte, err error)
+	ContentType() string
+}
+
+type bodyMarshaler struct {
+	marshalFunc func(v proto.Message) (data []byte, err error)
+	contentType string
+}
+
+func (m bodyMarshaler) Marshal(v proto.Message) ([]byte, error) {
+	return m.marshalFunc(v)
+}
+
+func (m bodyMarshaler) ContentType() string {
+	return m.contentType
+}
+
+func NewBodyMarshaler(
+	marshalFunc func(v proto.Message) (data []byte, err error),
+	contentType string,
+) BodyMarshaler {
+	return bodyMarshaler{
+		marshalFunc: marshalFunc,
+		contentType: contentType,
+	}
+}
+
+func NewJSONBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		func(v proto.Message) ([]byte, error) {
+			return json.Marshal(v)
+		},
+		"application/json",
+	)
+}
+
+func NewProtoBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		proto.Marshal,
+		"application/protobuf",
+	)
+}
+
+func NewJSONPbBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		func(v proto.Message) ([]byte, error) {
+			return json.Marshal(v)
+		},
+		"application/json",
+	)
+}
+
+type BodyUnmarshaler interface {
+	Unmarshal(data []byte, v proto.Message) error
+}
+
+type bodyUnmarshaler struct {
+	unmarshalFunc func(data []byte, v proto.Message) error
+}
+
+func (m bodyUnmarshaler) Unmarshal(data []byte, v proto.Message) error {
+	return m.unmarshalFunc(data, v)
+}
+
+func NewBodyUnmarshaler(
+	unmarshalFunc func(data []byte, v proto.Message) error,
+) BodyUnmarshaler {
+	return bodyUnmarshaler{
+		unmarshalFunc: unmarshalFunc,
+	}
+}
+
+func NewJSONBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		func(data []byte, v proto.Message) error {
+			return json.Unmarshal(data, v)
+		},
+	)
+}
+
+func NewProtoBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		proto.Unmarshal,
+	)
+}
+
 func NewClient(
 	httpClient *http.Client,
 	urlBase url.URL,
+	bodyMarshaler BodyMarshaler,
+	bodyUnmarshaler BodyUnmarshaler,
 	handleErrorResponse func(resp *http.Response) error,
 ) Client {
 	return Client{
 		httpClient:          httpClient,
 		urlBase:             urlBase,
+		bodyMarshaler:       bodyMarshaler,
+		bodyUnmarshaler:     bodyUnmarshaler,
 		handleErrorResponse: handleErrorResponse,
 	}
 }
@@ -32,6 +124,8 @@ func NewClient(
 type Client struct {
 	httpClient          *http.Client
 	urlBase             url.URL
+	bodyMarshaler       BodyMarshaler
+	bodyUnmarshaler     BodyUnmarshaler
 	handleErrorResponse func(resp *http.Response) error
 }
 
@@ -173,7 +267,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 			return t0
 		}(),
 	}
-	b, err := proto.Marshal(&inputProtoType)
+	b, err := c.bodyMarshaler.Marshal(&inputProtoType)
 	if err != nil {
 		return output, err
 	}
@@ -182,7 +276,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 		return output, err
 	}
 	r = r.WithContext(ctx)
-	r.Header.Add("Content-Type", "application/protobuf")
+	r.Header.Set("Content-Type", c.bodyMarshaler.ContentType())
 
 	resp, err := c.httpClient.Do(r)
 	if err != nil {
@@ -203,7 +297,7 @@ func (c Client) DoSomethingWithOutputAndActor(ctx context.Context, input DoingSo
 		return output, err
 	}
 	outputProtoType := protobuf.DoingSomethingWithOutputAndActorUsecaseOutput{}
-	if err := proto.Unmarshal(body, &outputProtoType); err != nil {
+	if err := c.bodyUnmarshaler.Unmarshal(body, &outputProtoType); err != nil {
 		err = zaperr.Wrap(err, "failed to parse response body", zap.String("body", string(body)))
 		return output, err
 	}
@@ -223,7 +317,7 @@ func (c Client) DoSomethingWithOutputWithoutActor(ctx context.Context, input Doi
 	inputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseInput{
 		StringParam: input.StringParam,
 	}
-	b, err := proto.Marshal(&inputProtoType)
+	b, err := c.bodyMarshaler.Marshal(&inputProtoType)
 	if err != nil {
 		return output, err
 	}
@@ -232,7 +326,7 @@ func (c Client) DoSomethingWithOutputWithoutActor(ctx context.Context, input Doi
 		return output, err
 	}
 	r = r.WithContext(ctx)
-	r.Header.Add("Content-Type", "application/protobuf")
+	r.Header.Set("Content-Type", c.bodyMarshaler.ContentType())
 
 	resp, err := c.httpClient.Do(r)
 	if err != nil {
@@ -253,7 +347,7 @@ func (c Client) DoSomethingWithOutputWithoutActor(ctx context.Context, input Doi
 		return output, err
 	}
 	outputProtoType := protobuf.DoingSomethingWithOutputWithoutActorUsecaseOutput{}
-	if err := proto.Unmarshal(body, &outputProtoType); err != nil {
+	if err := c.bodyUnmarshaler.Unmarshal(body, &outputProtoType); err != nil {
 		err = zaperr.Wrap(err, "failed to parse response body", zap.String("body", string(body)))
 		return output, err
 	}
@@ -273,7 +367,7 @@ func (c Client) DoSomethingWithoutOutputAndActor(ctx context.Context, input Doin
 	inputProtoType := protobuf.DoingSomethingWithoutOutputAndActorUsecaseInput{
 		StringParam: input.StringParam,
 	}
-	b, err := proto.Marshal(&inputProtoType)
+	b, err := c.bodyMarshaler.Marshal(&inputProtoType)
 	if err != nil {
 		return err
 	}
@@ -282,7 +376,7 @@ func (c Client) DoSomethingWithoutOutputAndActor(ctx context.Context, input Doin
 		return err
 	}
 	r = r.WithContext(ctx)
-	r.Header.Add("Content-Type", "application/protobuf")
+	r.Header.Set("Content-Type", c.bodyMarshaler.ContentType())
 
 	resp, err := c.httpClient.Do(r)
 	if err != nil {
@@ -307,7 +401,7 @@ func (c Client) DoSomethingWithoutOutputWithActor(ctx context.Context, input Doi
 	inputProtoType := protobuf.DoingSomethingWithoutOutputWithActorUsecaseInput{
 		StringParam: input.StringParam,
 	}
-	b, err := proto.Marshal(&inputProtoType)
+	b, err := c.bodyMarshaler.Marshal(&inputProtoType)
 	if err != nil {
 		return err
 	}
@@ -316,7 +410,7 @@ func (c Client) DoSomethingWithoutOutputWithActor(ctx context.Context, input Doi
 		return err
 	}
 	r = r.WithContext(ctx)
-	r.Header.Add("Content-Type", "application/protobuf")
+	r.Header.Set("Content-Type", c.bodyMarshaler.ContentType())
 
 	resp, err := c.httpClient.Do(r)
 	if err != nil {

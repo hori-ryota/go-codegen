@@ -22,7 +22,6 @@ THE SOFTWARE.
 package httprpc
 
 import (
-	"errors"
 	"fmt"
 	"go/importer"
 	"go/parser"
@@ -43,7 +42,6 @@ func NewHttprpcCmd() *cobra.Command {
 	var usecaseDir string
 	var protoDir string
 	var outputDir string
-	var serializerPackage string
 	var useStdOut bool
 
 	httprpcCmd := &cobra.Command{
@@ -55,7 +53,6 @@ func NewHttprpcCmd() *cobra.Command {
 				usecaseDir,
 				protoDir,
 				outputDir,
-				serializerPackage,
 				useStdOut,
 			)
 		},
@@ -76,7 +73,6 @@ func NewHttprpcCmd() *cobra.Command {
 	if err := httprpcCmd.MarkFlagDirname("outputDir"); err != nil {
 		panic(err)
 	}
-	httprpcCmd.Flags().StringVarP(&serializerPackage, "serializerPackage", "s", "proto", "serializer package(proto or json)")
 	httprpcCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
 
 	return httprpcCmd
@@ -86,7 +82,6 @@ func Run(
 	usecaseDir string,
 	protoDir string,
 	outputDir string,
-	serializerPackage string,
 	useStdOut bool,
 ) error {
 	usecaseDir = filepath.FromSlash(usecaseDir)
@@ -120,21 +115,10 @@ func Run(
 		return err
 	}
 
-	var serializerPackageObj *types.Package
-	switch strings.ToLower(serializerPackage) {
-	case "proto":
-		serializerPackageObj = types.NewPackage("github.com/golang/protobuf/proto", "proto")
-	case "json":
-		serializerPackageObj = types.NewPackage("encoding/json", "json")
-	default:
-		return errors.New("unknown serializer package: " + serializerPackage)
-	}
-
 	generated, err := Generate(
 		lprog.Package(usecasePkgPath),
 		lprog.Package(protoPkgPath),
 		types.NewPackage(outputPackage, path.Base(outputPackage)),
-		serializerPackageObj,
 	)
 	if err != nil {
 		return err
