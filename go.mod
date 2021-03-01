@@ -1,6 +1,6 @@
 module github.com/hori-ryota/go-codegen
 
-go 1.15
+go 1.16
 
 require (
 	github.com/hori-ryota/go-strcase v0.0.0-20190805232314-b02d8d1b99e6
