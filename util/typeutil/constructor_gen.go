@@ -3,7 +3,7 @@
 package typeutil
 
 import (
-	types "go/types"
+	"go/types"
 )
 
 func NewPrinter(
@@ -11,6 +11,5 @@ func NewPrinter(
 ) Printer {
 	return Printer{
 		dstPackage: dstPackage,
-		relativeTo: relativeTo(dstPackage),
 	}
 }

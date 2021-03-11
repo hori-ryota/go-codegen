@@ -6,8 +6,19 @@ import (
 
 //genconstructor
 type Printer struct {
-	dstPackage *types.Package  `required:""`
-	relativeTo types.Qualifier `required:"relativeTo(dstPackage)"`
+	dstPackage    *types.Package    `required:""`
+	pkgPathToName map[string]string `setter:""`
+}
+
+// implement types.Qualifier
+func (p Printer) relativeTo(other *types.Package) string {
+	if SamePackage(p.dstPackage, other) {
+		return ""
+	}
+	if name, ok := p.pkgPathToName[other.Path()]; ok {
+		return name
+	}
+	return other.Name()
 }
 
 func (p Printer) PrintRelativeType(t types.Type) string {
@@ -34,10 +45,13 @@ func (p Printer) PrintRelativeFuncName(f *types.Func) string {
 	return relativePkg + "." + f.Name()
 }
 
-func relativeTo(pkg *types.Package) types.Qualifier {
+func relativeTo(pkg *types.Package, pkgPathToName map[string]string) types.Qualifier {
 	return func(other *types.Package) string {
 		if SamePackage(pkg, other) {
 			return ""
+		}
+		if name, ok := pkgPathToName[other.Path()]; ok {
+			return name
 		}
 		return other.Name()
 	}

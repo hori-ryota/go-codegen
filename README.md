@@ -33,8 +33,8 @@ type Person struct {
 package example
 
 import (
-	encoding "encoding"
-	time "time"
+	"encoding"
+	"time"
 )
 
 func NewPerson(
@@ -278,6 +278,6 @@ After:
                 - Generate HTTP Client for RPC with proto in Kotlin
             - [go\-codegen/codegen/api/protobuf/kotlin\_client/structdef](https://github.com/hori-ryota/go-codegen/tree/master/codegen/api/protobuf/kotlin_client/structdef)
                 - Generate struct definitions for HTTP Client for RPC with proto in Kotlin
-        - [go\-codegen/codegen/api/protobuf/prototoolyaml](https://github.com/hori-ryota/go-codegen/tree/master/codegen/api/protobuf/prototoolyaml)
-                - Generate Yaml config file for prototool
+        - [go\-codegen/codegen/api/protobuf/bufgenyaml](https://github.com/hori-ryota/go-codegen/tree/master/codegen/api/protobuf/bufgenyaml)
+                - Generate Yaml config file for buf generate
     - Sample: [go\-codegen/codegen/api/internal/testdata](https://github.com/hori-ryota/go-codegen/tree/master/codegen/api/internal/testdata)

@@ -1,4 +1,4 @@
-package prototoolyaml
+package bufgenyaml
 
 import (
 	"os"
@@ -45,18 +45,14 @@ var Template = template.Must(template.New("").Funcs(template.FuncMap{
 		return filepath.ToSlash(rel)
 	},
 }).Parse(strings.TrimSpace(`
-lint:
-  group: empty
+version: v1beta1
 
-generate:
-  go_options:
-    import_path: {{LocalPathToGoPackagePath .OutputDir}}
-
-  plugins:
-    - name: go
-      output: {{ToGoPath .OutputDir}} # GOPATH/src
+plugins:
+  - name: go
+    out: .
+    opt: paths=source_relative
 	{{- if .JavaOutputDir}}
-    - name: java
-      output: {{Rel .OutputDir .JavaOutputDir}}
+  - name: java
+    out: {{Rel .OutputDir .JavaOutputDir}}
 	{{- end}}
 `)))

@@ -3,15 +3,16 @@
 package httprpc
 
 import (
-	context "context"
-	json "encoding/json"
-	ioutil "io/ioutil"
-	http "net/http"
+	"context"
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
 
-	proto "github.com/golang/protobuf/proto"
-	protobuf "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
-	application "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/application"
-	domain "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/application"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 )
 
 type ErrorType string
@@ -54,6 +55,13 @@ func NewBodyMarshaler(
 	}
 }
 
+func NewProtoBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		proto.Marshal,
+		"application/protobuf",
+	)
+}
+
 func NewJSONBodyMarshaler() BodyMarshaler {
 	return NewBodyMarshaler(
 		func(v proto.Message) ([]byte, error) {
@@ -63,10 +71,12 @@ func NewJSONBodyMarshaler() BodyMarshaler {
 	)
 }
 
-func NewProtoBodyMarshaler() BodyMarshaler {
+func NewProtoJSONBodyMarshaler() BodyMarshaler {
 	return NewBodyMarshaler(
-		proto.Marshal,
-		"application/protobuf",
+		func(v proto.Message) ([]byte, error) {
+			return protojson.Marshal(v)
+		},
+		"application/json",
 	)
 }
 
@@ -90,17 +100,17 @@ func NewBodyUnmarshaler(
 	}
 }
 
-func NewJSONBodyUnmarshaler() BodyUnmarshaler {
-	return NewBodyUnmarshaler(
-		func(data []byte, v proto.Message) error {
-			return json.Unmarshal(data, v)
-		},
-	)
-}
-
 func NewProtoBodyUnmarshaler() BodyUnmarshaler {
 	return NewBodyUnmarshaler(
 		proto.Unmarshal,
+	)
+}
+
+func NewProtoJSONBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		func(data []byte, v proto.Message) error {
+			return protojson.Unmarshal(data, v)
+		},
 	)
 }
 
@@ -330,7 +340,7 @@ func (h Handlers) DoingSomethingWithOutputAndActorUsecaseDoSomethingWithOutputAn
 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 		return
 	}
-	w.Header().Set("Content-Type", c.bodyMarshaler.ContentType())
+	w.Header().Set("Content-Type", h.bodyMarshaler.ContentType())
 	if _, err := w.Write(b); err != nil {
 		h.HandleError(w, r, FailedToWriteResponseError, err)
 		return
@@ -397,7 +407,7 @@ func (h Handlers) DoingSomethingWithOutputWithoutActorUsecaseDoSomethingWithOutp
 		h.HandleError(w, r, FailedToMarshalResponseError, err)
 		return
 	}
-	w.Header().Set("Content-Type", c.bodyMarshaler.ContentType())
+	w.Header().Set("Content-Type", h.bodyMarshaler.ContentType())
 	if _, err := w.Write(b); err != nil {
 		h.HandleError(w, r, FailedToWriteResponseError, err)
 		return

@@ -11,7 +11,7 @@ package {{ .PackageName }}
 
 {{ .ImportPackages }}
 
-func ConvertErrorToProto(derr {{ .ErrorPackagePrefix }}Error) {{ .ProtoPackagePrefix }}Error {
+func ConvertErrorToProto(derr {{ .ErrorPackagePrefix }}Error) *{{ .ProtoPackagePrefix }}Error {
 	details := make([]*{{ .ProtoPackagePrefix }}ErrorDetail, len(derr.Details()))
 	for i := range derr.Details() {
 		details[i] = &{{ .ProtoPackagePrefix }}ErrorDetail{
@@ -19,10 +19,9 @@ func ConvertErrorToProto(derr {{ .ErrorPackagePrefix }}Error) {{ .ProtoPackagePr
 			Args: derr.Details()[i].Args(),
 		}
 	}
-	pe := {{ .ProtoPackagePrefix }}Error{
+	return &{{ .ProtoPackagePrefix }}Error{
 		Code:    derr.Code().String(),
 		Details: details,
 	}
-	return pe
 }
 `))

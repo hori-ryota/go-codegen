@@ -1,4 +1,4 @@
 package domain
 
 // error def
-//go:generate go run ../../../../../../ error go_definition --codes Unknown
+//go:generate go-codegen error go_definition --codes Unknown

@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package prototoolyaml
+package bufgenyaml
 
 import (
 	"fmt"
@@ -31,15 +31,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewPrototoolYamlCmd() *cobra.Command {
+func NewBufgenYamlCmd() *cobra.Command {
 	var outputDir string
 	var javaOutputDir string
 	var useStdOut bool
 
-	prototoolYamlCmd := &cobra.Command{
-		Use:   "prototoolyaml",
-		Short: "yaml generator for prototool",
-		Long:  `prototoolyaml is a yaml generator command for prototool.`,
+	bufgenYamlCmd := &cobra.Command{
+		Use:   "bufgenyaml",
+		Short: "yaml generator for buf generate",
+		Long:  `bufgenyaml is a yaml generator command for buf generate.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return Run(
 				outputDir,
@@ -49,17 +49,17 @@ func NewPrototoolYamlCmd() *cobra.Command {
 		},
 	}
 
-	prototoolYamlCmd.Flags().StringVarP(&outputDir, "outputDir", "o", "", "output directory")
-	if err := prototoolYamlCmd.MarkFlagRequired("outputDir"); err != nil {
+	bufgenYamlCmd.Flags().StringVarP(&outputDir, "outputDir", "o", "", "output directory")
+	if err := bufgenYamlCmd.MarkFlagRequired("outputDir"); err != nil {
 		panic(err)
 	}
-	if err := prototoolYamlCmd.MarkFlagDirname("outputDir"); err != nil {
+	if err := bufgenYamlCmd.MarkFlagDirname("outputDir"); err != nil {
 		panic(err)
 	}
-	prototoolYamlCmd.Flags().StringVar(&javaOutputDir, "javaOutputDir", "", "output directory of java")
-	prototoolYamlCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
+	bufgenYamlCmd.Flags().StringVar(&javaOutputDir, "javaOutputDir", "", "output directory of java")
+	bufgenYamlCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
 
-	return prototoolYamlCmd
+	return bufgenYamlCmd
 }
 
 func Run(
@@ -87,5 +87,5 @@ func Run(
 		return err
 	}
 
-	return ioutil.WriteFile(filepath.Join(outputDir, "prototool.yaml"), []byte(generated), 0644)
+	return ioutil.WriteFile(filepath.Join(outputDir, "buf.gen.yaml"), []byte(generated), 0644)
 }

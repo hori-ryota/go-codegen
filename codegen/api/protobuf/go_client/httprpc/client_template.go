@@ -202,5 +202,5 @@ var ClientTemplateUsedPackages = []*types.Package{
 	types.NewPackage("go.uber.org/zap", "zap"),
 	types.NewPackage("github.com/hori-ryota/zaperr", "zaperr"),
 	types.NewPackage("encoding/json", "json"),
-	types.NewPackage("github.com/golang/protobuf/proto", "proto"),
+	types.NewPackage("google.golang.org/protobuf/proto", "proto"),
 }

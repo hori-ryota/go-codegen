@@ -116,6 +116,13 @@ func NewBodyMarshaler(
 	}
 }
 
+func NewProtoBodyMarshaler() BodyMarshaler {
+	return NewBodyMarshaler(
+		proto.Marshal,
+		"application/protobuf",
+	)
+}
+
 func NewJSONBodyMarshaler() BodyMarshaler {
 	return NewBodyMarshaler(
 		func(v proto.Message) ([]byte, error) {
@@ -125,10 +132,12 @@ func NewJSONBodyMarshaler() BodyMarshaler {
 	)
 }
 
-func NewProtoBodyMarshaler() BodyMarshaler {
+func NewProtoJSONBodyMarshaler() BodyMarshaler {
 	return NewBodyMarshaler(
-		proto.Marshal,
-		"application/protobuf",
+		func(v proto.Message) ([]byte, error) {
+			return protojson.Marshal(v)
+		},
+		"application/json",
 	)
 }
 
@@ -152,17 +161,17 @@ func NewBodyUnmarshaler(
 	}
 }
 
-func NewJSONBodyUnmarshaler() BodyUnmarshaler {
-	return NewBodyUnmarshaler(
-		func(data []byte, v proto.Message) error {
-			return json.Unmarshal(data, v)
-		},
-	)
-}
-
 func NewProtoBodyUnmarshaler() BodyUnmarshaler {
 	return NewBodyUnmarshaler(
 		proto.Unmarshal,
+	)
+}
+
+func NewProtoJSONBodyUnmarshaler() BodyUnmarshaler {
+	return NewBodyUnmarshaler(
+		func(data []byte, v proto.Message) error {
+			return protojson.Unmarshal(data, v)
+		},
 	)
 }
 
@@ -321,5 +330,6 @@ var HandlerTemplateUsedPackages = []*types.Package{
 	types.NewPackage("io/ioutil", "ioutil"),
 	types.NewPackage("net/http", "http"),
 	types.NewPackage("encoding/json", "json"),
-	types.NewPackage("github.com/golang/protobuf/proto", "proto"),
+	types.NewPackage("google.golang.org/protobuf/proto", "proto"),
+	types.NewPackage("google.golang.org/protobuf/encoding/protojson", "protojson"),
 }

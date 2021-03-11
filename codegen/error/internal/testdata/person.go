@@ -2,8 +2,8 @@ package testdata
 
 import "time"
 
-//go:generate go run ../../../../ error go_definition -t . -o . --codes Unknown,NotFound,BadRequest
-//go:generate go run ../../../../ error protobuf -t . -o ./proto/error.proto --protoPackage testdata --javaPackage com.github.horiryota.gocodegen.error.testdata --javaOuterClassName ErrorProto
+//go:generate go-codegen error go_definition -t . -o . --codes Unknown,NotFound,BadRequest
+//go:generate go-codegen error protobuf -t . -o ./proto/error.proto --protoPackage testdata --javaPackage com.github.horiryota.gocodegen.error.testdata --javaOuterClassName ErrorProto
 //go:generate protoc --go_out=$GOPATH/src ./proto/error.proto
 
 type WorkKind string

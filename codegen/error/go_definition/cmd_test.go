@@ -20,13 +20,13 @@ func Example() {
 	// package testdata
 	//
 	// import (
-	// 	fmt "fmt"
-	// 	strconv "strconv"
-	// 	strings "strings"
+	// 	"fmt"
+	// 	"strconv"
+	// 	"strings"
 	//
-	// 	zaperr "github.com/hori-ryota/zaperr"
-	// 	zap "go.uber.org/zap"
-	// 	zapcore "go.uber.org/zap/zapcore"
+	// 	"github.com/hori-ryota/zaperr"
+	// 	"go.uber.org/zap"
+	// 	"go.uber.org/zap/zapcore"
 	// )
 	//
 	// type ErrorCode string

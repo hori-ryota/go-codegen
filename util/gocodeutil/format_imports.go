@@ -3,6 +3,7 @@ package gocodeutil
 import (
 	"bytes"
 	"fmt"
+	"path"
 	"sort"
 	"strconv"
 	"strings"
@@ -34,15 +35,18 @@ func FmtImports(pkgs map[string]string) string {
 			return group[i] < group[j]
 		})
 		for _, pkg := range group {
-			_, err := b.WriteString(pathToNameMap[pkg])
-			if err != nil {
-				panic(err)
+			name := pathToNameMap[pkg]
+			if name != path.Base(pkg) {
+				_, err := b.WriteString(name)
+				if err != nil {
+					panic(err)
+				}
+				_, err = b.WriteRune(' ')
+				if err != nil {
+					panic(err)
+				}
 			}
-			_, err = b.WriteRune(' ')
-			if err != nil {
-				panic(err)
-			}
-			_, err = b.WriteString(strconv.Quote(pkg))
+			_, err := b.WriteString(strconv.Quote(pkg))
 			if err != nil {
 				panic(err)
 			}

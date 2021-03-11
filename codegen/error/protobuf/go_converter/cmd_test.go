@@ -20,11 +20,11 @@ func Example() {
 	// package converter
 	//
 	// import (
-	// 	testdata "github.com/hori-ryota/go-codegen/codegen/error/internal/testdata"
-	// 	proto "github.com/hori-ryota/go-codegen/codegen/error/internal/testdata/proto"
+	// 	"github.com/hori-ryota/go-codegen/codegen/error/internal/testdata"
+	// 	"github.com/hori-ryota/go-codegen/codegen/error/internal/testdata/proto"
 	// )
 	//
-	// func ConvertErrorToProto(derr testdata.Error) proto.Error {
+	// func ConvertErrorToProto(derr testdata.Error) *proto.Error {
 	// 	details := make([]*proto.ErrorDetail, len(derr.Details()))
 	// 	for i := range derr.Details() {
 	// 		details[i] = &proto.ErrorDetail{
@@ -32,11 +32,10 @@ func Example() {
 	// 			Args: derr.Details()[i].Args(),
 	// 		}
 	// 	}
-	// 	pe := proto.Error{
+	// 	return &proto.Error{
 	// 		Code:    derr.Code().String(),
 	// 		Details: details,
 	// 	}
-	// 	return pe
 	// }
 }
 

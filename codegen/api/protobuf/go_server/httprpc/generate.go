@@ -70,9 +70,11 @@ func Generate(
 	out := new(bytes.Buffer)
 
 	importPackages := make([]*types.Package, 0, 100)
-	importPackages = append(importPackages, HandlerTemplateUsedPackages...)
+	importPackages = append(importPackages, usecasePkgInfo.Pkg)
+	importPackages = append(importPackages, protoPkgInfo.Pkg)
 	importPackages = append(importPackages, typeutil.AllImported(usecasePkgInfo)...)
 	importPackages = append(importPackages, typeutil.AllImported(protoPkgInfo)...)
+	importPackages = append(importPackages, HandlerTemplateUsedPackages...)
 
 	err := HandlerTemplate.Execute(out, TemplateParam{
 		PackageName:    dstPackage.Name(),

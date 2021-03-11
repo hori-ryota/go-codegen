@@ -20,7 +20,7 @@ func Example() {
 	// package example
 	//
 	// import (
-	// 	encoding "encoding"
+	// 	"encoding"
 	// )
 	//
 	// func (m Person) ID() string {

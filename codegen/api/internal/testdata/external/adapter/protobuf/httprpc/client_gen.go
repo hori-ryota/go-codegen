@@ -3,19 +3,19 @@
 package httprpc
 
 import (
-	bytes "bytes"
-	context "context"
-	json "encoding/json"
-	io "io"
-	ioutil "io/ioutil"
-	http "net/http"
-	url "net/url"
-	path "path"
+	"bytes"
+	"context"
+	"encoding/json"
+	"io"
+	"io/ioutil"
+	"net/http"
+	"net/url"
+	"path"
 
-	proto "github.com/golang/protobuf/proto"
-	protobuf "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
-	zaperr "github.com/hori-ryota/zaperr"
-	zap "go.uber.org/zap"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
+	"github.com/hori-ryota/zaperr"
+	"go.uber.org/zap"
+	"google.golang.org/protobuf/proto"
 )
 
 type BodyMarshaler interface {
@@ -59,15 +59,6 @@ func NewProtoBodyMarshaler() BodyMarshaler {
 	return NewBodyMarshaler(
 		proto.Marshal,
 		"application/protobuf",
-	)
-}
-
-func NewJSONPbBodyMarshaler() BodyMarshaler {
-	return NewBodyMarshaler(
-		func(v proto.Message) ([]byte, error) {
-			return json.Marshal(v)
-		},
-		"application/json",
 	)
 }
 

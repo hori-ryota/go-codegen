@@ -3,12 +3,12 @@
 package domain
 
 import (
-	fmt "fmt"
-	strings "strings"
+	"fmt"
+	"strings"
 
-	zaperr "github.com/hori-ryota/zaperr"
-	zap "go.uber.org/zap"
-	zapcore "go.uber.org/zap/zapcore"
+	"github.com/hori-ryota/zaperr"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 type ErrorCode string

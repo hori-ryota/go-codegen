@@ -1,4 +1,4 @@
-package prototoolyaml
+package bufgenyaml
 
 import (
 	"bytes"

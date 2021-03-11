@@ -2,6 +2,8 @@ package typeutil
 
 import (
 	"go/types"
+	"path"
+	"strings"
 
 	"github.com/hori-ryota/go-codegen/util/gocodeutil"
 	"golang.org/x/tools/go/loader"
@@ -62,17 +64,16 @@ func AllImported(pkg *loader.PackageInfo) []*types.Package {
 		Pkg() *types.Package
 	}
 	dst := make([]*types.Package, 0, 100)
-	for _, tv := range pkg.Types {
-		if tv.Type == nil {
-			continue
-		}
-		if named, ok := tv.Type.(*types.Named); ok {
-			dst = append(dst, named.Obj().Pkg())
-			continue
-		}
-		if t, ok := tv.Type.(hasPkg); ok {
-			dst = append(dst, t.Pkg())
-			continue
+	for _, file := range pkg.Files {
+		for _, is := range file.Imports {
+			pat := strings.Trim(is.Path.Value, `"`)
+			var name string
+			if is.Name != nil {
+				name = is.Name.Name
+			} else {
+				name = path.Base(pat)
+			}
+			dst = append(dst, types.NewPackage(pat, name))
 		}
 	}
 	return dst

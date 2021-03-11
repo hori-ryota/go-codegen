@@ -3,7 +3,7 @@
 package application
 
 import (
-	domain "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
 )
 
 func NewSomeActorDescription(

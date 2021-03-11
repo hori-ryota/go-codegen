@@ -20,7 +20,7 @@ func Example() {
 	// package example
 	//
 	// import (
-	// 	time "time"
+	// 	"time"
 	// )
 	//
 	// func NewPerson(

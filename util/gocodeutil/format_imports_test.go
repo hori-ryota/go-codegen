@@ -26,9 +26,9 @@ func TestGoFmtImports(t *testing.T) {
 				"json":  "encoding/json",
 			},
 			want: `import (
-bytes "bytes"
-json "encoding/json"
-fmt "fmt"
+"bytes"
+"encoding/json"
+"fmt"
 )`,
 		},
 		{
@@ -39,7 +39,7 @@ fmt "fmt"
 				"ajson": "encoding/json",
 			},
 			want: `import (
-bytes "bytes"
+"bytes"
 ajson "encoding/json"
 afmt "fmt"
 )`,
@@ -53,11 +53,11 @@ afmt "fmt"
 				"go-codegen": "github.com/hori-ryota/go-codegen",
 			},
 			want: `import (
-bytes "bytes"
-json "encoding/json"
-fmt "fmt"
+"bytes"
+"encoding/json"
+"fmt"
 
-go-codegen "github.com/hori-ryota/go-codegen"
+"github.com/hori-ryota/go-codegen"
 )`,
 		},
 		{
@@ -67,7 +67,7 @@ go-codegen "github.com/hori-ryota/go-codegen"
 				"codegen": "github.com/hori-ryota/go-codegen",
 			},
 			want: `import (
-fmt "fmt"
+"fmt"
 
 codegen "github.com/hori-ryota/go-codegen"
 )`,
@@ -78,7 +78,7 @@ codegen "github.com/hori-ryota/go-codegen"
 				"go-codegen": "github.com/hori-ryota/go-codegen",
 			},
 			want: `import (
-go-codegen "github.com/hori-ryota/go-codegen"
+"github.com/hori-ryota/go-codegen"
 )`,
 		},
 	} {

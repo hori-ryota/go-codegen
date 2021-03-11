@@ -32,10 +32,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/bufgenyaml"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_client"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_server"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/kotlin_client"
-	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/prototoolyaml"
 	"github.com/hori-ryota/go-codegen/util/gocodeutil"
 	"github.com/spf13/cobra"
 	"golang.org/x/tools/go/loader"
@@ -87,7 +87,7 @@ func NewProtobufCmd() *cobra.Command {
 	protobufCmd.Flags().StringVar(&javaOuterClassName, "javaOuterClassName", "", "outer class name of java")
 	protobufCmd.Flags().BoolVar(&useStdOut, "useStdOut", false, "use stdout")
 
-	protobufCmd.AddCommand(prototoolyaml.NewPrototoolYamlCmd())
+	protobufCmd.AddCommand(bufgenyaml.NewBufgenYamlCmd())
 	protobufCmd.AddCommand(go_server.NewGoServerCmd())
 	protobufCmd.AddCommand(go_client.NewGoClientCmd())
 	protobufCmd.AddCommand(kotlin_client.NewKotlinClientCmd())

@@ -3,11 +3,11 @@
 package httprpc
 
 import (
-	protobuf "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
-	domain "github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/external/adapter/protobuf"
+	"github.com/hori-ryota/go-codegen/codegen/api/internal/testdata/internal/domain"
 )
 
-func ConvertErrorToProto(derr domain.Error) protobuf.Error {
+func ConvertErrorToProto(derr domain.Error) *protobuf.Error {
 	details := make([]*protobuf.ErrorDetail, len(derr.Details()))
 	for i := range derr.Details() {
 		details[i] = &protobuf.ErrorDetail{
@@ -15,9 +15,8 @@ func ConvertErrorToProto(derr domain.Error) protobuf.Error {
 			Args: derr.Details()[i].Args(),
 		}
 	}
-	pe := protobuf.Error{
+	return &protobuf.Error{
 		Code:    derr.Code().String(),
 		Details: details,
 	}
-	return pe
 }

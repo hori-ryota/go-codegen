@@ -14,7 +14,14 @@ import (
 )
 
 func Generate(pkgInfo *loader.PackageInfo) (string, error) {
+	allImported := typeutil.AllImported(pkgInfo)
+	pkgPathToName := make(map[string]string, len(allImported))
+	for _, imported := range allImported {
+		pkgPathToName[imported.Path()] = imported.Name()
+	}
+
 	printer := typeutil.NewPrinter(pkgInfo.Pkg)
+	printer.SetPkgPathToName(pkgPathToName)
 	b := new(bytes.Buffer)
 	for _, name := range pkgInfo.Pkg.Scope().Names() {
 		obj := pkgInfo.Pkg.Scope().Lookup(name)
@@ -74,7 +81,7 @@ func Generate(pkgInfo *loader.PackageInfo) (string, error) {
 			{{ .Body }}
 		`)).Execute(out, map[string]string{
 		"PackageName":    pkgInfo.Pkg.Name(),
-		"ImportPackages": typeutil.FmtImports(typeutil.AllImported(pkgInfo), pkgInfo.Pkg),
+		"ImportPackages": typeutil.FmtImports(allImported, pkgInfo.Pkg),
 		"Body":           b.String(),
 	})
 	if err != nil {
