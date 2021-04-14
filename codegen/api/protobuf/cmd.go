@@ -36,6 +36,7 @@ import (
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_client"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/go_server"
 	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/kotlin_client"
+	"github.com/hori-ryota/go-codegen/codegen/api/protobuf/typescript_client"
 	"github.com/hori-ryota/go-codegen/util/gocodeutil"
 	"github.com/spf13/cobra"
 	"golang.org/x/tools/go/loader"
@@ -91,6 +92,7 @@ func NewProtobufCmd() *cobra.Command {
 	protobufCmd.AddCommand(go_server.NewGoServerCmd())
 	protobufCmd.AddCommand(go_client.NewGoClientCmd())
 	protobufCmd.AddCommand(kotlin_client.NewKotlinClientCmd())
+	protobufCmd.AddCommand(typescript_client.NewTypescriptClientCmd())
 
 	return protobufCmd
 }

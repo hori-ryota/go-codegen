@@ -27,6 +27,10 @@ package application
 ////// client of go
 //go:generate go-codegen api protobuf go_client httprpc -p ../../external/adapter/protobuf -c ../../external/adapter/protobuf/httprpc -o ../../external/adapter/protobuf/httprpc
 
+//// httprpc client of Typescript
+////// structdef
+//go:generate go-codegen api protobuf typescript_client structdef -o ../../external/adapter/protobuf/typescript
+
 //// httprpc client of Kotlin multiplatform
 ////// structdef
 //go:generate go-codegen api protobuf kotlin_client structdef -o ../../external/adapter/protobuf/kotlinmpp/src/commonMain/kotlin --kotlinPackage com.github.horiryota.gocodegen.api.example.codegen
